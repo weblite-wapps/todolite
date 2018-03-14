@@ -96,7 +96,11 @@ Vue.component('todo-items', {
    template: `
      <div class="root">
        <todo-items :todos="todos" />
-       <todo-input :edit="edit" @add="onAdd" />
+       <todo-input
+         :edit="edit"
+         @add="onAdd"
+         @edit="onEdit"
+       />
      </div>
    `,
 
@@ -122,8 +126,9 @@ Vue.component('todo-items', {
        this.todos.push({ id: Math.random(), title: title, functor: '' })
      },
 
-     onEdit: function(obj) {},
+     onEdit: function(obj) {
+       const index = R.findIndex(R.propEq('id', obj.id), this.todos)
+       if(index !== undefined) this.todos[index].title = obj.title
+     },
    },
  })
-
-console.log(R)
