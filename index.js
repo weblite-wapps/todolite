@@ -33,17 +33,25 @@ Vue.component('todo-input', {
     editTitle: '',
   }),
 
+  watch: {
+    edit: function(edit) {
+      if (!edit) return
+      this.editId = edit.id
+      this.editTitle = edit.title
+    },
+  },
+
   computed: {
     value: function() { return this.editId ? this.editTitle : this.title },
     valueExist: function() {
-      return (this.editId && !this.editTitle) || (!this.editId && this.title)
+      return (this.editId && this.editTitle) || (!this.editId && this.title)
     },
   },
 
   methods: {
     onChange: function(e) {
       if (this.editId) this.editTitle = e.target.value
-      this.title = e.target.value
+      else this.title = e.target.value
     },
 
     onClick: function() {
@@ -74,12 +82,12 @@ Vue.component('todo-item', {
       <div class="todo-item-icons">
         <img src="icons/done.png" class="icon" />
         <img src="icons/close.png" class="icon" @click="onDelete(id)" />
-        <img src="icons/edit.png" class="icon" />
+        <img src="icons/edit.png" class="icon" @click="onEdit(id)" />
       </div>
     </div>
   `,
 
-  props: ['title', 'functor', 'id', 'onDelete'],
+  props: ['title', 'functor', 'id', 'onDelete', 'onEdit'],
 })
 
 
@@ -94,13 +102,14 @@ Vue.component('todo-items', {
           v-for="todo in todos"
           :key="todo.id"
           :onDelete="onDelete"
+          :onEdit="onEdit"
           v-bind="todo"
         />
       </transition-group>
     </ul>
   `,
 
-  props: ['todos', 'onDelete'],
+  props: ['todos', 'onDelete', 'onEdit'],
 })
 
 
@@ -115,6 +124,7 @@ Vue.component('todo-items', {
        <todo-items
          :todos="todos"
          :onDelete="onDelete"
+         :onEdit="onClickEdit"
        />
        <todo-input
          :edit="edit"
@@ -135,9 +145,7 @@ Vue.component('todo-items', {
 
    computed: {
      edit: function() {
-       const editId = this.editId
-       const todo = editId && this.todos[editId]
-       return todo
+       return R.find(R.propEq('id', this.editId), this.todos)
      },
    },
 
@@ -148,11 +156,16 @@ Vue.component('todo-items', {
 
      onEdit: function(obj) {
        const index = R.findIndex(R.propEq('id', obj.id), this.todos)
-       if(index !== undefined) this.todos[index].title = obj.title
+       if(index !== undefined) {
+         this.todos[index].title = obj.title
+         this.editId = ''
+       }
      },
 
      onDelete: function(id) {
        this.todos = R.reject(R.propEq('id', id), this.todos)
      },
+
+     onClickEdit: function(id) { this.editId = id },
    },
  })
