@@ -14,10 +14,12 @@ Vue.component('todo-input', {
         class="input"
         :value="value"
         @input="onChange"
+        @keyup.enter="onClick"
       />
       <img
         :src="this.editId ? 'icons/edit.png' : 'icons/add.png'"
-        class="input-add-icon"
+        v-show="this.valueExist"
+        class="icon"
         @click="onClick"
       />
     </div>
@@ -33,6 +35,9 @@ Vue.component('todo-input', {
 
   computed: {
     value: function() { return this.editId ? this.editTitle : this.title },
+    valueExist: function() {
+      return (this.editId && !this.editTitle) || (!this.editId && this.title)
+    },
   },
 
   methods: {
@@ -41,7 +46,10 @@ Vue.component('todo-input', {
       this.title = e.target.value
     },
 
-    onClick: function() { this.editId ? this.onEdit() : this.onAdd() },
+    onClick: function() {
+      if (!this.valueExist) return
+      this.editId ? this.onEdit() : this.onAdd()
+    },
 
     onAdd: function() {
       this.$emit('add', this.title)
@@ -61,8 +69,13 @@ Vue.component('todo-input', {
 /* todo item compunent */
 Vue.component('todo-item', {
   template: `
-    <div>
-      {{ title }} {{ functor }}
+    <div class="todo-item">
+      <div class="todo-item-title">{{ title }}</div>
+      <div class="todo-item-icons">
+        <img src="icons/done.png" class="icon" />
+        <img src="icons/close.png" class="icon" />
+        <img src="icons/edit.png" class="icon" />
+      </div>
     </div>
   `,
 
@@ -89,6 +102,7 @@ Vue.component('todo-items', {
 
 
 
+// ****** section 3: main vue instance
 /* main instance */
  const vm = new Vue({
    el: '#vue',
