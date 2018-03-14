@@ -14,15 +14,55 @@ Vue.component('todo-input', {
         type="text"
         placeholder="add todo ..."
         class="input"
-        v-model="value"
+        :value="value"
+        @input="onChange"
       />
-      <img src="icons/add.png" class="input-add-icon" />
+      <img
+        :src="this.editId ? 'icons/edit.png' : 'icons/add.png'"
+        class="input-add-icon"
+        @click="onClick"
+      />
     </div>
   `,
 
+  props: ['edit'],
+
   data: getDataFunc({
-    value: '',
+    title: '',
+    editId: '',
+    editTitle: '',
   }),
+
+  mounted: function() {
+    setTimeout(() => {
+      this.editId = '123123'
+      this.editTitle = 'salam2'
+    }, 2000)
+  },
+
+  computed: {
+    value: function() { return this.editId ? this.editTitle : this.title },
+  },
+
+  methods: {
+    onChange: function(e) {
+      if (this.editId) this.editTitle = e.target.value
+      this.title = e.target.value
+    },
+
+    onClick: function() { this.editId ? this.onEdit() : this.onAdd() },
+
+    onAdd: function() {
+      this.$emit('add', this.title)
+      this.title = ''
+    },
+
+    onEdit: function() {
+      this.$emit('edit', { id: this.editId, title: this.editTitle })
+      this.editId = ''
+      this.editTitle = ''
+    }
+  },
 })
 
 
@@ -31,8 +71,11 @@ Vue.component('todo-input', {
 Vue.component('todo-item', {
   template: `
     <div>
+      {{ title }} {{ functor }}
     </div>
   `,
+
+  props: ['title', 'functor'],
 })
 
 
@@ -40,8 +83,17 @@ Vue.component('todo-item', {
 /* todo items compunent */
 Vue.component('todo-items', {
   template: `
-    <div class="todo-items"></div>
+    <ul class="todo-items">
+      <li
+        is="todo-item"
+        v-for="todo in todos"
+        :key="todo.id"
+        v-bind="todo"
+      />
+    </ul>
   `,
+
+  props: ['todos'],
 })
 
 
@@ -52,14 +104,25 @@ Vue.component('todo-items', {
 
    template: `
      <div class="root">
-       <todo-items />
-       <todo-input />
+       <todo-items :todos="todos" />
+       <todo-input :edit="edit" />
      </div>
    `,
 
    data: {
      name: 'Ali',
-     todos: [],
+     todos: [
+       { id: '1', title: 'do whatever you want to do', functor: '' },
+       { id: '2', title: 'do second thing in a row', functor: 'ali' },
+     ],
      editId: '',
+   },
+
+   computed: {
+     edit: function() {
+       const editId = this.editId
+       const todo = editId && this.todos[editId]
+       return todo
+     },
    },
  })

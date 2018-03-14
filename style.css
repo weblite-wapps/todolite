@@ -41,6 +41,7 @@ html, body, #vue {
 }
 
 .input-add-icon {
+  cursor: pointer;
   width: 30px;
   height: 30px;
 }
