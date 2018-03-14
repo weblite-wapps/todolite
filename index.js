@@ -3,8 +3,6 @@ const getDataFunc = function(obj) { return function() { return obj } }
 
 
 
-
-
 // ****** section 2: components
 /* input compunent */
 Vue.component('todo-input', {
@@ -32,13 +30,6 @@ Vue.component('todo-input', {
     editId: '',
     editTitle: '',
   }),
-
-  mounted: function() {
-    setTimeout(() => {
-      this.editId = '123123'
-      this.editTitle = 'salam2'
-    }, 2000)
-  },
 
   computed: {
     value: function() { return this.editId ? this.editTitle : this.title },
@@ -105,7 +96,7 @@ Vue.component('todo-items', {
    template: `
      <div class="root">
        <todo-items :todos="todos" />
-       <todo-input :edit="edit" />
+       <todo-input :edit="edit" @add="onAdd" />
      </div>
    `,
 
@@ -125,4 +116,14 @@ Vue.component('todo-items', {
        return todo
      },
    },
+
+   methods: {
+     onAdd: function(title) {
+       this.todos.push({ id: Math.random(), title: title, functor: '' })
+     },
+
+     onEdit: function(obj) {},
+   },
  })
+
+console.log(R)
