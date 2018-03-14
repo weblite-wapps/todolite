@@ -73,13 +73,13 @@ Vue.component('todo-item', {
       <div class="todo-item-title">{{ title }}</div>
       <div class="todo-item-icons">
         <img src="icons/done.png" class="icon" />
-        <img src="icons/close.png" class="icon" />
+        <img src="icons/close.png" class="icon" @click="onDelete(id)" />
         <img src="icons/edit.png" class="icon" />
       </div>
     </div>
   `,
 
-  props: ['title', 'functor'],
+  props: ['title', 'functor', 'id', 'onDelete'],
 })
 
 
@@ -92,12 +92,13 @@ Vue.component('todo-items', {
         is="todo-item"
         v-for="todo in todos"
         :key="todo.id"
+        :onDelete="onDelete"
         v-bind="todo"
       />
     </ul>
   `,
 
-  props: ['todos'],
+  props: ['todos', 'onDelete'],
 })
 
 
@@ -109,7 +110,10 @@ Vue.component('todo-items', {
 
    template: `
      <div class="root">
-       <todo-items :todos="todos" />
+       <todo-items
+         :todos="todos"
+         :onDelete="onDelete"
+       />
        <todo-input
          :edit="edit"
          @add="onAdd"
@@ -143,6 +147,10 @@ Vue.component('todo-items', {
      onEdit: function(obj) {
        const index = R.findIndex(R.propEq('id', obj.id), this.todos)
        if(index !== undefined) this.todos[index].title = obj.title
+     },
+
+     onDelete: function(id) {
+       this.todos = R.reject(R.propEq('id', id), this.todos)
      },
    },
  })
