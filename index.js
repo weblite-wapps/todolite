@@ -79,15 +79,16 @@ Vue.component('todo-item', {
   template: `
     <div class="todo-item">
       <div class="todo-item-title">{{ title }}</div>
+      <div class="todo-item-title">{{ functor }}</div>
       <div class="todo-item-icons">
-        <img src="icons/done.png" class="icon" />
+        <img src="icons/done.png" class="icon" @click="onDone(id)" />
         <img src="icons/close.png" class="icon" @click="onDelete(id)" />
         <img src="icons/edit.png" class="icon" @click="onEdit(id)" />
       </div>
     </div>
   `,
 
-  props: ['title', 'functor', 'id', 'onDelete', 'onEdit'],
+  props: ['title', 'functor', 'id', 'onDone', 'onDelete', 'onEdit'],
 })
 
 
@@ -101,6 +102,7 @@ Vue.component('todo-items', {
           is="todo-item"
           v-for="todo in todos"
           :key="todo.id"
+          :onDone="onDone"
           :onDelete="onDelete"
           :onEdit="onEdit"
           v-bind="todo"
@@ -109,7 +111,7 @@ Vue.component('todo-items', {
     </ul>
   `,
 
-  props: ['todos', 'onDelete', 'onEdit'],
+  props: ['todos', 'onDone', 'onDelete', 'onEdit'],
 })
 
 
@@ -123,6 +125,7 @@ Vue.component('todo-items', {
      <div class="root">
        <todo-items
          :todos="todos"
+         :onDone="onDone"
          :onDelete="onDelete"
          :onEdit="onClickEdit"
        />
@@ -138,21 +141,17 @@ Vue.component('todo-items', {
      name: 'Ali',
      todos: [
        { id: '1', title: 'do whatever you want to do', functor: '' },
-       { id: '2', title: 'do second thing in a row', functor: 'ali' },
+       { id: '2', title: 'do second thing in a row', functor: '' },
      ],
      editId: '',
    },
 
    computed: {
-     edit: function() {
-       return R.find(R.propEq('id', this.editId), this.todos)
-     },
+     edit: function() { return R.find(R.propEq('id', this.editId), this.todos) },
    },
 
    methods: {
-     onAdd: function(title) {
-       this.todos.push({ id: Math.random(), title: title, functor: '' })
-     },
+     onAdd: function(title) { this.todos.push({ id: Math.random(), title: title, functor: '' }) },
 
      onEdit: function(obj) {
        const index = R.findIndex(R.propEq('id', obj.id), this.todos)
@@ -162,9 +161,12 @@ Vue.component('todo-items', {
        }
      },
 
-     onDelete: function(id) {
-       this.todos = R.reject(R.propEq('id', id), this.todos)
+     onDone: function(id) {
+       const index = R.findIndex(R.propEq('id', id), this.todos)
+       this.todos = R.assocPath([index, 'functor'], this.name, this.todos)
      },
+
+     onDelete: function(id) { this.todos = R.reject(R.propEq('id', id), this.todos) },
 
      onClickEdit: function(id) { this.editId = id },
    },
