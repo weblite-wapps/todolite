@@ -88,13 +88,15 @@ Vue.component('todo-item', {
 Vue.component('todo-items', {
   template: `
     <ul class="todo-items">
-      <li
-        is="todo-item"
-        v-for="todo in todos"
-        :key="todo.id"
-        :onDelete="onDelete"
-        v-bind="todo"
-      />
+      <transition-group name="todo-item-transition" tag="p">
+        <li
+          is="todo-item"
+          v-for="todo in todos"
+          :key="todo.id"
+          :onDelete="onDelete"
+          v-bind="todo"
+        />
+      </transition-group>
     </ul>
   `,
 
