@@ -79,11 +79,32 @@ Vue.component('todo-item', {
   template: `
     <div class="todo-item">
       <div class="todo-item-title">{{ title }}</div>
-      <div class="todo-item-title">{{ functor }}</div>
+
+      <div
+        class="todo-item-title"
+        v-if="functor"
+      >
+        Done by {{ functor }}
+      </div>
+
       <div class="todo-item-icons">
-        <img src="icons/done.png" class="icon" @click="onDone(id)" />
-        <img src="icons/close.png" class="icon" @click="onDelete(id)" />
-        <img src="icons/edit.png" class="icon" @click="onEdit(id)" />
+        <img
+          src="icons/done.png"
+          class="icon"
+          v-if="!functor"
+          @click="onDone(id)"
+        />
+        <img
+          src="icons/close.png"
+          class="icon"
+          @click="onDelete(id)"
+        />
+        <img
+          src="icons/edit.png"
+          class="icon"
+          v-if="!functor"
+          @click="onEdit(id)"
+        />
       </div>
     </div>
   `,
