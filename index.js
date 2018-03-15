@@ -35,12 +35,15 @@ Vue.component('todo-input', {
         @input="onChange"
         @keyup.enter="onClick"
       />
-      <icon-button
-        @click="onClick"
-        v-show="this.valueExist"
-        :icon="this.editId ? 'edit' : 'add'"
-        color="green"
-      />
+
+      <transition name="fade">
+        <icon-button
+          @click="onClick"
+          v-show="this.valueExist"
+          :icon="this.editId ? 'edit' : 'add'"
+          color="green"
+        />
+      </transition>
     </div>
   `,
 
@@ -84,9 +87,10 @@ Vue.component('todo-input', {
     },
 
     onEdit: function() {
+      const that = this
       this.$emit('edit', { id: this.editId, title: this.editTitle })
-      this.editId = ''
       this.editTitle = ''
+      setTimeout(function () { that.editId = '' }, 500)
     }
   },
 })
