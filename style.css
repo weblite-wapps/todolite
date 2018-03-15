@@ -53,8 +53,7 @@ html, body, #vue {
   padding: 3px;
   font-weight: bold;
   border-radius: 100px;
-  border: 1px solid #8BC34A;
-  /* background: #8BC34A; */
+  background: #9CCC65;
   margin-right: 10px;
 }
 

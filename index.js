@@ -6,17 +6,15 @@ const getDataFunc = function(obj) { return function() { return obj } }
 // ****** section 2: components
 Vue.component('icon-button', {
   template: `
-    <div @click="click">
-      <i
-        class="material-icons icon"
-        :style="'color:' + color + ';'"
-      >
-        {{ icon }}
-      </i>
-    </div>
+    <i
+      @click="click"
+      class="material-icons"
+    >
+      {{ icon }}
+    </i>
   `,
 
-  props: ['icon', 'color'],
+  props: ['icon'],
 
   methods: {
     click: function() { this.$emit('click') },
@@ -103,6 +101,7 @@ Vue.component('todo-item', {
   template: `
     <div class="todo-item">
       <icon-button
+        class="icon"
         @click="onDone(id)"
         icon="check"
         color="white"
@@ -110,13 +109,6 @@ Vue.component('todo-item', {
       />
 
       <div class="todo-item-title">{{ title }}</div>
-
-      <icon-button
-        @click="onDone(id)"
-        icon="expand_more"
-        color="green"
-        v-if="!functor"
-      />
     </div>
   `,
 
@@ -224,3 +216,11 @@ Vue.component('todo-items', {
  // >
  //   Done by {{ functor }}
  // </div>
+
+
+ // <icon-button
+ //   @click="onDone(id)"
+ //   icon="expand_more"
+ //   color="green"
+ //   v-if="!functor"
+ // />
