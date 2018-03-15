@@ -4,7 +4,6 @@ const getDataFunc = function(obj) { return function() { return obj } }
 
 
 // ****** section 2: components
-/* input compunent */
 Vue.component('icon-button', {
   template: `
     <div @click="click">
@@ -23,6 +22,8 @@ Vue.component('icon-button', {
     click: function() { this.$emit('click') },
   }
 })
+
+
 
 Vue.component('todo-input', {
   template: `
@@ -101,34 +102,21 @@ Vue.component('todo-input', {
 Vue.component('todo-item', {
   template: `
     <div class="todo-item">
+      <icon-button
+        @click="onDone(id)"
+        icon="check"
+        color="white"
+        v-if="!functor"
+      />
+
       <div class="todo-item-title">{{ title }}</div>
 
-      <div
-        class="todo-item-title"
-        v-if="functor"
-      >
-        Done by {{ functor }}
-      </div>
-
-      <div class="todo-item-icons">
-        <icon-button
-          @click="onDone(id)"
-          icon="done"
-          color="green"
-          v-if="!functor"
-        />
-        <icon-button
-          @click="onDelete(id)"
-          icon="close"
-          color="green"
-        />
-        <icon-button
-          @click="onEdit(id)"
-          icon="edit"
-          color="green"
-          v-if="!functor"
-        />
-      </div>
+      <icon-button
+        @click="onDone(id)"
+        icon="expand_more"
+        color="green"
+        v-if="!functor"
+      />
     </div>
   `,
 
@@ -215,3 +203,24 @@ Vue.component('todo-items', {
      onClickEdit: function(id) { this.editId = id },
    },
  })
+
+
+
+ // <icon-button
+ //   @click="onDelete(id)"
+ //   icon="close"
+ //   color="green"
+ // />
+ // <icon-button
+ //   @click="onEdit(id)"
+ //   icon="edit"
+ //   color="green"
+ //   v-if="!functor"
+ // />
+ //
+ // <div
+ //   class="todo-item-title"
+ //   v-if="functor"
+ // >
+ //   Done by {{ functor }}
+ // </div>
