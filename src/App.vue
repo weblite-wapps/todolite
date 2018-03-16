@@ -1,19 +1,16 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <TodoInput msg="1000-0-0-"/>
-  </div>
+  <div class="root"></div>
 </template>
 
 
 <script>
-import TodoInput from './components/TodoInput.vue'
+// import TodoInput from './components/TodoInput.vue'
 
 export default {
   name: 'app',
-  components: {
-    TodoInput,
-  }
+  // components: {
+  //   TodoInput,
+  // }
 }
 </script>
 
