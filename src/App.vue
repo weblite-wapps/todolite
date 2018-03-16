@@ -1,16 +1,20 @@
 <template>
-  <div class="root"></div>
+  <div class="root">{{ name }}</div>
 </template>
 
 
 <script>
-// import TodoInput from './components/TodoInput.vue'
-
 export default {
   name: 'app',
-  // components: {
-  //   TodoInput,
-  // }
+
+  data: () => ({
+    name: 'Ali',
+    todos: [
+      { id: '1', title: 'do whatever you want to do', functor: '' },
+      { id: '2', title: 'do second thing in a row', functor: '' },
+    ],
+    editId: '',
+  }),
 }
 </script>
 
