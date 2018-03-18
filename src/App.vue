@@ -20,6 +20,16 @@ import TodoInput from './components/TodoInput'
 import TodoItems from './components/TodoItems'
 const R = window.R
 
+const d = {
+  name: 'Ali',
+  todos: [
+    { id: '1', title: 'do whatever you want to do', functor: 'ali' },
+    { id: '2', title: 'do second thing in a row', functor: '' },
+  ],
+  editId: '',
+}
+window.d = d
+
 export default {
   name: 'app',
 
@@ -28,14 +38,7 @@ export default {
     TodoItems,
   },
 
-  data: () => ({
-    name: 'Ali',
-    todos: [
-      { id: '1', title: 'do whatever you want to do', functor: 'ali' },
-      { id: '2', title: 'do second thing in a row', functor: '' },
-    ],
-    editId: '',
-  }),
+  data: () => d,
 
   computed: {
     edit: function() { return R.find(R.propEq('id', this.editId), this.todos) },
@@ -52,9 +55,12 @@ export default {
       }
     },
 
-    onDone: function(id) {
+    onDone: function(id, checked) {
       const index = R.findIndex(R.propEq('id', id), this.todos)
-      this.todos = R.assocPath([index, 'functor'], this.name, this.todos)
+      if (index < 0) return
+      this.todos = checked ?
+        R.assocPath([index, 'functor'], this.name, this.todos) :
+        R.assocPath([index, 'functor'], '', this.todos)
     },
 
     onDelete: function(id) { this.todos = R.reject(R.propEq('id', id), this.todos) },

@@ -1,7 +1,7 @@
 <template>
 <div :class="$style['todo-item']">
   <Checkbox
-    @click="onDone(id)"
+    @click="checked => onDone(id, checked)"
     :default="!!functor"
   />
 
@@ -35,5 +35,8 @@ export default {
 
   .todo-item-title {
     width: 100%;
+    color: #424242;
+    font-family: arial;
+    font-size: 15px;
   }
 </style>

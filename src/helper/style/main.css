@@ -40,7 +40,7 @@ html, body, #app {
 /* google material ui font */
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .8s;
+  transition: opacity .9s;
 }
 
 .fade-enter, .fade-leave-to {
