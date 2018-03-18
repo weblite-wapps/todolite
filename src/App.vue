@@ -1,5 +1,8 @@
 <template>
-  <div class="root">{{ name }}</div>
+  <div class="root">
+    <i class="material-icons">check</i>
+    {{ name }}
+  </div>
 </template>
 
 
