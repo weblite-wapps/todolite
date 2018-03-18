@@ -1,21 +1,24 @@
 <template>
-<IconButton
-  :class="this.value ? $style.checked : $style['not-checked']"
-  icon="check"
+<div
   @click="click"
-/>
+  :class="[this.value ? $style.checked : $style.checkbox, $style.noselect]"
+>
+  <i v-show="!this.value">no</i>
+  <transition name="fade">
+    <i
+      v-show="this.value"
+      class="material-icons"
+    >
+      check
+    </i>
+  </transition>
+</div>
 </template>
 
 
 <script>
-import IconButton from './IconButton'
-
 export default {
   name: 'Checkbox',
-
-  components: {
-    IconButton,
-  },
 
   props: ['default'],
 
@@ -34,27 +37,30 @@ export default {
 
 
 <style module>
-.checked {
+.checkbox {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-  font-size: 20px;
-  padding: 3px;
+  font-size: 24px;
   font-weight: bold;
-  border-radius: 100px;
-  background: #9CCC65;
   border: 1px #9CCC65 solid;
+  border-radius: 100px;
+  padding: 3px;
   margin-right: 10px;
   color: white;
 }
 
-.not-checked {
-  cursor: pointer;
-  font-size: 20px;
-  padding: 3px;
-  font-weight: bold;
-  border-radius: 100px;
-  border: 1px #E0E0E0 solid;
-  background: white;
-  margin-right: 10px;
-  color: white
+.checked {
+  composes: checkbox;
+  background: #9CCC65;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>
