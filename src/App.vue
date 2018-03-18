@@ -31,7 +31,7 @@ export default {
   data: () => ({
     name: 'Ali',
     todos: [
-      { id: '1', title: 'do whatever you want to do', functor: '' },
+      { id: '1', title: 'do whatever you want to do', functor: 'ali' },
       { id: '2', title: 'do second thing in a row', functor: '' },
     ],
     editId: '',

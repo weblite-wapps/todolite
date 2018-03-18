@@ -2,6 +2,7 @@
 <div :class="$style['todo-item']">
   <Checkbox
     @click="onDone(id)"
+    :default="!!functor"
   />
 
   <div :class="$style['todo-item-title']">{{ title }}</div>

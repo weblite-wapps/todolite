@@ -23,11 +23,15 @@ export default {
   props: ['default'],
 
   data: () => ({
-    value: this.default,
+    value: null,
   }),
 
+  created() {
+    this.value = this.default
+  },
+
   methods: {
-    click: function() {
+    click() {
       this.value = !this.value
       this.$emit('click', this.value)
     },
