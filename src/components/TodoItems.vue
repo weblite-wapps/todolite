@@ -1,23 +1,28 @@
 <template>
-  <ul :class="$style['todo-items']">
-    <!-- <transition-group name="todo-item-transition" tag="p">
-      <li
-        is="todo-item"
-        v-for="todo in todos"
-        :key="todo.id"
-        :onDone="onDone"
-        :onDelete="onDelete"
-        :onEdit="onEdit"
-        v-bind="todo"
-      />
-    </transition-group> -->
-  </ul>
+<ul :class="$style['todo-items']">
+  <transition-group name="todo-item-transition" tag="p">
+    <TodoItem
+      v-for="todo in todos"
+      :key="todo.id"
+      :onDone="onDone"
+      :onDelete="onDelete"
+      :onEdit="onEdit"
+      v-bind="todo"
+    />
+  </transition-group>
+</ul>
 </template>
 
 
 <script>
+import TodoItem from './TodoItem'
+
 export default {
   name: 'TodoItems',
+
+  components: {
+    TodoItem,
+  },
 
   props: ['todos', 'onDone', 'onDelete', 'onEdit'],
 }
@@ -25,9 +30,9 @@ export default {
 
 
 <style module>
-  .todo-items {
-    height: inherit;
-    padding: 10px;
-    overflow-y: scroll;
-  }
+.todo-items {
+  height: inherit;
+  padding: 10px;
+  overflow-y: scroll;
+}
 </style>

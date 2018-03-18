@@ -1,17 +1,17 @@
 <template>
-  <div :class="$style.root">
-    <TodoItems
-      :todos="todos"
-      :onDone="onDone"
-      :onDelete="onDelete"
-      :onEdit="onClickEdit"
-    />
-    <TodoInput
-      :edit="edit"
-      @add="onAdd"
-      @edit="onEdit"
-    />
-  </div>
+<div :class="$style.root">
+  <TodoItems
+    :todos="todos"
+    :onDone="onDone"
+    :onDelete="onDelete"
+    :onEdit="onClickEdit"
+  />
+  <TodoInput
+    :edit="edit"
+    @add="onAdd"
+    @edit="onEdit"
+  />
+</div>
 </template>
 
 

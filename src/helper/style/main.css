@@ -38,3 +38,21 @@ html, body, #app {
   font-feature-settings: 'liga';
 }
 /* google material ui font */
+
+.icon {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 3px;
+  font-weight: bold;
+  border-radius: 100px;
+  background: #9CCC65;
+  margin-right: 10px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
