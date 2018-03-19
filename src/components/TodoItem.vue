@@ -8,7 +8,7 @@
 
     <div :class="$style['todo-item-title']">{{ title }}</div>
 
-    <i class="material-icons" @click="expande">
+    <i :class="['material-icons', 'noselect']" @click="expande">
       {{ expanded ? 'expand_less' : 'expand_more' }}
     </i>
   </div>

@@ -1,7 +1,7 @@
 <template>
 <div
   @click="click"
-  :class="[this.value ? $style.checked : $style.checkbox, $style.noselect]"
+  :class="[this.value ? $style.checked : $style.checkbox, 'noselect']"
 >
   <i v-show="!this.value">no</i>
   <transition name="fade">
@@ -57,14 +57,5 @@ export default {
 .checked {
   composes: checkbox;
   background: #9CCC65;
-}
-
-.noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 </style>
