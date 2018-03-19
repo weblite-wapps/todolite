@@ -39,9 +39,7 @@ export default {
   props: ['title', 'functor', 'id', 'onDone', 'onDelete', 'onEdit'],
 
   methods: {
-    expande: function() {
-      this.expanded = !this.expanded
-    }
+    expande() { this.expanded = !this.expanded },
   },
 }
 </script>

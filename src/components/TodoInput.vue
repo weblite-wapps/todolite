@@ -35,41 +35,42 @@
     }),
 
     watch: {
-      edit: function(edit) {
-        if (!edit) return
+      edit(edit) {
+        if (!edit) return null
         this.editId = edit.id
         this.editTitle = edit.title
       },
     },
 
     computed: {
-      value: function() { return this.editId ? this.editTitle : this.title },
-      valueExist: function() {
+      value() { return this.editId ? this.editTitle : this.title },
+
+      valueExist() {
         return (this.editId && this.editTitle) || (!this.editId && this.title)
       },
     },
 
     methods: {
-      onChange: function(e) {
+      onChange(e) {
         if (this.editId) this.editTitle = e.target.value
         else this.title = e.target.value
       },
 
-      onClick: function() {
+      onClick() {
         if (!this.valueExist) return
         this.editId ? this.onEdit() : this.onAdd()
       },
 
-      onAdd: function() {
+      onAdd() {
         this.$emit('add', this.title)
         this.title = ''
       },
 
-      onEdit: function() {
+      onEdits() {
         const that = this
         this.$emit('edit', { id: this.editId, title: this.editTitle })
         this.editTitle = ''
-        setTimeout(function () { that.editId = '' }, 900)
+        setTimeout(function() { that.editId = '' }, 900)
       }
     },
   }
