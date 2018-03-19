@@ -9,14 +9,15 @@
       @keyup.enter="onClick"
     />
 
-    <!-- <transition name="fade">
-      <icon-button
+    <transition name="fade">
+      <i
+        class="material-icons"
         @click="onClick"
-        v-show="this.valueExist"
-        :icon="this.editId ? 'edit' : 'add'"
-        color="green"
-      />
-    </transition> -->
+        v-show="valueExist"
+      >
+        {{ editId ? 'edit' : 'add' }}
+      </i>
+    </transition>
   </div>
 </template>
 
