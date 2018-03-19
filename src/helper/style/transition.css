@@ -1,0 +1,36 @@
+/* fade */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .9s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+/* bounce */
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* todo-item-transition */
+.todo-item-transition-enter-active, .todo-item-transition-leave-active {
+  transition: all 1s;
+}
+.todo-item-transition-enter, .todo-item-transition-leave-to {
+  opacity: 0;
+  transform: translateX(300px);
+}

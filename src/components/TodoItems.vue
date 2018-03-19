@@ -36,13 +36,3 @@ export default {
   overflow-y: scroll;
 }
 </style>
-
-<style>
-.todo-item-transition-enter-active, .todo-item-transition-leave-active {
-  transition: all 1s;
-}
-.todo-item-transition-enter, .todo-item-transition-leave-to {
-  opacity: 0;
-  transform: translateX(300px);
-}
-</style>
