@@ -18,6 +18,7 @@
 <script>
 import TodoInput from './components/TodoInput'
 import TodoItems from './components/TodoItems'
+import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
 const R = window.R
 
 export default {
@@ -29,7 +30,7 @@ export default {
   },
 
   data: () => ({
-    name: '',
+    name: 'Ali',
     todos: [],
     editId: '',
   }),
@@ -39,25 +40,16 @@ export default {
   },
 
   methods: {
-    onAdd(title) { this.todos.push({ id: Math.random(), title: title, functor: '' }) },
+    onAdd(title) { this.todos = addTodo(title, this.todos) },
 
     onEdit(obj) {
-      const index = R.findIndex(R.propEq('id', obj.id), this.todos)
-      if(index !== undefined) {
-        this.todos[index].title = obj.title
-        this.editId = ''
-      }
+      this.todos = editTitle(obj.id, obj.title, this.todos)
+      this.editId = ''
     },
 
-    onDone(id, checked) {
-      const index = R.findIndex(R.propEq('id', id), this.todos)
-      if (index < 0) return
-      this.todos = checked ?
-        R.assocPath([index, 'functor'], this.name, this.todos) :
-        R.assocPath([index, 'functor'], '', this.todos)
-    },
+    onDone(id, checked) { this.todos = addFunctor(id, checked ? this.name : '', this.todos) },
 
-    onDelete(id) { this.todos = R.reject(R.propEq('id', id), this.todos) },
+    onDelete(id) { this.todos = deleteTodo(id, this.todos) },
 
     onClickEdit(id) { this.editId = id },
   },
