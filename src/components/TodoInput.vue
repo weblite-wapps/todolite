@@ -69,7 +69,7 @@
         const that = this
         this.$emit('edit', { id: this.editId, title: this.editTitle })
         this.editTitle = ''
-        setTimeout(function () { that.editId = '' }, 500)
+        setTimeout(function () { that.editId = '' }, 900)
       }
     },
   }
