@@ -45,6 +45,7 @@ export default {
   width: 24px;
   height: 24px;
   cursor: pointer;
+  font-family: serif;
   font-size: 24px;
   font-weight: bold;
   border: 1px #9CCC65 solid;

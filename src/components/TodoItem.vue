@@ -13,9 +13,13 @@
     </i>
   </div>
 
-  <div v-if="expanded">
-    {{ functor }}
-  </div>
+  <transition name="bounce">
+    <div v-if="expanded" :class="$style.expand">
+      <span :class="$style.functor">{{ functor && `Done By ${functor}` }}</span>
+      <i class="material-icons">close</i>
+      <i class="material-icons">edit</i>
+    </div>
+  </transition>
 </div>
 </template>
 
@@ -59,7 +63,19 @@ export default {
   .todo-item-title {
     width: 100%;
     color: #424242;
-    font-family: arial;
     font-size: 15px;
+  }
+
+  .expand {
+    margin-top: 18px;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+  }
+
+  .functor {
+    width: 100%;
+    font-size: 14px;
+    color: #737373;
   }
 </style>
