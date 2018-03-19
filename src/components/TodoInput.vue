@@ -1,30 +1,32 @@
 <template>
-  <div :class="$style['input-root']">
-    <input
-      type="text"
-      placeholder="add todo ..."
-      :class="$style.input"
-      :value="value"
-      @input="onChange"
-      @keyup.enter="onClick"
-    />
+<div :class="$style['input-root']">
+  <input
+    type="text"
+    placeholder="add todo ..."
+    :class="$style.input"
+    :value="value"
+    @input="onChange"
+    @keyup.enter="onClick"
+  />
 
-    <transition name="fade">
-      <i
-        class="material-icons"
-        @click="onClick"
-        v-show="valueExist"
-      >
-        {{ editId ? 'edit' : 'add' }}
-      </i>
-    </transition>
-  </div>
+  <transition name="fade">
+    <IconButton
+      :icon="editId ? 'edit' : 'add'"
+      @click="onClick"
+      v-show="valueExist"
+    />
+  </transition>
+</div>
 </template>
 
 
 <script>
+  import IconButton from '../helper/component/IconButton'
+
   export default {
     name: 'TodoInput',
+
+    components: { IconButton },
 
     props: ['edit'],
 
@@ -51,13 +53,13 @@
     },
 
     methods: {
-      onChange(e) {
-        if (this.editId) this.editTitle = e.target.value
-        else this.title = e.target.value
+      onChange({ target: { value } }) {
+        if (this.editId) this.editTitle = value
+        else this.title = value
       },
 
       onClick() {
-        if (!this.valueExist) return
+        if (!this.valueExist) return null
         this.editId ? this.onEdit() : this.onAdd()
       },
 
@@ -66,11 +68,10 @@
         this.title = ''
       },
 
-      onEdits() {
-        const that = this
+      onEdit() {
         this.$emit('edit', { id: this.editId, title: this.editTitle })
         this.editTitle = ''
-        setTimeout(function() { that.editId = '' }, 900)
+        setTimeout(() => { this.editId = '' }, 900)
       }
     },
   }
@@ -80,7 +81,7 @@
 <style module>
   .input-root {
     width: 100%;
-    height: 60px;
+    height: 50px;
     padding: 1px;
     border-top: 1px #E0E0E0 solid;
     display: flex;
