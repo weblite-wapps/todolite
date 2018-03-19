@@ -1,5 +1,5 @@
 <template>
-<div :class="$style['todo-item']">
+<li :class="$style['todo-item']">
   <div :class="$style['first-row']">
     <Checkbox
       @click="checked => onDone(id, checked)"
@@ -16,21 +16,30 @@
   <transition name="bounce">
     <div v-if="expanded" :class="$style.expand">
       <span :class="$style.functor">{{ functor && `Done By ${functor}` }}</span>
-      <i @click="onDelete(id)" :class="['material-icons', $style.delete]">close</i>
-      <i @click="onEdit(id)" :class="['material-icons', $style.edit]">edit</i>
+      <IconButton
+        icon="close"
+        @click="onDelete(id)"
+        :class="['material-icons', $style.delete]"
+      />
+      <IconButton
+        icon="edit"
+        @click="onEdit(id)"
+        :class="['material-icons', $style.edit]"
+      />
     </div>
   </transition>
-</div>
+</li>
 </template>
 
 
 <script>
 import Checkbox from '../helper/component/Checkbox'
+import IconButton from '../helper/component/IconButton'
 
 export default {
   name: 'TodoItem',
 
-  components: { Checkbox },
+  components: { Checkbox, IconButton },
 
   data: () => ({
     expanded: false,

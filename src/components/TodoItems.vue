@@ -1,16 +1,18 @@
 <template>
-<ul :class="$style['todo-items']">
-  <transition-group name="todo-item-transition" tag="p">
-    <TodoItem
-      v-for="todo in todos"
-      :key="todo.id"
-      :onDone="onDone"
-      :onDelete="onDelete"
-      :onEdit="onEdit"
-      v-bind="todo"
-    />
-  </transition-group>
-</ul>
+<transition-group
+  tag="ul"
+  name="list"
+  :class="$style['todo-items']"
+>
+  <TodoItem
+    v-for="todo in todos"
+    :key="todo.id"
+    :onDone="onDone"
+    :onDelete="onDelete"
+    :onEdit="onEdit"
+    v-bind="todo"
+  />
+</transition-group>
 </template>
 
 
