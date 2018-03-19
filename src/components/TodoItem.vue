@@ -16,8 +16,8 @@
   <transition name="bounce">
     <div v-if="expanded" :class="$style.expand">
       <span :class="$style.functor">{{ functor && `Done By ${functor}` }}</span>
-      <i class="material-icons">close</i>
-      <i class="material-icons">edit</i>
+      <i @click="onDelete(id)" :class="['material-icons', $style.delete]">close</i>
+      <i @click="onEdit(id)" :class="['material-icons', $style.edit]">edit</i>
     </div>
   </transition>
 </div>
@@ -77,5 +77,40 @@ export default {
     width: 100%;
     font-size: 14px;
     color: #737373;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 100px;
+    font-weight: bold;
+    padding: 5px;
+  }
+
+  .delete {
+    composes: icon;
+    border: 1px #EF5350 solid;
+    background: white;
+    color: #EF5350;
+    margin-right: 5px;
+  }
+
+  .delete:hover {
+    background: #EF5350;
+    color: white;
+  }
+
+  .edit {
+    composes: icon;
+    border: 1px #1565C0 solid;
+    background: white;
+    color: #1565C0;
+  }
+
+  .edit:hover {
+    background: #1565C0;
+    color: white;
   }
 </style>
