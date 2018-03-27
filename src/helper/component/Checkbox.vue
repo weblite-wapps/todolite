@@ -1,13 +1,13 @@
 <template>
 <div
   @click="click"
-  :class="[this.value ? $style.checked : $style.checkbox, 'noselect']"
+  :class="[value ? $style.checked : $style.checkbox, 'noselect']"
 >
-  <i v-show="!this.value">no</i>
+  <i v-show="!value">no</i>
   <transition name="fade">
     <IconButton
       icon="check"
-      v-show="this.value"
+      v-show="value"
     />
   </transition>
 </div>
@@ -24,13 +24,9 @@ export default {
 
   props: ['default'],
 
-  data: () => ({
-    value: null,
-  }),
+  data: () => ({ value: null }),
 
-  created() {
-    this.value = this.default
-  },
+  created() { this.value = this.default },
 
   methods: {
     click() {

@@ -6,9 +6,9 @@
 
 
 <script>
-  export default {
-    name: 'IconButton',
+export default {
+  name: 'IconButton',
 
-    props: ['icon'],
-  }
+  props: ['icon'],
+}
 </script>
