@@ -37,7 +37,12 @@
       <label for="two">descending</label>
     </div>
 
-    <button :class="$style.apply">apply</button>
+    <button
+      @click="applySetting"
+      :class="$style.apply"
+    >
+      Apply
+    </button>
   </div>
 </div>
 </template>
@@ -53,9 +58,9 @@ export default {
 
   data: () => ({
     open: false,
-    query: 'hello',
+    query: '',
     done: 'all',
-    time: 'ascending',
+    time: 'descending',
   }),
 
   mounted() {
@@ -66,6 +71,15 @@ export default {
 
   methods: {
     changeOpen(value) { this.open = value },
+
+    applySetting() {
+      this.changeOpen(false)
+      bus.$emit('APPLY_SETTING', {
+        query: this.query,
+        done: this.done,
+        time: this.time,
+      })
+    },
   },
 }
 </script>
