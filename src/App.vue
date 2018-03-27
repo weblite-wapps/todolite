@@ -14,16 +14,23 @@
     @add="onAdd"
     @edit="onEdit"
   />
+  
+  <Setting />
 </div>
 </template>
 
 
 <script>
+// components
 import Header from './components/Header'
 import TodoInput from './components/TodoInput'
 import TodoItems from './components/TodoItems'
+import Setting from './components/Setting'
+// helper
 import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
+// R
 const R = window.R
+
 
 export default {
   name: 'app',
@@ -32,6 +39,7 @@ export default {
     Header,
     TodoInput,
     TodoItems,
+    Setting,
   },
 
   data: () => ({
@@ -65,6 +73,7 @@ export default {
 
 <style module>
   .root {
+    position: relative;
     width: 350px;
     height: 90%;
     display: flex;

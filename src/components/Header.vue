@@ -1,16 +1,24 @@
 <template>
 <div :class="$style['header-root']">
   <span :class="$style['title']">{{ title }}</span>
+  <IconButton
+    icon="filter_list"
+    :class="['material-icons', $style.filter]"
+  />
 </div>
 </template>
 
 
 <script>
-  export default {
-    name: 'Header',
+import IconButton from '../helper/component/IconButton'
 
-    props: ['title'],
-  }
+export default {
+  name: 'Header',
+
+  components: { IconButton },
+
+  props: ['title'],
+}
 </script>
 
 
@@ -20,12 +28,26 @@
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #E0E0E0;
+  justify-content: space-between;
+  background-color: #9CCC65;
 }
 
 .title {
-  margin-left: 15px;
+  margin-left: 20px;
   font-size: 22px;
   color: white;
+}
+
+.filter {
+  color: white;
+  margin-right: 20px;
+  width: 22px;
+  height: 22px;
+  font-size: 23px;
+  cursor: pointer;
+  border-radius: 100px;
+  border: 1px white solid;
+  font-weight: bold;
+  padding: 5px;
 }
 </style>
