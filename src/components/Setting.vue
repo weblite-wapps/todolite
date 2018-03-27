@@ -5,15 +5,14 @@
   v-if="open"
 >
   <div :class="$style.panel">
-    <div :class="$style.radioTitle">Search in Title:</div>
     <input
       :class="$style.search"
       type="text"
       v-model="query"
-      placeholder="search ..."
+      placeholder="search in titles"
     >
 
-    <div :class="$style.radioTitle">Based on Done:</div>
+    <div :class="$style.radioTitle">filter based on done</div>
     <div :class="$style.radioRoot">
       <input type="radio" value="all" v-model="done">
       <label for="one">all</label>
@@ -27,7 +26,7 @@
       <label for="two">undone</label>
     </div>
 
-    <div :class="$style.radioTitle">Based on Time:</div>
+    <div :class="$style.radioTitle">filter based on time</div>
     <div :class="$style.radioRoot">
       <input type="radio" value="ascending" v-model="time">
       <label for="one">ascending</label>
@@ -90,12 +89,12 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   background: white;
-  opacity: .9;
+  opacity: .93;
 }
 
 .panel {
@@ -111,7 +110,6 @@ export default {
   height: 100%;
   width: 205px;
   padding: 5px;
-  margin-top: 8px;
   margin-bottom: 8px;
   border: 1px #E0E0E0 solid;
   border-radius: 5px;
@@ -125,7 +123,7 @@ export default {
 }
 
 .radioRoot {
-  padding: 5px;
+  padding: 8px;
   padding-left: 10px;
 }
 
@@ -134,7 +132,7 @@ export default {
   border: 1px #E0E0E0 solid;
   border-radius: 5px;
   outline: none;
-  padding: 5px 10px;
+  padding: 8px 16px;
   cursor: pointer;
 }
 

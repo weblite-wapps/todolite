@@ -47,13 +47,8 @@ export default {
 .filter {
   color: white;
   margin-right: 20px;
-  width: 22px;
-  height: 22px;
   font-size: 23px;
   cursor: pointer;
-  border-radius: 100px;
-  border: 1px white solid;
   font-weight: bold;
-  padding: 5px;
 }
 </style>
