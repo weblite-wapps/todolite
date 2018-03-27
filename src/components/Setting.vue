@@ -44,17 +44,25 @@
 
 
 <script>
+import bus from '../helper/function/bus'
+
 export default {
   name: 'Setting',
 
   props: ['options'],
 
   data: () => ({
-    open: true,
+    open: false,
     query: 'hello',
     done: 'all',
     time: 'ascending',
   }),
+
+  mounted() {
+    bus.$on('OPEN_SETTING', () => {
+      this.changeOpen(true)
+    })
+  },
 
   methods: {
     changeOpen(value) { this.open = value },

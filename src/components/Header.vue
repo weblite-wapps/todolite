@@ -4,6 +4,7 @@
   <IconButton
     icon="filter_list"
     :class="['material-icons', $style.filter]"
+    @click="openSetting"
   />
 </div>
 </template>
@@ -11,6 +12,7 @@
 
 <script>
 import IconButton from '../helper/component/IconButton'
+import bus from '../helper/function/bus'
 
 export default {
   name: 'Header',
@@ -18,6 +20,10 @@ export default {
   components: { IconButton },
 
   props: ['title'],
+
+  methods: {
+    openSetting() { bus.$emit('OPEN_SETTING') },
+  },
 }
 </script>
 
