@@ -8,7 +8,6 @@
     <IconButton
       icon="check"
       v-show="this.value"
-      class="material-icons"
     />
   </transition>
 </div>

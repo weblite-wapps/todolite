@@ -1,8 +1,5 @@
 <template>
-<i
-  class="material-icons"
-  @click="click"
->
+<i class="material-icons">
   {{ icon }}
 </i>
 </template>
@@ -13,9 +10,5 @@
     name: 'IconButton',
 
     props: ['icon'],
-
-    methods: {
-      click() { this.$emit('click') },
-    },
   }
 </script>

@@ -8,9 +8,11 @@
 
     <div :class="$style['todo-item-title']">{{ title }}</div>
 
-    <i :class="['material-icons', 'noselect']" @click="expande">
-      {{ expanded ? 'expand_less' : 'expand_more' }}
-    </i>
+    <IconButton
+      :icon="expanded ? 'expand_less' : 'expand_more'"
+      @click.native="expande"
+      class="noselect"
+    />
   </div>
 
   <transition name="bounce">
@@ -18,13 +20,13 @@
       <span :class="$style.functor">{{ functor && `Done By ${functor}` }}</span>
       <IconButton
         icon="close"
-        @click="onDelete(id)"
-        :class="['material-icons', $style.delete]"
+        @click.native="onDelete(id)"
+        :class="$style.delete"
       />
       <IconButton
         icon="edit"
-        @click="onEdit(id)"
-        :class="['material-icons', $style.edit]"
+        @click.native="onEdit(id)"
+        :class="$style.edit"
       />
     </div>
   </transition>

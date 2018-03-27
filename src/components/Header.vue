@@ -3,8 +3,8 @@
   <span :class="$style['title']">{{ title }}</span>
   <IconButton
     icon="filter_list"
-    :class="['material-icons', $style.filter]"
-    @click="openSetting"
+    :class="$style.filter"
+    @click.native="openSetting"
   />
 </div>
 </template>
