@@ -1,5 +1,8 @@
 <template>
 <div :class="$style.root">
+  <Header
+    :title="title"
+  />
   <TodoItems
     :todos="todos"
     :onDone="onDone"
@@ -16,6 +19,7 @@
 
 
 <script>
+import Header from './components/Header'
 import TodoInput from './components/TodoInput'
 import TodoItems from './components/TodoItems'
 import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
@@ -25,11 +29,13 @@ export default {
   name: 'app',
 
   components: {
+    Header,
     TodoInput,
     TodoItems,
   },
 
   data: () => ({
+    title: 'weblite',
     name: 'Ali',
     todos: [],
     editId: '',
