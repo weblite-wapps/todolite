@@ -12,7 +12,7 @@
   <transition name="fade">
     <IconButton
       :icon="editId ? 'edit' : 'add'"
-      @click="onClick"
+      @click.native="onClick"
       v-show="valueExist"
     />
   </transition>
