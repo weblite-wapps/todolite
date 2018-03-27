@@ -14,7 +14,7 @@
     @add="onAdd"
     @edit="onEdit"
   />
-  
+
   <Setting />
 </div>
 </template>
@@ -75,7 +75,7 @@ export default {
   .root {
     position: relative;
     width: 350px;
-    height: 90%;
+    height: 99%;
     display: flex;
     flex-direction: column;
     border: 1px #E0E0E0 solid;
