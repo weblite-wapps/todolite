@@ -43,7 +43,7 @@ export default {
   },
 
   data: () => ({
-    title: 'weblite',
+    title: 'Todolite',
     name: 'Ali',
     todos: [],
     editId: '',
@@ -80,7 +80,7 @@ export default {
   .root {
     position: relative;
     width: 350px;
-    height: 99%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     border: 1px #E0E0E0 solid;
