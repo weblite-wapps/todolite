@@ -29,7 +29,7 @@ import Setting from './components/Setting'
 // helper
 import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
 // R
-const R = window.R
+const { W, R } = window
 
 
 export default {
@@ -49,21 +49,25 @@ export default {
     editId: '',
   }),
 
+  mounted() {
+    W.share.subscribe((todos) => { this.todos = R.clone(todos) })
+  },
+
   computed: {
     edit() { return R.find(R.propEq('id', this.editId), this.todos) },
   },
 
   methods: {
-    onAdd(title) { this.todos = addTodo(title, this.todos) },
+    onAdd(title) { addTodo(title, this.todos) },
 
     onEdit(obj) {
-      this.todos = editTitle(obj.id, obj.title, this.todos)
+      editTitle(obj.id, obj.title, this.todos)
       this.editId = ''
     },
 
-    onDone(id, checked) { this.todos = addFunctor(id, checked ? this.name : '', this.todos) },
+    onDone(id, checked) { addFunctor(id, checked ? this.name : '', this.todos) },
 
-    onDelete(id) { this.todos = deleteTodo(id, this.todos) },
+    onDelete(id) { deleteTodo(id, this.todos) },
 
     onClickEdit(id) { this.editId = id },
   },
