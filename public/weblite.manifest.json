@@ -2,9 +2,9 @@
   "name": "todolite",
   "instancable": true,
   "creator": false,
-  "userInfo": false,
+  "userInfo": true,
   "inline": true,
   "shareDB": true,
-  "width": 350,
-  "height": 450
+  "width": 352,
+  "height": 452
 }
