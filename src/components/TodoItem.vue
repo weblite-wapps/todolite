@@ -3,7 +3,7 @@
   <div :class="$style['first-row']">
     <Checkbox
       @click="checked => onDone(id, checked)"
-      :default="!!functor"
+      :value="!!functor"
     />
 
     <div :class="$style['todo-item-title']">{{ title }}</div>

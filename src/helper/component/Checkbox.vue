@@ -22,17 +22,10 @@ export default {
 
   components: { IconButton },
 
-  props: ['default'],
-
-  data: () => ({ value: null }),
-
-  created() { this.value = this.default },
+  props: ['value'],
 
   methods: {
-    click() {
-      this.value = !this.value
-      this.$emit('click', this.value)
-    },
+    click() { this.$emit('click', !this.value) },
   },
 }
 </script>

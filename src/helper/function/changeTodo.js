@@ -6,7 +6,7 @@ const dispatch = qlite => W.share.dispatch([], qlite, [])
 
 
 export const addTodo = (title) => dispatch(
-  ['__append', [{ id: generateKey(), title }]],
+  ['__append', [{ id: generateKey(), title, functor: '' }]],
 )
 
 // R.append({ id: generateKey(), title })
