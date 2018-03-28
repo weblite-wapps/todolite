@@ -1,0 +1,10 @@
+{
+  "name": "todolite",
+  "instancable": true,
+  "creator": false,
+  "userInfo": false,
+  "inline": true,
+  "shareDB": true,
+  "width": 350,
+  "height": 450,
+}

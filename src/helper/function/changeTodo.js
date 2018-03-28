@@ -1,18 +1,18 @@
-const R = window.R
+const { W } = window
 
 
 const generateKey = () => Math.floor(Math.random() * 10000000000000)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
 
-export const addTodo = (title, todos) => dispatch(
+export const addTodo = (title) => dispatch(
   ['__append', [{ id: generateKey(), title }]],
 )
 
-// R.append({ id: generateKey(), title }, todos)
+// R.append({ id: generateKey(), title })
 
 
-export const editTitle = (id, title, todos) => dispatch(
+export const editTitle = (id, title) => dispatch(
   ['__map', [['__ifElse', [
     ['__propEq', ['id', id]],
     ['__assoc', ['title', title]],
@@ -24,10 +24,10 @@ export const editTitle = (id, title, todos) => dispatch(
 //   R.propEq('id', id),
 //   R.assoc('title', title),
 //   R.identity,
-// ), todos)
+// ))
 
 
-export const addFunctor = (id, name, todos) => dispatch(
+export const addFunctor = (id, name) => dispatch(
   ['__map', [['__ifElse', [
     ['__propEq', ['id', id]],
     ['__assoc', ['functor', name]],
@@ -39,11 +39,11 @@ export const addFunctor = (id, name, todos) => dispatch(
 //   R.propEq('id', id),
 //   R.assoc('functor', name),
 //   R.identity,
-// ), todos)
+// ))
 
 
-export const deleteTodo = (id, todos) => dispatch(
+export const deleteTodo = (id) => dispatch(
   ['__reject', [['__propEq', ['id', id]]]],
 )
 
-// R.reject(R.propEq('id', id), todos)
+// R.reject(R.propEq('id', id))
