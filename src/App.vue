@@ -50,7 +50,8 @@ export default {
   }),
 
   mounted() {
-    W.share.subscribe((todos) => { this.todos = R.clone(todos) })
+    W.share.getFromServer([])
+    W.share.subscribe((todos) => { this.todos = (todos && todos.length) ? R.clone(todos) : [] })
   },
 
   computed: {
