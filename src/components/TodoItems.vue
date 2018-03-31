@@ -25,9 +25,7 @@ const { R } = window
 export default {
   name: 'TodoItems',
 
-  components: {
-    TodoItem,
-  },
+  components: { TodoItem },
 
   data: () => ({
     query: '',

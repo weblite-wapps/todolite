@@ -47,7 +47,7 @@ export default {
     editId: '',
   }),
 
-  mounted() {
+  created() {
     W.loadData().then(({ user: { name } }) => { this.name = name })
     W.share.getFromServer([]).then(() => W.start())
     W.share.subscribe((todos) => { this.todos = R.clone(todos) || [] })
@@ -60,7 +60,6 @@ export default {
   methods: {
     onClickEdit(id) { this.editId = id },
 
-    // change todos
     onAdd(title) { addTodo(title) },
 
     onEdit(obj) {

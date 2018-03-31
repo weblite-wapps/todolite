@@ -1,7 +1,7 @@
 const { W } = window
 
 
-const generateKey = () => Math.floor(Math.random() * 10000000000000)
+const generateKey = () => Math.floor(Math.random() * 1e+15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
 
