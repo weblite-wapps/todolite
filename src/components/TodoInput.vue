@@ -10,7 +10,7 @@
   />
 
   <transition name="fade">
-    <i @click="onClick" v-show="valueExist"/>{{ editId ? 'edit' : 'add' }}</i>
+    <i @click="onClick" v-show="valueExist">{{ editId ? 'edit' : 'add' }}</i>
   </transition>
 </div>
 </template>

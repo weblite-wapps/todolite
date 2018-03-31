@@ -5,7 +5,7 @@
 >
   <i v-show="!value">no</i>
   <transition name="fade">
-    <i v-show="value"/>check</i>
+    <i v-show="value">check</i>
   </transition>
 </div>
 </template>

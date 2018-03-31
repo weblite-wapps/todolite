@@ -8,18 +8,14 @@
 
     <div :class="$style['todo-item-title']">{{ title }}</div>
 
-    <IconButton
-      :icon="expanded ? 'expand_less' : 'expand_more'"
-      @click.native="expande"
-      class="noselect"
-    />
+    <i @click="expande" class="noselect">{{ expanded ? 'expand_less' : 'expand_more' }}</i>
   </div>
 
   <transition name="bounce">
     <div v-if="expanded" :class="$style.expand">
       <span :class="$style.functor">{{ functor && `Done By ${functor}` }}</span>
-      <i @click="onDelete(id)" :class="$style.delete"/>close</i>
-      <i @click="onEdit(id)" :class="$style.edit"/>edit</i>
+      <i @click="onDelete(id)" :class="$style.delete">close</i>
+      <i @click="onEdit(id)" :class="$style.edit">edit</i>
     </div>
   </transition>
 </li>

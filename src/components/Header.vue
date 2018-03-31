@@ -1,7 +1,7 @@
 <template>
-<div :class="$style['header-root']">
+<div :class="$style['root']">
   <span :class="$style['title']">{{ title }}</span>
-  <i :class="$style.filter" @click="openSetting">filter_list</i>
+  <i :class="$style['filter-icon']" @click="openSetting">filter_list</i>
 </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
 
 
 <style module>
-.header-root {
+.root {
   width: 100%;
   height: 60px;
   display: flex;
@@ -37,7 +37,7 @@ export default {
   color: white;
 }
 
-.filter {
+.filter-icon {
   color: white;
   margin-right: 20px;
   font-size: 23px;

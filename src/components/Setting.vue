@@ -12,26 +12,26 @@
       placeholder="search in titles"
     >
 
-    <div :class="$style.radioTitle">filter based on done</div>
-    <div :class="$style.radioRoot">
+    <div :class="$style['radio-title']">filter based on done</div>
+    <div :class="$style['radio-root']">
       <input type="radio" value="all" v-model="done">
       <label for="one">all</label>
     </div>
-    <div :class="$style.radioRoot">
+    <div :class="$style['radio-root']">
       <input type="radio" value="done" v-model="done">
       <label for="two">done</label>
     </div>
-    <div :class="$style.radioRoot">
+    <div :class="$style['radio-root']">
       <input type="radio" value="undone" v-model="done">
       <label for="two">undone</label>
     </div>
 
-    <div :class="$style.radioTitle">filter based on time</div>
-    <div :class="$style.radioRoot">
+    <div :class="$style['radio-title']">filter based on time</div>
+    <div :class="$style['radio-root']">
       <input type="radio" value="ascending" v-model="time">
       <label for="one">ascending</label>
     </div>
-    <div :class="$style.radioRoot">
+    <div :class="$style['radio-root']">
       <input type="radio" value="descending" v-model="time">
       <label for="two">descending</label>
     </div>
@@ -49,6 +49,7 @@
 
 <script>
 import bus from '../helper/function/bus'
+const { R } = window
 
 export default {
   name: 'Setting',
@@ -63,9 +64,7 @@ export default {
   }),
 
   mounted() {
-    bus.$on('OPEN_SETTING', () => {
-      this.changeOpen(true)
-    })
+    bus.$on('OPEN_SETTING', () => this.changeOpen(true))
   },
 
   methods: {
@@ -73,11 +72,7 @@ export default {
 
     applySetting() {
       this.changeOpen(false)
-      bus.$emit('APPLY_SETTING', {
-        query: this.query,
-        done: this.done,
-        time: this.time,
-      })
+      bus.$emit('APPLY_SETTING', R.pick(['query', 'done', 'time'], this))
     },
   },
 }
@@ -116,13 +111,13 @@ export default {
   outline: none;
 }
 
-.radioTitle {
+.radio-title {
   padding: 5px;
   padding-left: 3px;
   font-weight: bold;
 }
 
-.radioRoot {
+.radio-root {
   padding: 8px;
   padding-left: 10px;
 }
