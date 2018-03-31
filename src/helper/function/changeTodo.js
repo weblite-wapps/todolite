@@ -9,9 +9,6 @@ export const addTodo = (title) => dispatch(
   ['__append', [{ id: generateKey(), title, functor: '' }]],
 )
 
-// R.append({ id: generateKey(), title })
-
-
 export const editTitle = (id, title) => dispatch(
   ['__map', [['__ifElse', [
     ['__propEq', ['id', id]],
@@ -19,13 +16,6 @@ export const editTitle = (id, title) => dispatch(
     ['__identity', []],
   ]]]],
 )
-
-// R.map(R.ifElse(
-//   R.propEq('id', id),
-//   R.assoc('title', title),
-//   R.identity,
-// ))
-
 
 export const addFunctor = (id, name) => dispatch(
   ['__map', [['__ifElse', [
@@ -35,15 +25,6 @@ export const addFunctor = (id, name) => dispatch(
   ]]]],
 )
 
-// R.map(R.ifElse(
-//   R.propEq('id', id),
-//   R.assoc('functor', name),
-//   R.identity,
-// ))
-
-
 export const deleteTodo = (id) => dispatch(
   ['__reject', [['__propEq', ['id', id]]]],
 )
-
-// R.reject(R.propEq('id', id))

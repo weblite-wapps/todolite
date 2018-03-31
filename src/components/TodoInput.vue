@@ -10,23 +10,15 @@
   />
 
   <transition name="fade">
-    <IconButton
-      :icon="editId ? 'edit' : 'add'"
-      @click.native="onClick"
-      v-show="valueExist"
-    />
+    <i @click="onClick" v-show="valueExist"/>{{ editId ? 'edit' : 'add' }}</i>
   </transition>
 </div>
 </template>
 
 
 <script>
-import IconButton from '../helper/component/IconButton'
-
 export default {
   name: 'TodoInput',
-
-  components: { IconButton },
 
   props: ['edit'],
 

@@ -1,23 +1,16 @@
 <template>
 <div :class="$style['header-root']">
   <span :class="$style['title']">{{ title }}</span>
-  <IconButton
-    icon="filter_list"
-    :class="$style.filter"
-    @click.native="openSetting"
-  />
+  <i :class="$style.filter" @click="openSetting">filter_list</i>
 </div>
 </template>
 
 
 <script>
-import IconButton from '../helper/component/IconButton'
 import bus from '../helper/function/bus'
 
 export default {
   name: 'Header',
-
-  components: { IconButton },
 
   props: ['title'],
 

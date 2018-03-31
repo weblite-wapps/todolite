@@ -18,16 +18,8 @@
   <transition name="bounce">
     <div v-if="expanded" :class="$style.expand">
       <span :class="$style.functor">{{ functor && `Done By ${functor}` }}</span>
-      <IconButton
-        icon="close"
-        @click.native="onDelete(id)"
-        :class="$style.delete"
-      />
-      <IconButton
-        icon="edit"
-        @click.native="onEdit(id)"
-        :class="$style.edit"
-      />
+      <i @click="onDelete(id)" :class="$style.delete"/>close</i>
+      <i @click="onEdit(id)" :class="$style.edit"/>edit</i>
     </div>
   </transition>
 </li>
@@ -36,12 +28,11 @@
 
 <script>
 import Checkbox from '../helper/component/Checkbox'
-import IconButton from '../helper/component/IconButton'
 
 export default {
   name: 'TodoItem',
 
-  components: { Checkbox, IconButton },
+  components: { Checkbox },
 
   data: () => ({
     expanded: false,

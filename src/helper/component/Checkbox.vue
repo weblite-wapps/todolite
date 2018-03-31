@@ -5,22 +5,15 @@
 >
   <i v-show="!value">no</i>
   <transition name="fade">
-    <IconButton
-      icon="check"
-      v-show="value"
-    />
+    <i v-show="value"/>check</i>
   </transition>
 </div>
 </template>
 
 
 <script>
-import IconButton from './IconButton'
-
 export default {
   name: 'Checkbox',
-
-  components: { IconButton },
 
   props: ['value'],
 

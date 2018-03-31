@@ -1,8 +1,6 @@
 <template>
 <div :class="$style.root">
-  <Header
-    :title="title"
-  />
+  <Header :title="title" />
   <TodoItems
     :todos="todos"
     :onDone="onDone"
@@ -28,12 +26,12 @@ import TodoItems from './components/TodoItems'
 import Setting from './components/Setting'
 // helper
 import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
-// R
+// R && W
 const { W, R } = window
 
 
 export default {
-  name: 'app',
+  name: 'App',
 
   components: {
     Header,
@@ -44,7 +42,7 @@ export default {
 
   data: () => ({
     title: 'Todolite',
-    name: 'Ali',
+    name: '',
     todos: [],
     editId: '',
   }),
@@ -60,32 +58,33 @@ export default {
   },
 
   methods: {
-    onAdd(title) { addTodo(title, this.todos) },
+    onClickEdit(id) { this.editId = id },
+
+    // change todos
+    onAdd(title) { addTodo(title) },
 
     onEdit(obj) {
-      editTitle(obj.id, obj.title, this.todos)
+      editTitle(obj.id, obj.title)
       this.editId = ''
     },
 
-    onDone(id, checked) { addFunctor(id, checked ? this.name : '', this.todos) },
+    onDone(id, checked) { addFunctor(id, checked ? this.name : '') },
 
-    onDelete(id) { deleteTodo(id, this.todos) },
-
-    onClickEdit(id) { this.editId = id },
+    onDelete(id) { deleteTodo(id) },
   },
 }
 </script>
 
 
 <style module>
-  .root {
-    position: relative;
-    width: 350px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 1px #E0E0E0 solid;
-    border-radius: 5px;
-    overflow: hidden;
-  }
+.root {
+  position: relative;
+  width: 350px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px #E0E0E0 solid;
+  border-radius: 5px;
+  overflow: hidden;
+}
 </style>
