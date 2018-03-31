@@ -50,7 +50,7 @@ export default {
   created() {
     W.loadData().then(({ user: { name } }) => { this.name = name })
     W.share.getFromServer([]).then(() => W.start())
-    W.share.subscribe((todos) => { this.todos = R.clone(todos) || [] })
+    W.share.subscribe((todos) => { this.todos = todos || [] })
   },
 
   computed: {
