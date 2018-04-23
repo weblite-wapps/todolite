@@ -26,6 +26,7 @@ import TodoItems from './components/TodoItems'
 import Setting from './components/Setting'
 // helper
 import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
+import webliteHandler from './helper/function/weblite.api'
 // R && W
 const { W, R } = window
 
@@ -42,16 +43,12 @@ export default {
 
   data: () => ({
     title: 'Todolite',
-    name: 'no one',
+    name: '',
     todos: [],
     editId: '',
   }),
 
-  created() {
-    W.loadData().then(({ user: { name } }) => { this.name = name })
-    W.share.getFromServer([]).then(() => W.start())
-    W.share.subscribe((todos) => { this.todos = todos || [] })
-  },
+  created() { W && webliteHandler(this) },
 
   computed: {
     edit() { return R.find(R.propEq('id', this.editId), this.todos) },
