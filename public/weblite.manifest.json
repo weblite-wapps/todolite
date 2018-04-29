@@ -3,8 +3,14 @@
   "instancable": true,
   "creator": false,
   "userInfo": true,
+  "fullscreen": false,
   "inline": true,
   "shareDB": true,
   "width": 352,
-  "height": 452
+  "height": 452,
+  "servIndexes": {
+    "inline": "index",
+    "customize": "index",
+    "main": "index"
+  }
 }
