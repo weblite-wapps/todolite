@@ -12,7 +12,7 @@
       placeholder="search in titles"
     >
 
-    <div :class="$style['radio-title']">filter based on done</div>
+    <div :class="$style['radio-title']">Filter based on done</div>
     <div :class="$style['radio-root']">
       <input type="radio" value="all" v-model="done">
       <label for="one">all</label>
@@ -26,7 +26,7 @@
       <label for="two">undone</label>
     </div>
 
-    <div :class="$style['radio-title']">filter based on time</div>
+    <div :class="$style['radio-title']">Sort based on time</div>
     <div :class="$style['radio-root']">
       <input type="radio" value="ascending" v-model="time">
       <label for="one">ascending</label>
