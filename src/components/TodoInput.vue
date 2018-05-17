@@ -2,7 +2,7 @@
 <div :class="$style['input-root']">
   <input
     type="text"
-    placeholder="add todo ..."
+    placeholder="Add Todo ..."
     :class="$style.input"
     :value="value"
     @input="onChange"
@@ -63,7 +63,7 @@ export default {
     onEdit() {
       this.$emit('edit', { id: this.editId, title: this.editTitle })
       this.editTitle = ''
-      setTimeout(() => { this.editId = '' }, 900)
+      this.editId = ''
     }
   },
 }
@@ -77,8 +77,7 @@ export default {
   padding: 1px;
   border-top: 1px #E0E0E0 solid;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-left: 15px;
 }
 
 .input {
