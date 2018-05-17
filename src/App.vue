@@ -43,7 +43,7 @@ export default {
 
   data: () => ({
     title: 'Todolite',
-    name: '',
+    name: 'amin',
     todos: [],
     editId: '',
   }),

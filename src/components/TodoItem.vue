@@ -4,6 +4,7 @@
     <Checkbox
       @click="checked => onDone(id, checked)"
       :value="!!functor"
+      :itemIndex="itemIndex"
     />
 
     <div :class="$style['todo-item-title']">{{ title }}</div>
@@ -34,7 +35,7 @@ export default {
     expanded: false,
   }),
 
-  props: ['title', 'functor', 'id', 'onDone', 'onDelete', 'onEdit'],
+  props: ['title', 'functor', 'id','itemIndex', 'onDone', 'onDelete', 'onEdit'],
 
   methods: {
     expande() { this.expanded = !this.expanded },

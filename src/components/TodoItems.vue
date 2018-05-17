@@ -5,8 +5,9 @@
   :class="$style['todo-items']"
 >
   <TodoItem
-    v-for="todo in computedTodos"
+    v-for="(todo, index) in computedTodos"
     :key="todo.id"
+    :itemIndex="index"
     :onDone="onDone"
     :onDelete="onDelete"
     :onEdit="onEdit"
