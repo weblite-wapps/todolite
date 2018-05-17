@@ -57,9 +57,10 @@ export default {
 }
 
 .todo-item-title {
-  width: 100%;
+  width: 80%;
   color: #424242;
   font-size: 15px;
+  word-wrap: break-word;
 }
 
 .expand {
