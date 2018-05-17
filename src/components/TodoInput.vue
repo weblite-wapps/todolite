@@ -10,7 +10,7 @@
   />
 
   <transition name="fade">
-    <i @click="onClick" v-show="valueExist">{{ editId ? 'edit' : 'add' }}</i>
+    <i :class="$style['plus-sign']" @click="onClick" v-show="valueExist">{{ editId ? 'edit' : 'add' }}</i>
   </transition>
 </div>
 </template>
@@ -86,5 +86,9 @@ export default {
   font-size: 17px;
   border: none;
   outline: none;
+}
+
+.plus-sign {
+  padding-top: 10px;
 }
 </style>
