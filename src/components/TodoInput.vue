@@ -1,6 +1,7 @@
 <template>
 <div :class="$style['input-root']">
-  <input
+  <textarea
+    :style="{height: height}"
     type="text"
     placeholder="Add Todo ..."
     :class="$style.input"
@@ -26,6 +27,7 @@ export default {
     title: '',
     editId: '',
     editTitle: '',
+    height:20+'px',
   }),
 
   watch: {
@@ -48,6 +50,12 @@ export default {
     onChange({ target: { value } }) {
       if (this.editId) this.editTitle = value
       else this.title = value
+      console.log(this.title.length)
+      this.autoResize()
+    },
+
+    autoResize(){
+      this.height=(parseInt(this.title.length/30)+1) * 20 +'px'
     },
 
     onClick() {
@@ -73,7 +81,6 @@ export default {
 <style module>
 .input-root {
   width: 100%;
-  height: 50px;
   padding: 1px;
   border-top: 1px #E0E0E0 solid;
   display: flex;
