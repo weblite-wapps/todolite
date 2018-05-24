@@ -27,7 +27,7 @@ export default {
     title: '',
     editId: '',
     editTitle: '',
-    height:20+'px',
+    height:40+'px',
   }),
 
   watch: {
@@ -50,12 +50,11 @@ export default {
     onChange({ target: { value } }) {
       if (this.editId) this.editTitle = value
       else this.title = value
-      console.log(this.title.length)
       this.autoResize()
     },
 
     autoResize(){
-      this.height=(parseInt(this.title.length/30)+1) * 20 +'px'
+      this.height=20+(parseInt(this.title.length/30)+1) * 20 +'px'
     },
 
     onClick() {
@@ -93,6 +92,7 @@ export default {
   font-size: 17px;
   border: none;
   outline: none;
+  padding: auto;
 }
 
 .plus-sign {

@@ -48,7 +48,6 @@
 
 
 <script>
-import bus from '../helper/function/bus'
 const { R } = window
 
 export default {
@@ -64,7 +63,7 @@ export default {
   }),
 
   mounted() {
-    bus.$on('OPEN_SETTING', () => this.changeOpen(true))
+    //bus.$on('OPEN_SETTING', () => this.changeOpen(true))
   },
 
   methods: {
@@ -72,7 +71,7 @@ export default {
 
     applySetting() {
       this.changeOpen(false)
-      bus.$emit('APPLY_SETTING', R.pick(['query', 'done', 'time'], this))
+      //bus.$emit('APPLY_SETTING', R.pick(['query', 'done', 'time'], this))
     },
   },
 }

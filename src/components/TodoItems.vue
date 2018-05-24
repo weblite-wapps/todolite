@@ -30,7 +30,7 @@ export default {
 
   data: () => ({
     query: '',
-    done: 'all',
+    whichTodosAreShown: 'All',
     time: 'descending',
   }),
 
@@ -39,15 +39,13 @@ export default {
   mounted() {
     bus.$on('APPLY_SETTING', (settings) => {
       this.query = settings.query
-      this.done = settings.done
-      this.time = settings.time
+      this.whichTodosAreShown = settings.whichTodosAreShown
     })
   },
 
   computed: {
     computedTodos() {
       return R.compose(
-        this.order,
         R.filter(this.searchTitle),
         R.filter(this.doneFilter),
       )(this.todos)
@@ -64,14 +62,9 @@ export default {
     },
 
     doneFilter({ functor }) {
-      if (this.done === 'all') return true
-      if (this.done === 'done') return functor
-      if (this.done === 'undone') return !functor
-    },
-
-    order(todos) {
-      if (this.time === 'descending') return todos
-      if (this.time === 'ascending') return R.reverse(todos)
+      if (this.whichTodosAreShown === 'All') return true
+      if (this.whichTodosAreShown === 'Done') return functor
+      if (this.whichTodosAreShown === 'Undone') return !functor
     },
   },
 }

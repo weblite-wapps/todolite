@@ -19,8 +19,6 @@
       {{itemIndex+1}}
     </div>
   </transition>
-
-
 </div>
 </template>
 
@@ -46,12 +44,8 @@ export default {
   border-radius: 100px;
   color: #808080;
   font-weight: bold;
-  margin-right: 10px;
-  border: 1px #9CCC65 solid;
-  padding: 3px;
+  border: 2px #9CCC65 solid;
   cursor: pointer;
-  margin-left: 8px;
-  margin-top: 6px;
 }
 
 .checked {
@@ -62,8 +56,9 @@ export default {
 }
 
 .itemIndexSingleDigit {
-  margin-left: 7px;
-  margin-top: 6px;
+  /* margin-left: 7px;
+  margin-top: 6px; */
+  margin-self: center;
 }
 
 .itemIndexDoubleDigit {
