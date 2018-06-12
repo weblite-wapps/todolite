@@ -35,7 +35,15 @@ export default {
     expanded: false,
   }),
 
-  props: ['title', 'functor', 'id','itemIndex', 'onDone', 'onDelete', 'onEdit'],
+  props: {
+    title: String,
+    functor: Function,
+    id: Number,
+    itemIndex: Number,
+    onDone :Function,
+    onDelete: Function,
+    onEdit:Function,
+  },
 
   methods: {
     expande() { this.expanded = !this.expanded },
