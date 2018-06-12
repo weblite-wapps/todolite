@@ -34,12 +34,16 @@ export default {
     time: 'descending',
   }),
 
+<<<<<<< HEAD
   props: {
     todos: Array,
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
   },
+=======
+  props: ['todos', 'onDone', 'onDelete', 'onEdit'],
+>>>>>>> baa3072d14c665c1bad8f2d33e0062b4b17b04d6
 
   mounted() {
     bus.$on('APPLY_SETTING', (settings) => {

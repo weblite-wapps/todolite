@@ -47,9 +47,13 @@ const { R } = window
 export default {
   name: 'Header',
 
+<<<<<<< HEAD
   props:{
     title: String,
   },
+=======
+  props: ['title'],
+>>>>>>> baa3072d14c665c1bad8f2d33e0062b4b17b04d6
 
   data(){
     return {
