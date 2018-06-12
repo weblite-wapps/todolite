@@ -35,7 +35,6 @@ export default {
     expanded: false,
   }),
 
-<<<<<<< HEAD
   props: {
     title: String,
     functor: String,
@@ -45,9 +44,6 @@ export default {
     onDelete: Function,
     onEdit: Function,
   },
-=======
-  props: ['title', 'functor', 'id','itemIndex', 'onDone', 'onDelete', 'onEdit'],
->>>>>>> baa3072d14c665c1bad8f2d33e0062b4b17b04d6
 
   methods: {
     expande() { this.expanded = !this.expanded },

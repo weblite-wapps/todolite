@@ -21,7 +21,9 @@
 export default {
   name: 'TodoInput',
 
-  props: ['edit'],
+  props: {
+    edit: String,
+  },
 
   data: () => ({
     title: '',
