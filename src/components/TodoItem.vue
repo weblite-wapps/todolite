@@ -37,12 +37,12 @@ export default {
 
   props: {
     title: String,
-    functor: Function,
+    functor: String,
     id: Number,
     itemIndex: Number,
-    onDone :Function,
+    onDone: Function,
     onDelete: Function,
-    onEdit:Function,
+    onEdit: Function,
   },
 
   methods: {

@@ -36,9 +36,9 @@ export default {
 
   props: {
     todos: Array,
-    onDone : Function,
+    onDone: Function,
     onDelete: Function,
-    onEdit:Function,
+    onEdit: Function,
   },
 
   mounted() {
