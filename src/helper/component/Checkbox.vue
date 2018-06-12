@@ -27,10 +27,7 @@
 export default {
   name: 'Checkbox',
 
-  props: {
-    value: Boolean,
-    itemIndex: Number,
-  },
+  props: ['value','itemIndex'],
 
   methods: {
     click() { this.$emit('click', !this.value) },
