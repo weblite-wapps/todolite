@@ -22,7 +22,7 @@ export default {
   name: 'TodoInput',
 
   props: {
-    edit: String,
+    edit: Object,
   },
 
   data: () => ({
@@ -60,19 +60,29 @@ export default {
     },
 
     onClick() {
-      if (!this.valueExist) return null
+      if (!this.valueExist){ return null }
       this.editId ? this.onEdit() : this.onAdd()
     },
 
     onAdd() {
-      this.$emit('add', this.title)
+      this.title=this.title.substring(0, this.title.length - 1)
+      if(this.title!=='')
+      {
+        this.$emit('add', this.title)
+      }
       this.title = ''
+      this.height='40px'
     },
 
     onEdit() {
-      this.$emit('edit', { id: this.editId, title: this.editTitle })
+      this.editTitle=this.editTitle.substring(0, this.editTitle.length - 1)
+      if(this.editTitle !== '')
+      {
+        this.$emit('edit', { id: this.editId, title: this.editTitle })
+      }
       this.editTitle = ''
       this.editId = ''
+      this.height='40px'
     }
   },
 }

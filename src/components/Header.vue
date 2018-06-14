@@ -14,7 +14,7 @@
     >
   </transition>
 
-  <div>
+  <div :class="$style['all-filters']">
     <transition name="number-fade">
 
   <a v-if="!filterPossibilitiesShowCondition"
@@ -132,8 +132,7 @@ export default {
 
 .title {
   margin-left: 20px;
-  margin-top: 5px;
-  font-size: 26px;
+  font-size: 22px;
   color: white;
 }
 
@@ -150,6 +149,7 @@ export default {
   padding-right: 3px;
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .search-input{
@@ -158,5 +158,12 @@ export default {
   border: 0px;
   border-bottom: 2px solid #196F3D;
   background: transparent;
+}
+
+.all-filters{
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+
 }
 </style>
