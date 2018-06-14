@@ -69,6 +69,7 @@ export default {
   width: 80%;
   color: #424242;
   font-size: 15px;
+  margin-left:5px;
   word-wrap: break-word;
 }
 
