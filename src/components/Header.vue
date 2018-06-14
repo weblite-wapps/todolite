@@ -1,6 +1,6 @@
 <template>
 <div :class="$style['root']">
-  <span :class="$style['title']">{{ title }}</span>
+  <span v-if="!searchTextboxShowCondition" :class="$style['title']">{{ title }}</span>
   <input @keyup="sendFilterSettings()"
     v-model="query"
     v-if="searchTextboxShowCondition"
@@ -123,5 +123,11 @@ export default {
   font-size: 16px;
  }
 
-
+.search-input{
+  font-size: 22px;
+  margin-left: 20px;
+  border: 0px;
+  border-bottom: 2px solid #196F3D;
+  background: transparent;
+}
 </style>
