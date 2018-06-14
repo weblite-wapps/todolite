@@ -43,7 +43,7 @@ export default {
 
   mounted() {
     bus.$on('APPLY_SETTING', (settings) => {
-      this.query = settings.query
+      this.query = settings.query.toLowerCase()
       this.whichTodosAreShown = settings.whichTodosAreShown
     })
   },
@@ -61,7 +61,7 @@ export default {
     searchTitle({ title }) {
       if (!this.query.length) return true
 
-      const position = title.search(this.query)
+      const position = title.toLowerCase().search(this.query)
       if (position < 0) return false
       else return true
     },
