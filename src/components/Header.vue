@@ -15,31 +15,49 @@
   </transition>
 
   <div>
+    <transition name="number-fade">
+
   <a v-if="!filterPossibilitiesShowCondition"
     :class="$style['filter-icon']"
     @click="reverseFilterPossibilitiesShowCondition()"
     >
     {{whichTodosAreShown}}
   </a>
+</transition>
+<transition name="number-fade">
+
   <a v-if="filterPossibilitiesShowCondition"
     :class="$style['filter-icon']"
     @click="switchFilterTo('All')"
     >
     All
   </a>
+</transition>
+
+  <transition name="number-fade">
+
   <a v-if="filterPossibilitiesShowCondition"
     :class="$style['filter-icon']"
     @click="switchFilterTo('Done')"
     >
     Done
   </a>
+</transition>
+
+  <transition name="number-fade">
+
   <a v-if="filterPossibilitiesShowCondition"
     :class="$style['filter-icon']"
     @click="switchFilterTo('Undone')"
     >
     Undone
   </a>
-  <i :class="$style['search-icon']" @click="reverseSearchTextboxShowCondition()">search</i>
+</transition>
+
+  <i v-if="!searchTextboxShowCondition" :class="$style['search-icon']" @click="reverseSearchTextboxShowCondition()">search</i>
+  <i v-if="searchTextboxShowCondition" :class="$style['search-icon']" @click="closeSearchBox()">close</i>
+
+
   </div>
 </div>
 </template>
@@ -66,6 +84,11 @@ export default {
   },
 
   methods: {
+    closeSearchBox : function(event){
+      this.query=''
+      this.reverseSearchTextboxShowCondition()
+      this.sendFilterSettings()
+    },
     reverseSearchTextboxShowCondition : function(){
       this.searchTextboxShowCondition=!this.searchTextboxShowCondition
       if(this.searchTextboxShowCondition===true)
@@ -109,7 +132,8 @@ export default {
 
 .title {
   margin-left: 20px;
-  font-size: 22px;
+  margin-top: 5px;
+  font-size: 26px;
   color: white;
 }
 
@@ -123,10 +147,10 @@ export default {
 
 .filter-icon {
   color: white;
-  padding-right: 10px;
+  padding-right: 3px;
   font-weight: bold;
   font-size: 16px;
- }
+}
 
 .search-input{
   font-size: 22px;
