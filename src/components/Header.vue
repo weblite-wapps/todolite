@@ -1,6 +1,10 @@
 <template>
 <div :class="$style['root']">
+  <transition name="number-fade">
   <span v-if="!searchTextboxShowCondition" :class="$style['title']">{{ title }}</span>
+</transition>
+<transition name="number-fade">
+
   <input @keyup="sendFilterSettings()"
     v-model="query"
     v-if="searchTextboxShowCondition"
@@ -8,6 +12,8 @@
     type="text"
     placeholder="Search..."
     >
+  </transition>
+
   <div>
   <a v-if="!filterPossibilitiesShowCondition"
     :class="$style['filter-icon']"
@@ -35,7 +41,6 @@
   </a>
   <i :class="$style['search-icon']" @click="reverseSearchTextboxShowCondition()">search</i>
   </div>
-
 </div>
 </template>
 
