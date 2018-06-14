@@ -40,12 +40,15 @@ export default {
 .checkbox {
   width: 24px;
   height: 24px;
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 100px;
   color: #808080;
   font-weight: bold;
   border: 2px #9CCC65 solid;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
 }
 
 .checked {
@@ -53,22 +56,9 @@ export default {
   background: #9CCC65;
   color: white;
   font-size: 14px;
-}
-
-.itemIndexSingleDigit {
-  /* margin-left: 7px;
-  margin-top: 6px; */
-  margin-self: center;
-}
-
-.itemIndexDoubleDigit {
-  margin-left: 3px;
-  margin-top: 6px;
-}
-
-.itemIndexTripleDigit {
-  margin-left: 0px;
-  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
 }
 
 </style>
