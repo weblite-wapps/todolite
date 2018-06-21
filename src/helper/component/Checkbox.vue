@@ -1,25 +1,15 @@
 <template>
-<div
-  @click="click"
-  :class="[value ? $style.checked : $style.checkbox, 'noselect']"
->
-  <transition name="number-fade">
-    <div v-if="value" :class="[(itemIndex+1<10) ? $style.itemIndexSingleDigit :
-                  (itemIndex+1<100) ? $style.itemIndexDoubleDigit :
-                  $style.itemIndexTripleDigit, 'noselect']"
-    >
-      {{itemIndex+1}}
-    </div>
-  </transition>
-  <transition name="number-fade">
-    <div v-if="!value" :class="[(itemIndex+1<10) ? $style.itemIndexSingleDigit :
-                  (itemIndex+1<100) ? $style.itemIndexDoubleDigit :
-                  $style.itemIndexTripleDigit, 'noselect']"
-    >
-      {{itemIndex+1}}
-    </div>
-  </transition>
-</div>
+  <div
+    @click="click"
+    :class="[value ? $style.checked : $style.checkbox, 'noselect']">
+    <transition name="number-fade">
+      <div :class="[(itemIndex+1<10) ? $style.itemIndexSingleDigit :
+                    (itemIndex+1<100) ? $style.itemIndexDoubleDigit :
+                    $style.itemIndexTripleDigit, 'noselect']">
+        {{itemIndex+1}}
+      </div>
+    </transition>
+  </div>
 </template>
 
 
@@ -30,7 +20,9 @@ export default {
   props: ['value','itemIndex'],
 
   methods: {
-    click() { this.$emit('click', !this.value) },
+    click: function() { 
+      this.$emit('click', !this.value);
+    }
   },
 }
 </script>

@@ -12,8 +12,6 @@
     @add="onAdd"
     @edit="onEdit"
   />
-
-  <Setting />
 </div>
 </template>
 
@@ -23,7 +21,6 @@
 import Header from './components/Header'
 import TodoInput from './components/TodoInput'
 import TodoItems from './components/TodoItems'
-import Setting from './components/Setting'
 // helper
 import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
 import webliteHandler from './helper/function/weblite.api'
@@ -38,12 +35,11 @@ export default {
     Header,
     TodoInput,
     TodoItems,
-    Setting,
   },
 
   data: () => ({
     title: 'Todolite',
-    name: 'amin',
+    name: 'amirhe',
     todos: [],
     editId: '',
   }),

@@ -1,16 +1,22 @@
 <template>
 <div :class="$style['input-root']">
+  <!-- Add to do input -->
   <textarea
     type="text"
-    placeholder="Add Todo ..."
-    :class="$style.input"
+    placeholder="Add a todo"
+    :class="$style['input']"
     :value="value"
     @input="onChange"
-    @keyup.enter="onClick"
+    @keyup.enter.exact="onClick"
   />
 
   <transition name="fade">
-    <i :class="$style['plus-sign']" @click="onClick" v-show="valueExist">{{ editId ? 'edit' : 'add' }}</i>
+    <i 
+      :class="$style['plus-sign']" 
+      @click="onClick" 
+      v-show="valueExist">
+        {{ editId ? 'edit' : 'add' }}
+    </i>
   </transition>
 </div>
 </template>
@@ -21,7 +27,7 @@ export default {
   name: 'TodoInput',
 
   props: {
-    edit: String,
+    edit: Object,
   },
 
   data: () => ({
@@ -32,46 +38,56 @@ export default {
 
   watch: {
     edit(edit) {
-      if (!edit) return null
-      this.editId = edit.id
-      this.editTitle = edit.title
+      if (!edit) {
+        return null;
+      }
+      this.editId = edit.id;
+      this.editTitle = edit.title;
     },
   },
 
   computed: {
-    value() { return this.editId ? this.editTitle : this.title },
+    value() { 
+      return this.editId ? this.editTitle : this.title; 
+    },
 
     valueExist() {
-      return (this.editId && this.editTitle) || (!this.editId && this.title)
+      return (this.editId && this.editTitle) || (!this.editId && this.title);
     },
   },
 
   methods: {
     onChange({ target: { value } }) {
-      if (this.editId) this.editTitle = value
-      else this.title = value
+      if (this.editId) {
+        this.editTitle = value;
+      }
+      else {
+        this.title = value;
+      }
     },
 
 
     onClick() {
-      if (!this.valueExist) return null
-      this.editId ? this.onEdit() : this.onAdd()
+      if (!this.valueExist) {
+        return null;
+      }
+      this.editId ? this.onEdit() : this.onAdd();
     },
 
     onAdd() {
-      this.title=this.title.substring(0, this.title.length - 1)
-      if(this.title!=='')
+      this.title = this.title.substring(0, this.title.length - 1);
+      if(this.title !== '')
       {
-        this.$emit('add', this.title)
+        this.$emit('add', this.title);
       }
       this.title = ''
     },
 
     onEdit() {
-      this.editTitle=this.editTitle.substring(0, this.editTitle.length - 1)
+      this.editTitle = this.editTitle.substring(0, this.editTitle.length - 1);
       if(this.editTitle !== '')
       {
-        this.$emit('edit', { id: this.editId, title: this.editTitle })
+        this.$emit('edit', { id: this.editId, title: this.editTitle });
       }
       this.editTitle = ''
       this.editId = ''
@@ -83,24 +99,25 @@ export default {
 
 <style module>
 .input-root {
-  width: 100%;
-  padding: 1px;
-  border-top: 1px #E0E0E0 solid;
   display: flex;
-  padding-left: 15px;
+  flex-direction: row;
+  align-items: flex-basis;
+  border-top: 1px #E0E0E0 solid;
 }
 
 .input {
-  height: 100%;
-  width: 300px;
   font-size: 17px;
-  border: none;
   outline: none;
-  padding: auto;
   resize: none;
+  width: 100%;
+  border: none;
+  padding-left: 10px; 
+  padding-top: 10px;
+  text-align-all: center;
 }
 
 .plus-sign {
-  padding-top: 10px;
+  border: none;
+  align-self: center;
 }
 </style>

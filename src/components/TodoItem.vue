@@ -1,25 +1,32 @@
 <template>
-<li :class="$style['todo-item']">
-  <div :class="$style['first-row']">
-    <Checkbox
-      @click="checked => onDone(id, checked)"
-      :value="!!functor"
-      :itemIndex="itemIndex"
-    />
+  <!-- Todo item -->
+  <li :class="$style['todo-item']">
 
-    <div :class="$style['todo-item-title']">{{ title }}</div>
+    <div :class="$style['first-row']">
+      <Checkbox
+        @click="checked => onDone(id, checked)"
+        :value="!!functor"
+        :itemIndex="itemIndex"/>
 
-    <i @click="expande" class="noselect">{{ expanded ? 'expand_less' : 'expand_more' }}</i>
-  </div>
+      <div :class="$style['todo-item-title']">
+        {{ title }}
+      </div>
 
-  <transition name="bounce">
-    <div v-if="expanded" :class="$style.expand">
-      <span :class="$style.functor">{{ functor && `Done By ${functor}` }}</span>
-      <i @click="onDelete(id)" :class="$style.delete">close</i>
-      <i @click="onEdit(id)" :class="$style.edit">edit</i>
+      <i 
+        @click="expande" 
+        class="noselect">
+          {{ expanded ? 'expand_less' : 'expand_more' }}
+      </i>
     </div>
-  </transition>
-</li>
+
+    <transition name="bounce">
+      <div v-if="expanded" :class="$style.expand">
+        <span :class="$style.functor">{{ functor && `Done by ${functor}` }}</span>
+        <i @click="onDelete(id)" :class="$style.delete">close</i>
+        <i @click="onEdit(id)" :class="$style.edit">edit</i>
+      </div>
+    </transition>
+  </li>
 </template>
 
 
@@ -31,9 +38,11 @@ export default {
 
   components: { Checkbox },
 
-  data: () => ({
-    expanded: false,
-  }),
+  data(){
+    return {
+      expanded: false
+    }
+  },
 
   props: {
     title: String,
@@ -46,8 +55,10 @@ export default {
   },
 
   methods: {
-    expande() { this.expanded = !this.expanded },
-  },
+    expande: function() { 
+      this.expanded = !this.expanded;
+    }
+  }
 }
 </script>
 
@@ -57,7 +68,7 @@ export default {
   padding: 10px;
   border: 1px #E0E0E0 solid;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 9px;
 }
 
 .first-row {
@@ -91,7 +102,7 @@ export default {
   height: 18px;
   font-size: 18px;
   cursor: pointer;
-  border-radius: 100px;
+  border-radius: 12px;
   font-weight: bold;
   padding: 5px;
 }

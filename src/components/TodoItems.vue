@@ -1,19 +1,18 @@
 <template>
-<transition-group
-  tag="ul"
-  name="list"
-  :class="$style['todo-items']"
->
-  <TodoItem
-    v-for="(todo, index) in computedTodos"
-    :key="todo.id"
-    :itemIndex="index"
-    :onDone="onDone"
-    :onDelete="onDelete"
-    :onEdit="onEdit"
-    v-bind="todo"
-  />
-</transition-group>
+  <!-- todo items -->
+  <transition-group
+    tag="ul"
+    name="list"
+    :class="$style['todo-items']">
+    <TodoItem
+      v-for="(todo, index) in computedTodos"
+      :key="todo.id"
+      :itemIndex="index"
+      :onDone="onDone"
+      :onDelete="onDelete"
+      :onEdit="onEdit"
+      v-bind="todo"/>
+  </transition-group>
 </template>
 
 
@@ -53,23 +52,27 @@ export default {
       return R.compose(
         R.filter(this.searchTitle),
         R.filter(this.doneFilter),
-      )(this.todos)
+      )(this.todos);
     },
   },
 
   methods: {
     searchTitle({ title }) {
-      if (!this.query.length) return true
-
-      const position = title.toLowerCase().search(this.query)
-      if (position < 0) return false
-      else return true
+      if (!this.query.length) {
+        return true;
+      }
+      const position = title.toLowerCase().search(this.query);
+      return (position < 0) ? false : true;
     },
 
     doneFilter({ functor }) {
-      if (this.whichTodosAreShown === 'All') return true
-      if (this.whichTodosAreShown === 'Done') return functor
-      if (this.whichTodosAreShown === 'Undone') return !functor
+      if (this.whichTodosAreShown === 'All') {
+        return true;
+      } else if (this.whichTodosAreShown === 'Done') {
+        return functor;
+      }else if (this.whichTodosAreShown === 'Undone') {
+        return !functor;
+      }
     },
   },
 }
@@ -80,6 +83,6 @@ export default {
 .todo-items {
   height: inherit;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 </style>

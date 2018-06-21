@@ -1,6 +1,6 @@
 /* fade */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .9s;
+  transition: opacity 0s;
 }
 
 
@@ -9,15 +9,18 @@
   opacity: 0;
 }
 
+
+.fade-leave-to {
+  opacity: 0;
+}
+
 .number-fade-enter-active {
-  transition: opacity .9s;
+  transition: opacity 0s;
 }
 
 .number-fade-leave-active {
   transition: opacity 0s;
 }
-
-
 
 .number-fade-enter, .number-fade-leave-to {
   opacity: 0;
@@ -48,5 +51,5 @@
 }
 .list-enter, .list-leave-to {
   opacity: 0;
-  transform: translateX(300px);
+  transform: translateY(300px);
 }
