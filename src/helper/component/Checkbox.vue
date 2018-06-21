@@ -32,13 +32,15 @@ export default {
 
 <style module>
 .checkbox {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
+  padding: 5px;
   font-size: 12px;
-  border-radius: 100px;
+  border-radius: 12px;
+  margin-right: 5px;
   color: #808080;
   font-weight: bold;
-  border: 2px #9CCC65 solid;
+  border: 1px #9CCC65 solid;
   cursor: pointer;
   display: flex;
   align-items: center;
