@@ -1,22 +1,16 @@
 <template>
   <!-- Todo item -->
-  <li :class="$style['todo-item']">
-
+  <li 
+    @click="expande"
+    :class="$style['todo-item']">
     <div :class="$style['first-row']">
       <Checkbox
         @click="checked => onDone(id, checked)"
         :value="!!functor"
         :itemIndex="itemIndex"/>
-
       <div :class="$style['todo-item-title']">
         {{ title }}
       </div>
-
-      <i 
-        @click="expande" 
-        class="noselect">
-          {{ expanded ? 'expand_less' : 'expand_more' }}
-      </i>
     </div>
 
     <transition name="bounce">
