@@ -1,11 +1,13 @@
 <template>
   <div
     @click="click"
-    :class="[value ? $style.checked : $style.checkbox, 'noselect']">
+    :class="[value ? $style.checked : $style.checkbox, 'noselect']"
+  >
     <transition name="number-fade">
       <div :class="[(itemIndex+1<10) ? $style.itemIndexSingleDigit :
                     (itemIndex+1<100) ? $style.itemIndexDoubleDigit :
-                    $style.itemIndexTripleDigit, 'noselect']">
+                    $style.itemIndexTripleDigit, 'noselect']"
+      >
         {{itemIndex+1}}
       </div>
     </transition>

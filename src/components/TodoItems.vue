@@ -3,7 +3,8 @@
   <transition-group
     tag="ul"
     name="list"
-    :class="$style['todo-items']">
+    :class="$style['todo-items']"
+  >
     <TodoItem
       v-for="(todo, index) in computedTodos"
       :key="todo.id"
@@ -11,7 +12,8 @@
       :onDone="onDone"
       :onDelete="onDelete"
       :onEdit="onEdit"
-      v-bind="todo"/>
+      v-bind="todo"
+    />
   </transition-group>
 </template>
 
@@ -19,8 +21,9 @@
 <script>
 import TodoItem from './TodoItem'
 import bus from '../helper/function/bus'
-const { R } = window
 
+
+const { R } = window
 
 export default {
   name: 'TodoItems',
@@ -58,21 +61,15 @@ export default {
 
   methods: {
     searchTitle({ title }) {
-      if (!this.query.length) {
-        return true;
-      }
-      const position = title.toLowerCase().search(this.query);
-      return (position < 0) ? false : true;
+      if (!this.query.length) return true;
+      const position = title.toLowerCase().search(this.query)
+      return (position < 0) ? false : true
     },
 
     doneFilter({ functor }) {
-      if (this.whichTodosAreShown === 'All') {
-        return true;
-      } else if (this.whichTodosAreShown === 'Done') {
-        return functor;
-      }else if (this.whichTodosAreShown === 'Undone') {
-        return !functor;
-      }
+      if (this.whichTodosAreShown === 'All') return true;
+      if (this.whichTodosAreShown === 'Done') return functor;
+      if (this.whichTodosAreShown === 'Undone') return !functor;
     },
   },
 }

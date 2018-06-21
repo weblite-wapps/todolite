@@ -2,12 +2,14 @@
   <!-- Todo item -->
   <li 
     @click="expande"
-    :class="$style['todo-item']">
+    :class="$style['todo-item']"
+  >
     <div :class="$style['first-row']">
       <Checkbox
         @click="checked => onDone(id, checked)"
         :value="!!functor"
-        :itemIndex="itemIndex"/>
+        :itemIndex="itemIndex"
+      />
       <div :class="$style['todo-item-title']">
         {{ title }}
       </div>
@@ -27,6 +29,7 @@
 <script>
 import Checkbox from '../helper/component/Checkbox'
 
+
 export default {
   name: 'TodoItem',
 
@@ -34,7 +37,7 @@ export default {
 
   data(){
     return {
-      expanded: false
+      expanded: false,
     }
   },
 
@@ -51,7 +54,7 @@ export default {
   methods: {
     expande: function() { 
       this.expanded = !this.expanded;
-    }
+    },
   }
 }
 </script>

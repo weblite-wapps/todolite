@@ -1,12 +1,12 @@
-
 <template>
   <div :class="$style['root']">
     <!-- Title -->
     <transition name="number-fade">
       <span 
         v-if="!searchTextboxShowCondition" 
-        :class="$style['title']">
-          {{ title }}
+        :class="$style['title']"
+      >
+        {{ title }}
       </span>
 
     </transition>
@@ -19,7 +19,8 @@
         v-if="searchTextboxShowCondition"
         :class="$style['search-input']"
         type="text"
-        placeholder="Seach here">
+        placeholder="Seach here"
+      >
     </transition>
 
     <!-- Filter Field-->
@@ -28,8 +29,9 @@
           <a 
             v-if="!filterPossibilitiesShowCondition"
             :class="$style['filter-icon']"
-            @click="reverseFilterPossibilitiesShowCondition">
-              {{whichTodosAreShown}}
+            @click="reverseFilterPossibilitiesShowCondition"
+          >
+            {{whichTodosAreShown}}
           </a>
         </transition>
 
@@ -40,8 +42,9 @@
             <a 
               v-if="filterPossibilitiesShowCondition"
               :class="$style['filter-icon']"
-              @click="switchFilterTo(filter)">
-                {{filter}}
+              @click="switchFilterTo(filter)"
+            >
+              {{filter}}
             </a>
           </transition>        
         </div>
@@ -50,14 +53,16 @@
         <i 
           v-if="!searchTextboxShowCondition" 
           :class="$style['search-icon']" 
-          @click="reverseSearchTextboxShowCondition">
-            search
+          @click="reverseSearchTextboxShowCondition"
+        >
+          search
         </i>
         <i 
           v-if="searchTextboxShowCondition" 
           :class="$style['search-icon']" 
-          @click="closeSearchBox">
-            close
+          @click="closeSearchBox"
+        >
+          close
         </i>
 
       </div>
@@ -66,7 +71,6 @@
 
 
 <script>
-
   import bus from '../helper/function/bus'
 
   const { R } = window
@@ -84,42 +88,40 @@
         filterPossibilitiesShowCondition : false,
         whichTodosAreShown: 'All',
         query:'',
-        filters: ['All', 'Done', 'Undone']
+        filters: ['All', 'Done', 'Undone'],
       }
     },
 
     methods: {
-      closeSearchBox : function(){
+      closeSearchBox: function() {
         this.query=''
         this.reverseSearchTextboxShowCondition()
         this.sendFilterSettings()
       },
 
-      reverseSearchTextboxShowCondition : function(){
-        this.searchTextboxShowCondition=!this.searchTextboxShowCondition
-        if(this.searchTextboxShowCondition===true)
-        {
-          this.filterPossibilitiesShowCondition=false
+      reverseSearchTextboxShowCondition: function() {
+        this.searchTextboxShowCondition =! this.searchTextboxShowCondition
+        if(this.searchTextboxShowCondition === true) {
+          this.filterPossibilitiesShowCondition = false
         }
       },
 
-      reverseFilterPossibilitiesShowCondition : function(){
+      reverseFilterPossibilitiesShowCondition: function() {
         this.filterPossibilitiesShowCondition=!this.filterPossibilitiesShowCondition
-        if(this.filterPossibilitiesShowCondition===true)
-        {
-          this.searchTextboxShowCondition=false
+        if(this.filterPossibilitiesShowCondition === true) {
+          this.searchTextboxShowCondition = false
         }
       },
 
-      switchFilterTo: function(value){
-        this.whichTodosAreShown=value
-        this.filterPossibilitiesShowCondition=false
+      switchFilterTo: function(value) {
+        this.whichTodosAreShown = value
+        this.filterPossibilitiesShowCondition = false
         this.sendFilterSettings()
       },
 
-      sendFilterSettings: function(){
+      sendFilterSettings: function() {
         bus.$emit('APPLY_SETTING', R.pick(['query', 'whichTodosAreShown'], this))
-      }
+      },
     }
   }
 </script>
@@ -153,12 +155,11 @@
   }
 
 
-  .search-icon:hover
-  {
-      z-index: 2;
-      -webkit-transition: all 200ms ease-in;
-      -webkit-transform: scale(1.3);
-      padding-left: 5px;
+  .search-icon:hover {
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.3);
+    padding-left: 5px;
   }/* End search icon and close icon */
 
 
@@ -172,7 +173,7 @@
 
 
   /* Search_Box Style */
-  .search-input{
+  .search-input {
     width: 100px;
     font-size: 18px;
     margin-left: 20px;

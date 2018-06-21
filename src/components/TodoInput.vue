@@ -14,8 +14,9 @@
     <i 
       :class="$style['plus-sign']" 
       @click="onClick" 
-      v-show="valueExist">
-        {{ editId ? 'edit' : 'add' }}
+      v-show="valueExist"
+    >
+      {{ editId ? 'edit' : 'add' }}
     </i>
   </transition>
 </div>
@@ -38,57 +39,42 @@ export default {
 
   watch: {
     edit(edit) {
-      if (!edit) {
-        return null;
-      }
+      if (!edit) return null;
       this.editId = edit.id;
       this.editTitle = edit.title;
     },
   },
 
   computed: {
-    value() { 
-      return this.editId ? this.editTitle : this.title; 
-    },
+    value() { return this.editId ? this.editTitle : this.title},
 
-    valueExist() {
-      return (this.editId && this.editTitle) || (!this.editId && this.title);
-    },
+    valueExist() { return (this.editId && this.editTitle) || (!this.editId && this.title) }
+  
   },
 
   methods: {
     onChange({ target: { value } }) {
-      if (this.editId) {
-        this.editTitle = value;
-      }
+      if (this.editId) this.editTitle = value
       else {
-        this.title = value;
+        this.title = value
       }
     },
 
 
     onClick() {
-      if (!this.valueExist) {
-        return null;
-      }
-      this.editId ? this.onEdit() : this.onAdd();
+      if (!this.valueExist) return null;
+      this.editId ? this.onEdit() : this.onAdd()
     },
 
     onAdd() {
-      this.title = this.title.substring(0, this.title.length - 1);
-      if(this.title !== '')
-      {
-        this.$emit('add', this.title);
-      }
+      this.title = this.title.substring(0, this.title.length - 1)
+      if(this.title !== '') this.$emit('add', this.title)
       this.title = ''
     },
 
     onEdit() {
-      this.editTitle = this.editTitle.substring(0, this.editTitle.length - 1);
-      if(this.editTitle !== '')
-      {
-        this.$emit('edit', { id: this.editId, title: this.editTitle });
-      }
+      this.editTitle = this.editTitle.substring(0, this.editTitle.length - 1)
+      if(this.editTitle !== '') this.$emit('edit', { id: this.editId, title: this.editTitle })
       this.editTitle = ''
       this.editId = ''
     }
