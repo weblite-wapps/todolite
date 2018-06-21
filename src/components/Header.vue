@@ -164,7 +164,7 @@
 
   .filter-icon {
     color: white;
-    padding-right: 3px;
+    padding-right: 7px;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
