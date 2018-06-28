@@ -4,20 +4,20 @@
     @click.self="expand"
     :class="$style['todo-item']"
   >
-    <div :class="$style['first-row']">
+    <div @click.self="expand" :class="$style['first-row']">
       <Checkbox
         @click="checkboxClicked"
         :value="!!functor"
         :itemIndex="itemIndex"
       />
-      <div @click="expand" :class="$style['todo-item-title']">
+      <div @click.self="expand" :class="$style['todo-item-title']">
         {{ title }}
       </div>
     </div>
 
     <transition name="bounce">
       <div @click.self="expand" v-if="expanded" :class="$style.expand">
-        <span :class="$style.functor">{{ functor && `Done by ${functor}` }}</span>
+        <span @click.self="expand" :class="$style.functor">{{ functor && `Done by ${functor}` }}</span>
         <i @click="onDelete(id)" :class="$style.delete">close</i>
         <i @click="onEdit(id)" :class="$style.edit">edit</i>
       </div>
