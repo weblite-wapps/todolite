@@ -187,7 +187,7 @@
   }
 
   .search-input:focus {
-    outline-color: transparent;
+    outline: none;
     width: 60%;
   }
 
