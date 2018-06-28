@@ -2,18 +2,18 @@
   <div :class="$style['root']">
     <!-- Title -->
     <transition name="number-fade">
-      <span 
-        v-if="!searchTextboxShowCondition" 
+      <span
+        v-if="!searchTextboxShowCondition"
         :class="$style['title']"
       >
         {{ title }}
       </span>
 
     </transition>
-    
+
     <!-- Search bar -->
     <transition name="number-fade">
-      <input 
+      <input
         @keyup="sendFilterSettings"
         v-model="query"
         v-if="searchTextboxShowCondition"
@@ -26,10 +26,10 @@
     <!-- Filter Field-->
     <div :class="$style['all-filters']">
         <transition name="number-fade">
-          <a 
+          <a
             v-if="!filterPossibilitiesShowCondition"
             :class="$style['filter-icon']"
-            @click="reverseFilterPossibilitiesShowCondition"
+            @click="toggleFilterPossibilitiesShowCondition"
           >
             {{whichTodosAreShown}}
           </a>
@@ -39,27 +39,27 @@
         <!-- key is now required in Vue -->
         <div v-for="(filter, index) in filters" :key='index'>
           <transition name="number-fade">
-            <a 
+            <a
               v-if="filterPossibilitiesShowCondition"
               :class="$style['filter-icon']"
               @click="switchFilterTo(filter)"
             >
               {{filter}}
             </a>
-          </transition>        
+          </transition>
         </div>
-        
+
         <!-- X and Search-icon -->
-        <i 
-          v-if="!searchTextboxShowCondition" 
-          :class="$style['search-icon']" 
-          @click="reverseSearchTextboxShowCondition"
+        <i
+          v-if="!searchTextboxShowCondition"
+          :class="$style['search-icon']"
+          @click="toggleSearchTextboxShowCondition"
         >
           search
         </i>
-        <i 
-          v-if="searchTextboxShowCondition" 
-          :class="$style['search-icon']" 
+        <i
+          v-if="searchTextboxShowCondition"
+          :class="$style['search-icon']"
           @click="closeSearchBox"
         >
           close
@@ -95,18 +95,18 @@
     methods: {
       closeSearchBox: function() {
         this.query=''
-        this.reverseSearchTextboxShowCondition()
+        this.toggleSearchTextboxShowCondition()
         this.sendFilterSettings()
       },
 
-      reverseSearchTextboxShowCondition: function() {
+      toggleSearchTextboxShowCondition: function() {
         this.searchTextboxShowCondition =! this.searchTextboxShowCondition
         if(this.searchTextboxShowCondition === true) {
           this.filterPossibilitiesShowCondition = false
         }
       },
 
-      reverseFilterPossibilitiesShowCondition: function() {
+      toggleFilterPossibilitiesShowCondition: function() {
         this.filterPossibilitiesShowCondition=!this.filterPossibilitiesShowCondition
         if(this.filterPossibilitiesShowCondition === true) {
           this.searchTextboxShowCondition = false
@@ -179,7 +179,7 @@
     margin-left: 20px;
     border: 0px;
     color: white;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);  
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
     border-bottom: 2px solid white;
     background-color: transparent;
     -webkit-transition: width 0.4s ease-in-out;
@@ -193,7 +193,7 @@
 
   .search-input::placeholder {
     color: white;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);  
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
   } /* End Search_Box Style */
 
   .all-filters{
