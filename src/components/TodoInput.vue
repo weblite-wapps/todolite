@@ -67,13 +67,11 @@ export default {
     },
 
     onAdd() {
-      this.title = this.title.substring(0, this.title.length - 1)
       if(this.title !== '') this.$emit('add', this.title)
       this.title = ''
     },
 
     onEdit() {
-      this.editTitle = this.editTitle.substring(0, this.editTitle.length - 1)
       if(this.editTitle !== '') this.$emit('edit', { id: this.editId, title: this.editTitle })
       this.editTitle = ''
       this.editId = ''
