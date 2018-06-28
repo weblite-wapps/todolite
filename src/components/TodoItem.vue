@@ -1,7 +1,7 @@
 <template>
   <!-- Todo item -->
   <li
-    @click="expand"
+    @click.self="expand"
     :class="$style['todo-item']"
   >
     <div :class="$style['first-row']">
@@ -10,7 +10,7 @@
         :value="!!functor"
         :itemIndex="itemIndex"
       />
-      <div :class="$style['todo-item-title']">
+      <div @click="expand" :class="$style['todo-item-title']">
         {{ title }}
       </div>
     </div>
