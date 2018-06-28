@@ -18,8 +18,8 @@
         v-model="query"
         v-if="searchTextboxShowCondition"
         :class="$style['search-input']"
-        type="text"
-        placeholder="Seach here"
+        type="textbox"
+        placeholder="Search here"
       >
     </transition>
 

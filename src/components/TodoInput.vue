@@ -11,9 +11,9 @@
   />
 
   <transition name="fade">
-    <i 
-      :class="$style['plus-sign']" 
-      @click="onClick" 
+    <i
+      :class="$style['plus-sign']"
+      @click="onClick"
       v-show="valueExist"
     >
       {{ editId ? 'edit' : 'add' }}
@@ -49,7 +49,7 @@ export default {
     value() { return this.editId ? this.editTitle : this.title},
 
     valueExist() { return (this.editId && this.editTitle) || (!this.editId && this.title) }
-  
+
   },
 
   methods: {
@@ -97,9 +97,10 @@ export default {
   resize: none;
   width: 100%;
   border: none;
-  padding-left: 10px; 
+  padding-left: 10px;
   padding-top: 10px;
   text-align-all: center;
+  overflow: hidden;
 }
 
 .plus-sign {
