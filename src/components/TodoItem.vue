@@ -6,7 +6,7 @@
   >
     <div :class="$style['first-row']">
       <Checkbox
-        @click="checked => onDone(id, checked)"
+        @click="checkboxClicked"
         :value="!!functor"
         :itemIndex="itemIndex"
       />
@@ -16,7 +16,7 @@
     </div>
 
     <transition name="bounce">
-      <div v-if="expanded" :class="$style.expand">
+      <div @click.self="expand" v-if="expanded" :class="$style.expand">
         <span :class="$style.functor">{{ functor && `Done by ${functor}` }}</span>
         <i @click="onDelete(id)" :class="$style.delete">close</i>
         <i @click="onEdit(id)" :class="$style.edit">edit</i>
@@ -52,6 +52,11 @@ export default {
   },
 
   methods: {
+    checkboxClicked: function(checked) {
+      this.onDone(this.id, checked)
+      this.expanded = true
+    },
+
     expand: function() {
       this.expanded = !this.expanded;
     },
