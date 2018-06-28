@@ -1,7 +1,7 @@
 <template>
   <!-- Todo item -->
-  <li 
-    @click="expande"
+  <li
+    @click="expand"
     :class="$style['todo-item']"
   >
     <div :class="$style['first-row']">
@@ -52,7 +52,7 @@ export default {
   },
 
   methods: {
-    expande: function() { 
+    expand: function() {
       this.expanded = !this.expanded;
     },
   }
