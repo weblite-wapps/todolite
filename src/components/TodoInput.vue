@@ -85,7 +85,6 @@ export default {
 .input-root {
   display: flex;
   flex-direction: row;
-  align-items: flex-basis;
   border-top: 1px #E0E0E0 solid;
 }
 
