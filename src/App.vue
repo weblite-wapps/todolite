@@ -3,6 +3,7 @@
   <Header :title="title" />
   <TodoItems
     :todos="todos"
+    :priorityColors="priorityColors"
     :onDone="onDone"
     :onDelete="onDelete"
     :onEdit="onClickEdit"
@@ -10,7 +11,7 @@
   <TodoInput
     :edit="edit"
     @add="onAdd"
-    @edit="onEdit"
+    @edit="onEditTitle"
   />
 </div>
 </template>
@@ -22,10 +23,12 @@ import Header from './components/Header'
 import TodoInput from './components/TodoInput'
 import TodoItems from './components/TodoItems'
 // helper
-import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
+import { addTodo, editTitle, editPriority, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
 import webliteHandler from './helper/function/weblite.api'
 // R && W
 const { W, R } = window
+
+import bus from './helper/function/bus.js'
 
 
 export default {
@@ -41,10 +44,18 @@ export default {
     title: 'Todolite',
     name: 'mohammad',
     todos: [],
+    priorityColors: [
+      "#d96459",
+      "#f2e394",
+      "#588c7e"
+    ],
     editId: '',
   }),
 
-  created() { W && webliteHandler(this) },
+  created() { 
+    W && webliteHandler(this) 
+    bus.$on('editPriority', obj => this.onEditPriority(obj))
+  },
 
   computed: {
     edit() { return R.find(R.propEq('id', this.editId), this.todos) },
@@ -55,9 +66,13 @@ export default {
 
     onAdd(title) { addTodo(title, this.name) },
 
-    onEdit(obj) {
+    onEditTitle(obj) {
       editTitle(obj.id, obj.title)
       this.editId = ''
+    },
+
+    onEditPriority(obj) {
+      editPriority(obj.id, obj.priority)
     },
 
     onDone(id, checked) { addFunctor(id, checked ? this.name : '') },

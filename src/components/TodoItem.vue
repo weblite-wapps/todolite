@@ -1,8 +1,8 @@
 <template>
-  <!-- Todo item -->
   <li
     @click.self="expand"
     :class="$style['todo-item']"
+    :style="{'border-color': priorityColors[priority-1]}"
   >
     <div @click.self="expand" :class="$style['first-row']">
       <Checkbox
@@ -13,13 +13,37 @@
       <div @click.self="expand" :class="$style['todo-item-title']">
         {{ title }}
       </div>
+      <!-- <div 
+        :class="$style['priority-icon']" 
+        :style="{background: priorityColors[priority-1]}"
+        v-if="priority !== 0"
+      /> -->
     </div>
 
-    <transition name="bounce">
-      <div @click.self="expand" v-if="expanded" :class="$style.expand">
-        <span @click.self="expand" :class="$style.functor">{{creator && `Created by ${creator}`}}<div :class="$style.splitter" v-if="functor !==''"/>{{ functor && `Done by ${functor}`}}</span>
-        <i @click="onDelete(id)" :class="$style.delete">close</i>
-        <i @click="onEdit(id)" :class="$style.edit">edit</i>
+    <transition name="fade">
+      <div @click.self="expand" v-if="expanded">
+        <div :class="$style.expand">
+          <span @click.self="expand" :class="$style.info">{{creator && `Created by ${creator}`}}<div :class="$style.splitter" v-if="functor !==''"/>{{ functor && `Done by ${functor}`}}</span>
+          <i @click="onDelete(id)" :class="$style.delete">close</i>
+          <i @click="onEdit(id)" :class="$style.edit">edit</i>
+        </div>
+
+        <div :class="$style['priority-split']">
+          <div :class="$style['palette-splitter']"/>
+          <p :class="$style['priority-text']"> PRIORITY </p>
+          <div :class="$style['palette-splitter']"/>
+        </div>
+
+        <div :class="$style.palette">
+          <PriorityPicker
+            v-for="(color, index) in priorityColors"
+            v-bind:priority="index + 1"
+            v-bind:color="color"
+            v-bind:key="index"
+            @picked="editPriority($event)"
+          >
+          </PriorityPicker>
+        </div>
       </div>
     </transition>
   </li>
@@ -28,12 +52,16 @@
 
 <script>
 import Checkbox from '../helper/component/Checkbox'
-
+import PriorityPicker from '../helper/component/PriorityPicker'
+import bus from '../helper/function/bus.js'
 
 export default {
   name: 'TodoItem',
 
-  components: { Checkbox },
+  components: {
+    Checkbox,
+    PriorityPicker
+  },
 
   data(){
     return {
@@ -45,8 +73,10 @@ export default {
     title: String,
     functor: String,
     creator: String,
+    priorityColors: Array,
     id: Number,
     itemIndex: Number,
+    priority: Number,
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
@@ -61,6 +91,10 @@ export default {
     expand: function() {
       this.expanded = !this.expanded;
     },
+
+    editPriority: function(value) {
+      bus.$emit('editPriority', {id: this.id, priority: value})
+    }
   }
 }
 </script>
@@ -69,7 +103,8 @@ export default {
 <style module>
 .todo-item {
   padding: 10px;
-  border: 1px #E0E0E0 solid;
+  border: 2px solid;
+  border-color: #E0E0E0;
   margin-bottom: 10px;
   border-radius: 9px;
 }
@@ -79,8 +114,19 @@ export default {
   align-items: center;
 }
 
+/* .priority-icon {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin: 5px;
+  border: 2px rgba(0, 0, 0, 0.349) solid;
+  margin-right: 0;
+} */
+
 .todo-item-title {
   width: 80%;
+  max-width: 230px;
   color: #424242;
   font-size: 15px;
   margin-left:5px;
@@ -94,7 +140,7 @@ export default {
   align-items: center;
 }
 
-.functor {
+.info {
   width: 100%;
   font-size: 14px;
   color: #737373;
@@ -138,5 +184,30 @@ export default {
 .splitter {
   margin: 10px 50px 10px 0px;
   border-bottom: 1px solid rgba(99, 99, 99, 0.418);
+}
+
+.palette {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.palette-splitter {
+  display: flex;
+  width: 90px;
+  margin: 20px 0px 10px 0px;
+  border-bottom: 1px solid rgba(109, 102, 102, 0.575);
+}
+
+.priority-split {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.priority-text {
+  margin: 12px 10px 0px;
+  font-size: 14px;
+  color: #747474;
 }
 </style>

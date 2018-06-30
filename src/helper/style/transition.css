@@ -1,6 +1,6 @@
 /* fade */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0s;
+  transition: opacity .2s;
 }
 
 
@@ -23,7 +23,7 @@
 }
 
 .number-fade-enter, .number-fade-leave-to {
-  opacity: 0;
+  opacity: 1;
 }
 
 /* bounce */

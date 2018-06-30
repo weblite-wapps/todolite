@@ -7,6 +7,7 @@
   >
     <TodoItem
       v-for="(todo, index) in computedTodos"
+      :priorityColors="priorityColors"
       :key="todo.id"
       :itemIndex="index"
       :onDone="onDone"
@@ -38,6 +39,7 @@ export default {
 
   props: {
     todos: Array,
+    priorityColors: Array,
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
