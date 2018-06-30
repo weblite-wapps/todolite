@@ -3,7 +3,9 @@
     :class="$style.picker" 
     @click="$emit('picked', priority)" 
     :style="{background: color}"
-  />
+  >
+    <i :class="$style['pick-icon']" v-if="$parent.priority === priority">done</i>
+  </div>
 </template>
 
 <script>
@@ -34,11 +36,15 @@ export default {
   cursor: pointer;
   border-radius: 20px;
   margin: 5px;
-  border: 2px rgba(0, 0, 0, 0.349) solid;
+  border: 2px rgba(0, 0, 0, 0.226) solid;
 }
 
 .picker:hover {
-  border: 2px rgba(0, 0, 0, 0.596) solid;
+  border: 2px rgba(0, 0, 0, 0.5) solid;
 }
 
+.pick-icon {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 21px;
+}
 </style>

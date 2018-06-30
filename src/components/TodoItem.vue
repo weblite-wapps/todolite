@@ -43,6 +43,12 @@
             @picked="editPriority($event)"
           >
           </PriorityPicker>
+          <PriorityPicker
+            v-bind:priority="0"
+            v-bind:color="'#e2e2e2'"
+            @picked="editPriority($event)"
+          >
+          </PriorityPicker>
         </div>
       </div>
     </transition>
@@ -107,6 +113,7 @@ export default {
   border-color: #E0E0E0;
   margin-bottom: 10px;
   border-radius: 9px;
+  box-shadow: 0px 0px 10px -1px rgba(80, 80, 80, 0.274);
 }
 
 .first-row {

@@ -62,7 +62,7 @@ export default {
 
 
     onClick() {
-      if (!this.valueExist) return null;
+      if (!this.valueExist || this.title.trim() == '') return null;
       this.editId ? this.onEdit() : this.onAdd()
     },
 
