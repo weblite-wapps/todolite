@@ -5,8 +5,8 @@ const generateKey = () => Math.floor(Math.random() * 1e+15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
 
-export const addTodo = (title) => dispatch(
-  ['__append', [{ id: generateKey(), title, functor: '' }]],
+export const addTodo = (title, name) => dispatch(
+  ['__append', [{ id: generateKey(), title, functor: '', creator: name }]],
 )
 
 export const editTitle = (id, title) => dispatch(

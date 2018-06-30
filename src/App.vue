@@ -39,7 +39,7 @@ export default {
 
   data: () => ({
     title: 'Todolite',
-    name: '',
+    name: 'mohammad',
     todos: [],
     editId: '',
   }),
@@ -53,7 +53,7 @@ export default {
   methods: {
     onClickEdit(id) { this.editId = id },
 
-    onAdd(title) { addTodo(title) },
+    onAdd(title) { addTodo(title, this.name) },
 
     onEdit(obj) {
       editTitle(obj.id, obj.title)

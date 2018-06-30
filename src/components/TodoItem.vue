@@ -17,7 +17,7 @@
 
     <transition name="bounce">
       <div @click.self="expand" v-if="expanded" :class="$style.expand">
-        <span @click.self="expand" :class="$style.functor">{{ functor && `Done by ${functor}` }}</span>
+        <span @click.self="expand" :class="$style.functor">{{creator && `Created by ${creator}`}}<div :class="$style.splitter" v-if="functor !==''"/>{{ functor && `Done by ${functor}`}}</span>
         <i @click="onDelete(id)" :class="$style.delete">close</i>
         <i @click="onEdit(id)" :class="$style.edit">edit</i>
       </div>
@@ -44,6 +44,7 @@ export default {
   props: {
     title: String,
     functor: String,
+    creator: String,
     id: Number,
     itemIndex: Number,
     onDone: Function,
@@ -132,5 +133,10 @@ export default {
 .edit:hover {
   background: #1565C0;
   color: white;
+}
+
+.splitter {
+  margin: 10px 50px 10px 0px;
+  border-bottom: 1px solid rgba(99, 99, 99, 0.418);
 }
 </style>
