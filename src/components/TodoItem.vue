@@ -13,11 +13,6 @@
       <div @click.self="expand" :class="$style['todo-item-title']">
         {{ title }}
       </div>
-      <!-- <div 
-        :class="$style['priority-icon']" 
-        :style="{background: priorityColors[priority-1]}"
-        v-if="priority !== 0"
-      /> -->
     </div>
 
     <transition name="fade">
@@ -113,7 +108,7 @@ export default {
   border-color: #E0E0E0;
   margin-bottom: 10px;
   border-radius: 9px;
-  box-shadow: 0px 0px 10px -1px rgba(80, 80, 80, 0.274);
+  box-shadow: 0px 0px 10px -1px rgba(80, 80, 80, 0.27);
 }
 
 .first-row {
@@ -121,19 +116,8 @@ export default {
   align-items: center;
 }
 
-/* .priority-icon {
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-  border-radius: 20px;
-  margin: 5px;
-  border: 2px rgba(0, 0, 0, 0.349) solid;
-  margin-right: 0;
-} */
-
 .todo-item-title {
   width: 80%;
-  max-width: 230px;
   color: #424242;
   font-size: 15px;
   margin-left:5px;
