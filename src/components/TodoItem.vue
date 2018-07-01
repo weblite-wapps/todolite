@@ -2,7 +2,7 @@
   <li
     @click.self="expand"
     :class="$style['todo-item']"
-    :style="{'border-color': priorityColors[priority-1]}"
+    :style="{'border-color': priorityColors[priority]}"
   >
     <div @click.self="expand" :class="$style['first-row']">
       <Checkbox
@@ -32,18 +32,11 @@
         <div :class="$style.palette">
           <PriorityPicker
             v-for="(color, index) in priorityColors"
-            v-bind:priority="index + 1"
+            v-bind:priority="index"
             v-bind:color="color"
             v-bind:key="index"
             @picked="editPriority($event)"
-          >
-          </PriorityPicker>
-          <PriorityPicker
-            v-bind:priority="0"
-            v-bind:color="'#e2e2e2'"
-            @picked="editPriority($event)"
-          >
-          </PriorityPicker>
+          />
         </div>
       </div>
     </transition>
@@ -54,7 +47,6 @@
 <script>
 import Checkbox from '../helper/component/Checkbox'
 import PriorityPicker from '../helper/component/PriorityPicker'
-import bus from '../helper/function/bus.js'
 
 export default {
   name: 'TodoItem',
@@ -67,6 +59,12 @@ export default {
   data(){
     return {
       expanded: false,
+      priorityColors: [
+      "#e2e2e2",
+      "#588c7e",
+      "#f2e394",
+      "#d96459"
+    ],
     }
   },
 
@@ -74,7 +72,6 @@ export default {
     title: String,
     functor: String,
     creator: String,
-    priorityColors: Array,
     id: Number,
     itemIndex: Number,
     priority: Number,
@@ -94,7 +91,7 @@ export default {
     },
 
     editPriority: function(value) {
-      bus.$emit('editPriority', {id: this.id, priority: value})
+      this.$emit('priorityPicked', {id: this.id, priority: value})
     }
   }
 }

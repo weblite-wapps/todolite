@@ -39,9 +39,9 @@ export default {
 
   watch: {
     edit(edit) {
-      if (!edit) return null;
-      this.editId = edit.id;
-      this.editTitle = edit.title;
+      if (!edit) return null
+      this.editId = edit.id
+      this.editTitle = edit.title
     },
   },
 
@@ -62,19 +62,23 @@ export default {
 
 
     onClick() {
-      if (!this.valueExist || this.title.trim() == '') return null;
+      if (!this.valueExist) return null
       this.editId ? this.onEdit() : this.onAdd()
     },
 
     onAdd() {
-      if(this.title !== '') this.$emit('add', this.title)
-      this.title = ''
+      if(this.title.trim() != '') {
+        this.$emit('add', this.title)
+        this.title = ''
+      }
     },
 
     onEdit() {
-      if(this.editTitle !== '') this.$emit('edit', { id: this.editId, title: this.editTitle })
-      this.editTitle = ''
-      this.editId = ''
+      if(this.editTitle.trim() !== '') {
+        this.$emit('edit', { id: this.editId, title: this.editTitle })
+        this.editTitle = ''
+        this.editId = ''
+      }
     }
   },
 }

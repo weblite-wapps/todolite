@@ -12,12 +12,6 @@
 export default {
   name: 'PriorityPicker',
 
-  data(){
-    return {
-     
-    }
-  },
-
   props: {
     priority: Number,
     color: String

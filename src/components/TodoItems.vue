@@ -7,13 +7,13 @@
   >
     <TodoItem
       v-for="(todo, index) in computedTodos"
-      :priorityColors="priorityColors"
       :key="todo.id"
       :itemIndex="index"
       :onDone="onDone"
       :onDelete="onDelete"
       :onEdit="onEdit"
       v-bind="todo"
+      @priorityPicked="$emit('priorityPicked', $event)"
     />
   </transition-group>
 </template>
@@ -39,7 +39,6 @@ export default {
 
   props: {
     todos: Array,
-    priorityColors: Array,
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
@@ -69,9 +68,9 @@ export default {
     },
 
     doneFilter({ functor }) {
-      if (this.whichTodosAreShown === 'All') return true;
-      if (this.whichTodosAreShown === 'Done') return functor;
-      if (this.whichTodosAreShown === 'Undone') return !functor;
+      if (this.whichTodosAreShown === 'All') return true
+      if (this.whichTodosAreShown === 'Done') return functor
+      if (this.whichTodosAreShown === 'Undone') return !functor
     },
   },
 }

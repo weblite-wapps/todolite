@@ -3,10 +3,10 @@
   <Header :title="title" />
   <TodoItems
     :todos="todos"
-    :priorityColors="priorityColors"
     :onDone="onDone"
     :onDelete="onDelete"
     :onEdit="onClickEdit"
+    @priorityPicked="onEditPriority($event)"
   />
   <TodoInput
     :edit="edit"
@@ -28,9 +28,6 @@ import webliteHandler from './helper/function/weblite.api'
 // R && W
 const { W, R } = window
 
-import bus from './helper/function/bus.js'
-
-
 export default {
   name: 'App',
 
@@ -44,17 +41,11 @@ export default {
     title: 'Todolite',
     name: 'mohammad',
     todos: [],
-    priorityColors: [
-      "#d96459",
-      "#f2e394",
-      "#588c7e"
-    ],
     editId: '',
   }),
 
   created() { 
     W && webliteHandler(this) 
-    bus.$on('editPriority', obj => this.onEditPriority(obj))
   },
 
   computed: {
