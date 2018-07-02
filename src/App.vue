@@ -6,7 +6,7 @@
     :onDone="onDone"
     :onDelete="onDelete"
     :onEdit="onClickEdit"
-    @priorityPicked="onEditPriority($event)"
+    :onEditPriority="onEditPriority"
   />
   <TodoInput
     :edit="edit"

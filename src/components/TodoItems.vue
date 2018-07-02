@@ -12,8 +12,8 @@
       :onDone="onDone"
       :onDelete="onDelete"
       :onEdit="onEdit"
+      :onEditPriority="onEditPriority"
       v-bind="todo"
-      @priorityPicked="$emit('priorityPicked', $event)"
     />
   </transition-group>
 </template>
@@ -42,6 +42,7 @@ export default {
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
+    onEditPriority: Function
   },
 
   mounted() {

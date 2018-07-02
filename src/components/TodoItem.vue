@@ -32,9 +32,9 @@
         <div :class="$style.palette">
           <PriorityPicker
             v-for="(color, index) in priorityColors"
-            v-bind:priority="index"
-            v-bind:color="color"
-            v-bind:key="index"
+            :priority="index"
+            :color="color"
+            :key="index"
             @picked="editPriority($event)"
           />
         </div>
@@ -78,6 +78,7 @@ export default {
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
+    onEditPriority: Function
   },
 
   methods: {
@@ -91,7 +92,7 @@ export default {
     },
 
     editPriority: function(value) {
-      this.$emit('priorityPicked', {id: this.id, priority: value})
+      this.onEditPriority({id: this.id, priority: value})
     }
   }
 }
