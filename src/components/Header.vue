@@ -12,9 +12,10 @@
     </transition>
 
     <!-- Search bar -->
+    <!-- transition moshkel dare ,, "hosein" -->
     <transition name="number-fade">
       <input
-        @keyup="sendFilterSettings"
+        @input="sendFilterSettings"
         v-model="query"
         v-if="searchTextboxShowCondition"
         :class="$style['search-input']"
@@ -24,6 +25,7 @@
     </transition>
 
     <!-- Filter Field-->
+    <!--  transition moshkel dare ,, "hoesin"-->
     <div :class="$style['all-filters']">
         <transition name="number-fade">
           <a
@@ -37,19 +39,21 @@
 
         <!-- All Done Undone -->
         <!-- key is now required in Vue -->
-        <div v-for="(filter, index) in filters" :key='index'>
-          <transition name="number-fade">
-            <a
-              v-if="filterPossibilitiesShowCondition"
-              :class="$style['filter-icon']"
-              @click="switchFilterTo(filter)"
-            >
-              {{filter}}
-            </a>
-          </transition>
-        </div>
-
+        <!--  vase v-if bayad fekri bokonim ,, "hoesin"-->
+        <template v-if="filterPossibilitiesShowCondition">
+          <div v-for="(filter, index) in filters" :key='index'>
+            <transition name="number-fade" >
+              <a
+                :class="$style['filter-icon']"
+                @click="switchFilterTo(filter)"
+              >
+                {{filter}}
+              </a>
+            </transition>
+          </div>
+        </template>
         <!-- X and Search-icon -->
+        <!--  in eftezahe transition e  text-input eftezahe ,, "hosein"-->
         <i
           v-if="!searchTextboxShowCondition"
           :class="$style['search-icon']"
@@ -100,7 +104,7 @@
       },
 
       toggleSearchTextboxShowCondition: function() {
-        this.searchTextboxShowCondition =! this.searchTextboxShowCondition
+        this.searchTextboxShowCondition = !this.searchTextboxShowCondition
         if(this.searchTextboxShowCondition === true) {
           this.filterPossibilitiesShowCondition = false
         }

@@ -5,6 +5,7 @@
     type="text"
     placeholder="Add a todo"
     :class="$style['input']"
+    :style="{direction: directionType}"
     :value="value"
     @input="onChange"
     @keyup.enter.exact="onClick"
@@ -35,6 +36,7 @@ export default {
     title: '',
     editId: '',
     editTitle: '',
+    directionType: 'ltr',
   }),
 
   watch: {
@@ -48,7 +50,21 @@ export default {
   computed: {
     value() { return this.editId ? this.editTitle : this.title},
 
-    valueExist() { return (this.editId && this.editTitle) || (!this.editId && this.title) }
+    valueExist() {
+      if ( (this.editId && this.editTitle) && (this.editTitle.charCodeAt(0) > 256)){
+        this.directionType = 'rtl'
+      }
+      else if ((this.editId && this.editTitle) && (this.editTitle.charCodeAt(0) < 256)) {
+        this.directionType = 'ltr'
+      }
+      else if ((!this.editId && this.title) && (this.title.charCodeAt(0) > 256)) {
+        this.directionType = 'rtl'
+      }
+      else {
+        this.directionType = 'ltr'
+      }
+
+      return (this.editId && this.editTitle) || (!this.editId && this.title) },
 
   },
 
@@ -60,27 +76,28 @@ export default {
       }
     },
 
-
     onClick() {
       if (!this.valueExist) return null
       this.editId ? this.onEdit() : this.onAdd()
+
     },
 
     onAdd() {
       if(this.title.trim() != '') {
-        this.$emit('add', this.title)
+        this.$emit('add', R.trim(this.title))
         this.title = ''
       }
     },
 
     onEdit() {
       if(this.editTitle.trim() !== '') {
-        this.$emit('edit', { id: this.editId, title: this.editTitle })
+        this.$emit('edit', { id: this.editId, title: this.editTitle.trim() })
         this.editTitle = ''
         this.editId = ''
       }
     }
   },
+
 }
 </script>
 
@@ -108,5 +125,13 @@ export default {
 .plus-sign {
   border: none;
   align-self: center;
+}
+
+.rtlForm {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
 }
 </style>

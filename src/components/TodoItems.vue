@@ -4,7 +4,7 @@
     tag="ul"
     name="list"
     :class="$style['todo-items']"
-  >
+    >
     <TodoItem
       v-for="(todo, index) in computedTodos"
       :key="todo.id"
