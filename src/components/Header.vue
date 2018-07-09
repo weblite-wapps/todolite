@@ -12,7 +12,6 @@
     </transition>
 
     <!-- Search bar -->
-    <!-- transition moshkel dare ,, "hosein" -->
     <transition name="number-fade">
       <input
         @input="sendFilterSettings"
@@ -25,7 +24,6 @@
     </transition>
 
     <!-- Filter Field-->
-    <!--  transition moshkel dare ,, "hoesin"-->
     <div :class="$style['all-filters']">
         <transition name="number-fade">
           <a
@@ -39,7 +37,6 @@
 
         <!-- All Done Undone -->
         <!-- key is now required in Vue -->
-        <!--  vase v-if bayad fekri bokonim ,, "hoesin"-->
         <template v-if="filterPossibilitiesShowCondition">
           <div v-for="(filter, index) in filters" :key='index'>
             <transition name="number-fade" >
@@ -53,7 +50,6 @@
           </div>
         </template>
         <!-- X and Search-icon -->
-        <!--  in eftezahe transition e  text-input eftezahe ,, "hosein"-->
         <i
           v-if="!searchTextboxShowCondition"
           :class="$style['search-icon']"
@@ -111,6 +107,8 @@
       },
 
       toggleFilterPossibilitiesShowCondition: function() {
+        // 'whichTodosAreShown' by default should be 'ALL'
+        this.whichTodosAreShown = 'All';
         this.filterPossibilitiesShowCondition=!this.filterPossibilitiesShowCondition
         if(this.filterPossibilitiesShowCondition === true) {
           this.searchTextboxShowCondition = false
@@ -139,6 +137,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: #9CCC65;
+    box-shadow: 0px 0px 10px 2px rgba(80, 80, 80, 0.27);
   }
 
   .title {
@@ -175,6 +174,9 @@
     cursor: pointer;
   }
 
+  .filter-icon:hover {
+    font-size: 110%
+  }
 
   /* Search_Box Style */
   .search-input {

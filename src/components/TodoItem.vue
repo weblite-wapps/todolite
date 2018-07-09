@@ -10,7 +10,8 @@
         :value="!!functor"
         :itemIndex="itemIndex"
       />
-      <div @click.self="expand"
+      <div
+        @click.self="expand"
         :class="$style[selectedClassForDirection]"
       >
       <p @click.self="expand" v-for="title in titleList">
@@ -105,12 +106,7 @@
     },
     computed: {
       selectedClassForDirection() {
-        if (this.title.charCodeAt(0) > 256){
-          return "rtlForm"
-        }
-        else{
-          return "ltrForm"
-        }
+        return (this.title.charCodeAt(0) > 256) ? "rtlForm" :  "ltrForm"
       },
 
       titleList() {
@@ -130,6 +126,10 @@
     margin-bottom: 10px;
     border-radius: 9px;
     box-shadow: 0px 0px 10px -1px rgba(80, 80, 80, 0.27);
+  }
+
+  .todo-item:hover{
+    background-color: rgb(250, 250, 250, .85)
   }
 
   .first-row {
@@ -216,9 +216,7 @@
     color: #747474;
   }
 
-  .rtlForm {
-    direction: rtl;
-    text-align: right;
+  .ltrForm , .rtlForm {
     width: 80%;
     color: #424242;
     font-size: 15px;
@@ -226,14 +224,14 @@
     word-wrap: break-word;
   }
 
+  .rtlForm {
+    direction: rtl;
+    text-align: right;
+  }
+
   .ltrForm {
     direction: ltr;
     text-align: left;
-    width: 80%;
-    color: #424242;
-    font-size: 15px;
-    margin-left:5px;
-    word-wrap: break-word;
   }
 
 </style>

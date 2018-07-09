@@ -39,7 +39,7 @@
 
     data: () => ({
       title: 'Todolite',
-      name: 'hosein',
+      name: '',
       todos: [],
       editId: '',
     }),
