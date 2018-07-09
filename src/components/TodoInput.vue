@@ -25,6 +25,9 @@
 
 
 <script>
+  // R
+  const { R } = window
+
   export default {
     name: 'TodoInput',
 
@@ -49,14 +52,14 @@
     computed: {
       value() { return this.editId ? this.editTitle : this.title},
 
-      valueExist() {return (this.editId && this.editTitle) || (!this.editId && this.title) },
+      valueExist() { return (this.editId && this.editTitle) || (!this.editId && this.title) },
 
-      directionType(){
+      directionType() {
         if (this.editId && this.editTitle){
-          this.directionType = (this.editTitle.charCodeAt(0) > 256) ? 'rtl' : 'ltr'
+          return (this.editTitle.charCodeAt(0) > 256) ? 'rtl' : 'ltr'
         }
         else if (!this.editId && this.title){
-           this.directionType = (this.title.charCodeAt(0) > 256) ? 'rtl' : 'ltr'
+           return (this.title.charCodeAt(0) > 256) ? 'rtl' : 'ltr'
         }
       }
     },

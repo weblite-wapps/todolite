@@ -14,7 +14,11 @@
         @click.self="expand"
         :class="$style[selectedClassForDirection]"
       >
-      <p @click.self="expand" v-for="title in titleList">
+      <p
+        @click.self="expand"
+        v-for="(title, index) in titleList"
+        :key="index"
+      >
         {{ title }}
       </p>
       </div>
