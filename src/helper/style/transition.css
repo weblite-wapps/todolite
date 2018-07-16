@@ -1,6 +1,6 @@
 /* fade */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0s;
+  transition: opacity .2s;
 }
 
 
@@ -15,11 +15,11 @@
 }
 
 .number-fade-enter-active {
-  transition: opacity 0s;
+  transition: opacity 1s;
 }
 
 .number-fade-leave-active {
-  transition: opacity 0s;
+  transition: opacity .35s;
 }
 
 .number-fade-enter, .number-fade-leave-to {

@@ -14,7 +14,7 @@
     <!-- Search bar -->
     <transition name="number-fade">
       <input
-        @keyup="sendFilterSettings"
+        @input="sendFilterSettings"
         v-model="query"
         v-if="searchTextboxShowCondition"
         :class="$style['search-input']"
@@ -37,18 +37,18 @@
 
         <!-- All Done Undone -->
         <!-- key is now required in Vue -->
-        <div v-for="(filter, index) in filters" :key='index'>
-          <transition name="number-fade">
-            <a
-              v-if="filterPossibilitiesShowCondition"
-              :class="$style['filter-icon']"
-              @click="switchFilterTo(filter)"
-            >
-              {{filter}}
-            </a>
-          </transition>
-        </div>
-
+        <template v-if="filterPossibilitiesShowCondition">
+          <div v-for="(filter, index) in filters" :key='index'>
+            <transition name="number-fade" >
+              <a
+                :class="$style['filter-icon']"
+                @click="switchFilterTo(filter)"
+              >
+                {{filter}}
+              </a>
+            </transition>
+          </div>
+        </template>
         <!-- X and Search-icon -->
         <i
           v-if="!searchTextboxShowCondition"
@@ -100,13 +100,15 @@
       },
 
       toggleSearchTextboxShowCondition: function() {
-        this.searchTextboxShowCondition =! this.searchTextboxShowCondition
+        this.searchTextboxShowCondition = !this.searchTextboxShowCondition
         if(this.searchTextboxShowCondition === true) {
           this.filterPossibilitiesShowCondition = false
         }
       },
 
       toggleFilterPossibilitiesShowCondition: function() {
+        // 'whichTodosAreShown' by default should be 'ALL'
+        this.whichTodosAreShown = 'All';
         this.filterPossibilitiesShowCondition=!this.filterPossibilitiesShowCondition
         if(this.filterPossibilitiesShowCondition === true) {
           this.searchTextboxShowCondition = false
@@ -135,6 +137,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: #9CCC65;
+    box-shadow: 0px 0px 10px 2px rgba(80, 80, 80, 0.27);
   }
 
   .title {
@@ -171,6 +174,9 @@
     cursor: pointer;
   }
 
+  .filter-icon:hover {
+    font-size: 110%
+  }
 
   /* Search_Box Style */
   .search-input {

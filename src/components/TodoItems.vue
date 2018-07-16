@@ -4,7 +4,7 @@
     tag="ul"
     name="list"
     :class="$style['todo-items']"
-  >
+    >
     <TodoItem
       v-for="(todo, index) in computedTodos"
       :key="todo.id"
@@ -12,6 +12,7 @@
       :onDone="onDone"
       :onDelete="onDelete"
       :onEdit="onEdit"
+      :onEditPriority="onEditPriority"
       v-bind="todo"
     />
   </transition-group>
@@ -41,6 +42,7 @@ export default {
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
+    onEditPriority: Function
   },
 
   mounted() {
@@ -67,9 +69,9 @@ export default {
     },
 
     doneFilter({ functor }) {
-      if (this.whichTodosAreShown === 'All') return true;
-      if (this.whichTodosAreShown === 'Done') return functor;
-      if (this.whichTodosAreShown === 'Undone') return !functor;
+      if (this.whichTodosAreShown === 'All') return true
+      if (this.whichTodosAreShown === 'Done') return functor
+      if (this.whichTodosAreShown === 'Undone') return !functor
     },
   },
 }

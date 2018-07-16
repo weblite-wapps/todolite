@@ -1,107 +1,126 @@
 <template>
-<div :class="$style['input-root']">
-  <!-- Add to do input -->
-  <textarea
-    type="text"
-    placeholder="Add a todo"
-    :class="$style['input']"
-    :value="value"
-    @input="onChange"
-    @keyup.enter.exact="onClick"
-  />
+  <div :class="$style['input-root']">
+    <!-- Add to do input -->
+    <textarea
+      type="text"
+      placeholder="Add a todo"
+      :class="$style['input']"
+      :style="{direction: directionType}"
+      :value="value"
+      @input="onChange"
+      @keyup.enter.exact="onClick"
+    />
 
-  <transition name="fade">
-    <i
-      :class="$style['plus-sign']"
-      @click="onClick"
-      v-show="valueExist"
-    >
-      {{ editId ? 'edit' : 'add' }}
-    </i>
-  </transition>
-</div>
+    <transition name="fade">
+      <i
+        :class="$style['plus-sign']"
+        @click="onClick"
+        v-show="valueExist"
+      >
+        {{ editId ? 'edit' : 'add' }}
+      </i>
+    </transition>
+  </div>
 </template>
 
 
 <script>
-export default {
-  name: 'TodoInput',
+  // R
+  const { R } = window
 
-  props: {
-    edit: Object,
-  },
+  export default {
+    name: 'TodoInput',
 
-  data: () => ({
-    title: '',
-    editId: '',
-    editTitle: '',
-  }),
-
-  watch: {
-    edit(edit) {
-      if (!edit) return null;
-      this.editId = edit.id;
-      this.editTitle = edit.title;
+    props: {
+      edit: Object,
     },
-  },
 
-  computed: {
-    value() { return this.editId ? this.editTitle : this.title},
+    data: () => ({
+      title: '',
+      editId: '',
+      editTitle: '',
+    }),
 
-    valueExist() { return (this.editId && this.editTitle) || (!this.editId && this.title) }
+    watch: {
+      edit(edit) {
+        if (!edit) return null
+        this.editId = edit.id
+        this.editTitle = edit.title
+      },
+    },
 
-  },
+    computed: {
+      value() { return this.editId ? this.editTitle : this.title},
 
-  methods: {
-    onChange({ target: { value } }) {
-      if (this.editId) this.editTitle = value
-      else {
-        this.title = value
+      valueExist() { return (this.editId && this.editTitle) || (!this.editId && this.title) },
+
+      directionType() {
+        if (this.editId && this.editTitle){
+          return (this.editTitle.charCodeAt(0) > 256) ? 'rtl' : 'ltr'
+        }
+        else if (!this.editId && this.title){
+           return (this.title.charCodeAt(0) > 256) ? 'rtl' : 'ltr'
+        }
       }
     },
 
+    methods: {
+      onChange({ target: { value } }) {
+        if (this.editId) this.editTitle = value
+        else {
+          this.title = value
+        }
+      },
 
-    onClick() {
-      if (!this.valueExist) return null;
-      this.editId ? this.onEdit() : this.onAdd()
+      onClick() {
+        if (!this.valueExist) return null
+        this.editId ? this.onEdit() : this.onAdd()
+
+      },
+
+      onAdd() {
+        if(this.title.trim() != '') {
+          this.$emit('add', R.trim(this.title))
+          this.title = ''
+        }
+      },
+
+      onEdit() {
+        if(this.editTitle.trim() !== '') {
+          this.$emit('edit', { id: this.editId, title: this.editTitle.trim() })
+          this.editTitle = ''
+          this.editId = ''
+        }
+      }
     },
-
-    onAdd() {
-      if(this.title !== '') this.$emit('add', this.title)
-      this.title = ''
-    },
-
-    onEdit() {
-      if(this.editTitle !== '') this.$emit('edit', { id: this.editId, title: this.editTitle })
-      this.editTitle = ''
-      this.editId = ''
-    }
-  },
-}
+  }
 </script>
 
 
 <style module>
-.input-root {
-  display: flex;
-  flex-direction: row;
-  border-top: 1px #E0E0E0 solid;
-}
+  .input-root {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-basis;
+    border-top: 1px #E0E0E0 solid;
+    box-shadow: 0px 0px 10px .5px rgba(80, 80, 80, 0.27);
+  }
 
-.input {
-  font-size: 17px;
-  outline: none;
-  resize: none;
-  width: 100%;
-  border: none;
-  padding-left: 10px;
-  padding-top: 10px;
-  text-align-all: center;
-  overflow: hidden;
-}
+  .input {
+    font-size: 17px;
+    outline: none;
+    resize: none;
+    width: 100%;
+    border: none;
+    padding-left: 10px;
+    padding-top: 10px;
+    text-align-all: center;
+    overflow: hidden;
+  }
 
-.plus-sign {
-  border: none;
-  align-self: center;
-}
+  .plus-sign {
+    border: none;
+    align-self: center;
+  }
+
 </style>
