@@ -57,5 +57,6 @@
     height: 50px;
     border: none;
     background-color: #616161;
+    outline: none;
   }
 </style>
