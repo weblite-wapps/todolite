@@ -28,19 +28,21 @@
       />
     </div>
 
-    <button
-      class="button"
+    <BaseRotativeButton
+      :mode="baseRotativeButtonMode"
       @click="changeMode(mode === 'add' ? 'normal' : 'add')"
-    >
-      {{ mode === 'add' ? 'X' : '+' }}
-    </button>
+    />
   </div>
 </template>
 
 
 <script>
+  import BaseRotativeButton from '../helper/component/BaseRotativeButton'
+  
   export default {
     name: 'TheAppBar',
+
+    components: {BaseRotativeButton},
 
     props:{
       title: { type: String, required: true },
@@ -49,6 +51,12 @@
     data() {
       return {
         mode: 'normal', // normal | progress | add
+      }
+    },
+
+    computed: {
+      baseRotativeButtonMode() {
+        return this.mode === 'add' ? 'close' : 'add'
       }
     },
 
@@ -80,13 +88,5 @@
   .title {
     font-size: 22px;
     color: white;
-  }
-
-  .button {
-    width: 50px;
-    height: 50px;
-    border: none;
-    background-color: #616161;
-    outline: none;
   }
 </style>
