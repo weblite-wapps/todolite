@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.root">
-    <AppBar :title="title" />
+    <TheAppBar :title="title" />
     <TodoItems
       :todos="todos"
       :onDone="onDone"
@@ -19,7 +19,7 @@
 
 <script>
   // components
-  import AppBar from './components/AppBar'
+  import TheAppBar from './components/TheAppBar'
   import TodoInput from './components/TodoInput'
   import TodoItems from './components/TodoItems'
   // helper
@@ -32,7 +32,7 @@
     name: 'App',
 
     components: {
-      AppBar,
+      TheAppBar,
       TodoInput,
       TodoItems,
     },
