@@ -14,12 +14,10 @@
       </div>
 
       <!-- Progress -->
-      <div
-        type="text"
+      <TheAppBarProgress
+        :percentage="60"
         v-else-if="mode === 'progress'"
-      >
-        98%
-      </div>
+      />
 
       <!-- Input -->
       <input
@@ -37,12 +35,16 @@
 
 
 <script>
+  import TheAppBarProgress from './TheAppBarProgress'
   import BaseRotativeButton from '../helper/component/BaseRotativeButton'
   
   export default {
     name: 'TheAppBar',
 
-    components: {BaseRotativeButton},
+    components: {
+      BaseRotativeButton,
+      TheAppBarProgress,
+    },
 
     props:{
       title: { type: String, required: true },
@@ -83,10 +85,13 @@
   .main {
     width: calc(100% - 50px);
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .title {
     font-size: 22px;
-    color: white;
+    color: #ffffff;
   }
 </style>
