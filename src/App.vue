@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.root">
-    <Header :title="title" />
+    <AppBar :title="title" />
     <TodoItems
       :todos="todos"
       :onDone="onDone"
@@ -19,7 +19,7 @@
 
 <script>
   // components
-  import Header from './components/Header'
+  import AppBar from './components/AppBar'
   import TodoInput from './components/TodoInput'
   import TodoItems from './components/TodoItems'
   // helper
@@ -32,13 +32,13 @@
     name: 'App',
 
     components: {
-      Header,
+      AppBar,
       TodoInput,
       TodoItems,
     },
 
     data: () => ({
-      title: 'Todolite',
+      title: 'TO DO LITE',
       name: '',
       todos: [],
       editId: '',
@@ -82,7 +82,6 @@
     display: flex;
     flex-direction: column;
     border: 1px #E0E0E0 solid;
-    border-radius: 5px;
     overflow: hidden;
   }
 </style>
