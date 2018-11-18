@@ -20,9 +20,9 @@
       />
 
       <!-- Input -->
-      <input
-        type="text"
-        v-else
+      <TheAppBarInput
+        @submit="onSubmit"
+        v-show="mode === 'add'"
       />
     </div>
 
@@ -35,8 +35,9 @@
 
 
 <script>
-  import TheAppBarProgress from './TheAppBarProgress'
   import BaseRotativeButton from '../helper/component/BaseRotativeButton'
+  import TheAppBarProgress from './TheAppBarProgress'
+  import TheAppBarInput from './TheAppBarInput'
   
   export default {
     name: 'TheAppBar',
@@ -44,6 +45,7 @@
     components: {
       BaseRotativeButton,
       TheAppBarProgress,
+      TheAppBarInput,
     },
 
     props:{
@@ -66,8 +68,13 @@
       changeMode(mode) { this.mode = mode },
 
       toggleMode() {
-        if (this.mode === 'normal')  this.mode = 'progress'
-        else if (this.mode === 'progress')  this.mode = 'normal'
+        if (this.mode === 'normal') this.mode = 'progress'
+        else if (this.mode === 'progress') this.mode = 'normal'
+      },
+
+      onSubmit(value) {
+        this.mode = 'normal'
+        console.log(value)
       }
     }
   }
