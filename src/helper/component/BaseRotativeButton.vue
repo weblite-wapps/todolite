@@ -1,26 +1,26 @@
 <template>
   <button
     class="button"
-    @click="onClick"
+    @click="click"
   >
     <svg
       :class="`${mode}-icon`"
-      height="30"
-      width="30"
+      height="20"
+      width="20"
     >
       <line
         class="icon-line"
         x1="0"
-        y1="15"
-        x2="30"
-        y2="15"
+        y1="10"
+        x2="20"
+        y2="10"
       />
       <line
         class="icon-line"
-        x1="15"
+        x1="10"
         y1="0"
-        x2="15"
-        y2="30"
+        x2="10"
+        y2="20"
       />
     </svg>
   </button>
@@ -40,7 +40,7 @@
     },
 
     methods: {
-      onClick() { this.$emit('click') }
+      click() { this.$emit('click') }
     }
   }
 </script>

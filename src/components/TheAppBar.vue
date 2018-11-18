@@ -7,22 +7,24 @@
     >
       <!-- Title -->
       <div
-        class="title"
         v-if="mode === 'normal'"
+        key="title"
+        class="title"
       >
         {{ title }}
       </div>
 
       <!-- Progress -->
       <TheAppBarProgress
-        :percentage="60"
         v-else-if="mode === 'progress'"
+        key="progress"
+        :percentage="60"
       />
 
       <!-- Input -->
       <TheAppBarInput
-        @submit="onSubmit"
         v-show="mode === 'add'"
+        @submit="submitInput"
       />
     </div>
 
@@ -72,7 +74,7 @@
         else if (this.mode === 'progress') this.mode = 'normal'
       },
 
-      onSubmit(value) {
+      submitInput(value) {
         this.mode = 'normal'
         console.log(value)
       }

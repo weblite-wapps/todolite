@@ -4,7 +4,7 @@
     v-model="value"
     type="text"
     placeholder="TYPE HERE ..."
-    v-on:keyup.enter="onSubmit"
+    @keyup.enter="submit"
   />
 </template>
 
@@ -18,7 +18,7 @@
     }),
 
     methods: {
-      onSubmit() {
+      submit() {
         this.$emit('submit', this.value)
         this.value = ''
       }
