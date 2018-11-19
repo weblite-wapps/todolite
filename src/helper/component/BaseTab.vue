@@ -10,7 +10,7 @@
       <!-- icon content -->
       <img
         v-if="isSelected(index)"
-        :src="require(`../../assets/icons/${icon}`)"
+        :src="require(`../../assets/icons/${icon}.svg`)"
         class="icon"
       />
 
@@ -35,8 +35,6 @@
     data: () => ({
       selectedIndex: 0,
     }),
-
-    computed: {},
 
     methods: {
       isSelected(index) {

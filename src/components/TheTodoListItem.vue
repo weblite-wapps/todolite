@@ -1,6 +1,11 @@
 <template>
   <li class="todo-item">
-    {{ title }}
+    <div class="todo-header">
+
+    </div>
+    <div class="todo-content">
+      {{ title }}
+    </div>
   </li>
 </template>
 
@@ -10,18 +15,6 @@
     name: 'TodoItem',
 
     components: {},
-
-    data(){
-      return {
-        expanded: false,
-        priorityColors: [
-        "#e2e2e2",
-        "#588c7e",
-        "#f2e394",
-        "#d96459"
-        ],
-      }
-    },
 
     props: {
       title: String,
@@ -43,11 +36,22 @@
 
 <style scoped>
   .todo-item {
-    padding: 10px;
-    border: 2px solid;
-    border-color: #E0E0E0;
-    margin-bottom: 10px;
-    border-radius: 9px;
-    box-shadow: 0px 0px 10px -1px rgba(80, 80, 80, 0.27);
+    margin-top: 15px;
+  }
+
+  .todo-header {
+    height: 40px;
+    background-color: #E6E6E6;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+  }
+
+  .todo-content {
+    margin-top: 2px;
+    padding: 15px;
+    font-weight: 500;
+    background-color: #E6E6E6;
+    border-bottom-right-radius: 20px;
   }
 </style>

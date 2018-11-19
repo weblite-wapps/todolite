@@ -4,26 +4,13 @@
       :title="title"
       @submit="onAdd"
     />
+
     <BaseTab
-      :items="[
-        {
-          content: 'VIT',
-          color: '#FFAD00',
-          icon: 'star.svg',
-        },
-        {
-          content: 'LIST',
-          color: '#DA4445',
-          icon: 'list.svg',
-        },
-        {
-          content: 'DONE',
-          color: '#60C102',
-          icon: 'done.svg',
-        },
-      ]"
+      class="tab"
+      :items="tabItems"
     />
-    <TodoItems
+    
+    <TheTodoList
       :todos="todos"
       :onDone="onDone"
       :onDelete="onDelete"
@@ -37,7 +24,7 @@
   // components
   import BaseTab from './helper/component/BaseTab'
   import TheAppBar from './components/TheAppBar'
-  import TodoItems from './components/TodoItems'
+  import TheTodoList from './components/TheTodoList'
   // helper
   import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
   import webliteHandler from './helper/function/weblite.api'
@@ -50,11 +37,16 @@
     components: {
       BaseTab,
       TheAppBar,
-      TodoItems,
+      TheTodoList,
     },
 
     data: () => ({
       title: 'TO DO LITE',
+      tabItems: [
+        { content: 'VIT', color: '#FFAD00', icon: 'star' },
+        { content: 'LIST', color: '#DA4445', icon: 'list' },
+        { content: 'DONE', color: '#60C102', icon: 'done' },
+      ],
       name: 'Ali',
       todos: [],
       editId: '',
@@ -95,5 +87,9 @@
     flex-direction: column;
     border: 1px #E0E0E0 solid;
     overflow: hidden;
+  }
+
+  .tab {
+    border-radius: 10px 10px 0 0;
   }
 </style>

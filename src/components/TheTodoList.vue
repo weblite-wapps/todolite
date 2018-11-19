@@ -1,28 +1,28 @@
 <template>
-  <!-- todo items -->
-  <ul class="todo-items">
-    <TheTodoItem
-      v-for="(todo, index) in todos"
-      :key="todo.id"
-      :itemIndex="index"
-      :onDone="onDone"
-      :onDelete="onDelete"
-      :onEdit="onEdit"
-      v-bind="todo"
-    />
-  </ul>
+<!-- todo items -->
+<ul class="todo-items">
+  <TheTodoListItem
+    v-for="(todo, index) in todos"
+    :key="todo.id"
+    :itemIndex="index"
+    :onDone="onDone"
+    :onDelete="onDelete"
+    :onEdit="onEdit"
+    v-bind="todo"
+  />
+</ul>
 </template>
 
 
 <script>
-import TheTodoItem from './TheTodoItem'
+import TheTodoListItem from './TheTodoListItem'
 
 
 export default {
   name: 'TodoItems',
 
   components: {
-    TheTodoItem
+    TheTodoListItem
   },
 
   data: () => ({
@@ -35,10 +35,6 @@ export default {
     onDelete: Function,
     onEdit: Function,
   },
-
-  computed: {},
-
-  methods: {},
 }
 </script>
 
