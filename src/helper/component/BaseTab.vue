@@ -3,22 +3,22 @@
     <button
       v-for="({ content, color, icon }, index) in items"
       :key="content"
-      :class="{ 'tab-item': true, 'tab-item-selected': selectedIndex === index }"
+      :class="getClass('tab-item', index)"
       :style="{ backgroundColor: color }"
       @click="click(index)"
     >
       <!-- icon content -->
       <img
-        v-if="selectedIndex === index"
-        class="icon"
+        v-if="isSelected(index)"
         :src="require(`../../assets/icons/${icon}`)"
+        class="icon"
       />
 
       <!-- text content -->
-      <span class="text"> {{content}} </span>
+      <span class="text">{{content}}</span>
 
       <!-- ribbon -->
-      <div :class="{ line: true, 'line-selected': selectedIndex === index }"/>
+      <div :class="getClass('line', index)"/>
     </button>
   </div>
 </template>
@@ -36,7 +36,17 @@
       selectedIndex: 0,
     }),
 
+    computed: {},
+
     methods: {
+      isSelected(index) {
+        return this.selectedIndex === index
+      },
+
+      getClass(name, index) {
+        return [name, this.isSelected(index) ? `${name}-selected`: '']
+      },
+
       click(index) {
         this.selectedIndex = index
         this.$emit('change', index)
@@ -62,30 +72,30 @@
     height: 100%;
     border: none;
     outline: none;    
-    display: flex;
     color: #ffffff;
     font-size: 18px;
-    border-radius: 0 0 10px 10px;
-    overflow: hidden;
     font-weight: 700;
+    border-radius: 0 0 10px 10px;
+    display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     cursor: pointer;
     transition: padding-top .2s;
   }
 
   .tab-item-selected {
-    padding-top: 8px;
+    padding-top: 6px;
   }
 
   .icon {
-    margin-right: 3px;
+    margin-right: 2px;
     width: 18px;
     color: white;
   }
 
   .text {
-    margin-left: 3px;
+    margin-left: 2px;
   }
 
   .line {
@@ -101,6 +111,6 @@
   }
 
   .line-selected {
-    height: 8px;
+    height: 6px;
   }
 </style>
