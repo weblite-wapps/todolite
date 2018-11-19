@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.root">
-    <TheAppBar :title="title" @submit="onAdd" />
+    <TheAppBar :title="title" @submit="addTodo" />
 
     <BaseTab
       class="tab"
@@ -9,7 +9,11 @@
       @change="changeTab"
     />
 
-    <TheTodoList :todos="filteredTodos" :onDone="onDone" :onDelete="onDelete" />
+    <TheTodoList
+      :todos="filteredTodos"
+      :onDone="doneTodo"
+      :onDelete="deleteTodo"
+    />
   </div>
 </template>
 
@@ -19,12 +23,7 @@ import BaseTab from './helper/component/BaseTab'
 import TheAppBar from './components/TheAppBar'
 import TheTodoList from './components/TheTodoList'
 // helper
-import {
-  addTodo,
-  editTitle,
-  addFunctor,
-  deleteTodo,
-} from './helper/function/changeTodo.js'
+import * as db from './helper/function/changeTodo.js'
 import webliteHandler from './helper/function/weblite.api'
 // R && W
 const { W, R } = window
@@ -69,20 +68,20 @@ export default {
       this.selectedTab = value
     },
 
-    onAdd(title) {
-      addTodo(title, this.name)
+    addTodo(title) {
+      db.addTodo(title, this.name)
     },
 
     onEditTitle(obj) {
-      editTitle(obj.id, obj.title)
+      db.editTitle(obj.id, obj.title)
     },
 
-    onDone(id, checked) {
-      addFunctor(id, checked ? this.name : '')
+    doneTodo(id, checked) {
+      db.addFunctor(id, checked ? this.name : '')
     },
 
-    onDelete(id) {
-      deleteTodo(id)
+    deleteTodo(id) {
+      db.deleteTodo(id)
     },
   },
 }

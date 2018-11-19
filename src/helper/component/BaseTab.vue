@@ -28,7 +28,7 @@ export default {
   name: 'BaseTab',
 
   props: {
-    items: { type: Array, require: true },
+    items: { type: Array, required: true },
     value: { type: String, default: '' },
   },
 

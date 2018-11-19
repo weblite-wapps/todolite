@@ -1,7 +1,7 @@
 <template>
   <!-- todo items -->
   <ul class="todo-items">
-    <TheTodoListItem
+    <TodoListItem
       v-for="(todo, index) in todos"
       :key="todo.id"
       :itemIndex="index"
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import TheTodoListItem from './TheTodoListItem'
+import TodoListItem from './TodoListItem'
 
 export default {
-  name: 'TodoItems',
+  name: 'TheTodoList',
 
   components: {
-    TheTodoListItem,
+    TodoListItem,
   },
 
   data: () => ({

@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'TodoItem',
+  name: 'TodoListItem',
 
   components: {},
 
@@ -21,10 +21,6 @@ export default {
     onDelete: Function,
     onEdit: Function,
   },
-
-  methods: {},
-
-  computed: {},
 }
 </script>
 
