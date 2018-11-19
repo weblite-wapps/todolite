@@ -1,6 +1,9 @@
 <template>
   <div :class="$style.root">
-    <TheAppBar :title="title" />
+    <TheAppBar
+      :title="title"
+      @submit="onAdd"
+    />
     <BaseTab
       :items="[
         {

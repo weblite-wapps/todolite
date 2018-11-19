@@ -68,7 +68,7 @@
   }
 
   .close-icon {
-    transform: rotate(490deg);
+    transform: rotate(135deg);
     transition: transform .5s;
   }
 </style>

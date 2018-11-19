@@ -24,7 +24,7 @@
       <!-- Input -->
       <TheAppBarInput
         v-show="mode === 'add'"
-        @submit="submitInput"
+        @submit="submit"
       />
     </div>
 
@@ -74,9 +74,9 @@
         else if (this.mode === 'progress') this.mode = 'normal'
       },
 
-      submitInput(value) {
+      submit(value) {
         this.mode = 'normal'
-        console.log(value)
+        this.$emit('submit', value)
       }
     }
   }
