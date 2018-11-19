@@ -1,7 +1,7 @@
 <template>
   <div class="tab">
     <button
-      v-for="({ content, color, selectedIcon }, index) in items"
+      v-for="({ content, color, icon }, index) in items"
       :key="content"
       :class="{ 'tab-item': true, 'tab-item-selected': selectedIndex === index }"
       :style="{ backgroundColor: color }"
@@ -11,13 +11,13 @@
       <img
         v-if="selectedIndex === index"
         class="icon"
-        :src="require(`../../assets/icons/${selectedIcon}`)"
+        :src="require(`../../assets/icons/${icon}`)"
       />
 
       <!-- text content -->
       <span class="text"> {{content}} </span>
 
-        <!-- ribbon -->
+      <!-- ribbon -->
       <div :class="{ line: true, 'line-selected': selectedIndex === index }"/>
     </button>
   </div>
@@ -71,11 +71,11 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: padding-bottom .2s;
+    transition: padding-top .2s;
   }
 
   .tab-item-selected {
-    padding-bottom: 8px;
+    padding-top: 8px;
   }
 
   .icon {
@@ -89,7 +89,7 @@
   }
 
   .line {
-    bottom: 0;
+    top: 0;
     left: 0;
     position: absolute;
     width: 100%;

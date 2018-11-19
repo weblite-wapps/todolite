@@ -6,17 +6,17 @@
         {
           content: 'VIT',
           color: '#FFAD00',
-          selectedIcon: 'star.svg',
+          icon: 'star.svg',
         },
         {
           content: 'LIST',
           color: '#DA4445',
-          selectedIcon: 'list.svg',
+          icon: 'list.svg',
         },
         {
           content: 'DONE',
           color: '#60C102',
-          selectedIcon: 'done.svg',
+          icon: 'done.svg',
         },
       ]"
     />
@@ -27,11 +27,6 @@
       :onEdit="onClickEdit"
       :onEditPriority="onEditPriority"
     />
-    <TodoInput
-      :edit="edit"
-      @add="onAdd"
-      @edit="onEditTitle"
-    />
   </div>
 </template>
 
@@ -40,7 +35,6 @@
   // components
   import BaseTab from './helper/component/BaseTab'
   import TheAppBar from './components/TheAppBar'
-  import TodoInput from './components/TodoInput'
   import TodoItems from './components/TodoItems'
   // helper
   import { addTodo, editTitle, editPriority, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
@@ -54,7 +48,6 @@
     components: {
       BaseTab,
       TheAppBar,
-      TodoInput,
       TodoItems,
     },
 
