@@ -1,6 +1,25 @@
 <template>
   <div :class="$style.root">
     <TheAppBar :title="title" />
+    <BaseTab
+      :items="[
+        {
+          content: 'VIT',
+          color: '#FFAD00',
+          selectedIcon: 'star.svg',
+        },
+        {
+          content: 'LIST',
+          color: '#DA4445',
+          selectedIcon: 'list.svg',
+        },
+        {
+          content: 'DONE',
+          color: '#60C102',
+          selectedIcon: 'done.svg',
+        },
+      ]"
+    />
     <TodoItems
       :todos="todos"
       :onDone="onDone"
@@ -19,6 +38,7 @@
 
 <script>
   // components
+  import BaseTab from './helper/component/BaseTab'
   import TheAppBar from './components/TheAppBar'
   import TodoInput from './components/TodoInput'
   import TodoItems from './components/TodoItems'
@@ -32,6 +52,7 @@
     name: 'App',
 
     components: {
+      BaseTab,
       TheAppBar,
       TodoInput,
       TodoItems,
