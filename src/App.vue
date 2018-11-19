@@ -1,9 +1,6 @@
 <template>
   <div :class="$style.root">
-    <TheAppBar
-      :title="title"
-      @submit="onAdd"
-    />
+    <TheAppBar :title="title" @submit="onAdd" />
 
     <BaseTab
       class="tab"
@@ -11,88 +8,98 @@
       :value="selectedTab"
       @change="changeTab"
     />
-    
-    <TheTodoList
-      :todos="filteredTodos"
-      :onDone="onDone"
-      :onDelete="onDelete"
-    />
+
+    <TheTodoList :todos="filteredTodos" :onDone="onDone" :onDelete="onDelete" />
   </div>
 </template>
 
-
 <script>
-  // components
-  import BaseTab from './helper/component/BaseTab'
-  import TheAppBar from './components/TheAppBar'
-  import TheTodoList from './components/TheTodoList'
-  // helper
-  import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
-  import webliteHandler from './helper/function/weblite.api'
-  // R && W
-  const { W, R } = window
+// components
+import BaseTab from './helper/component/BaseTab'
+import TheAppBar from './components/TheAppBar'
+import TheTodoList from './components/TheTodoList'
+// helper
+import {
+  addTodo,
+  editTitle,
+  addFunctor,
+  deleteTodo,
+} from './helper/function/changeTodo.js'
+import webliteHandler from './helper/function/weblite.api'
+// R && W
+const { W, R } = window
 
-  export default {
-    name: 'App',
+export default {
+  name: 'App',
 
-    components: {
-      BaseTab,
-      TheAppBar,
-      TheTodoList,
+  components: {
+    BaseTab,
+    TheAppBar,
+    TheTodoList,
+  },
+
+  data: () => ({
+    title: 'TO DO LITE',
+    tabItems: [
+      { value: 'VIT', color: '#FFAD00', icon: 'star' },
+      { value: 'LIST', color: '#DA4445', icon: 'list' },
+      { value: 'DONE', color: '#60C102', icon: 'done' },
+    ],
+    selectedTab: 'LIST',
+    name: 'Ali',
+    todos: [],
+  }),
+
+  created() {
+    W && webliteHandler(this)
+  },
+
+  computed: {
+    filteredTodos() {
+      if (this.selectedTab === 'VIT') return this.todos.filter(R.prop('vit'))
+      if (this.selectedTab === 'DONE')
+        return this.todos.filter(R.prop('functor'))
+      if (this.selectedTab === 'LIST')
+        return this.todos.filter(({ vit, functor }) => !vit && !functor)
+    },
+  },
+
+  methods: {
+    changeTab(value) {
+      this.selectedTab = value
     },
 
-    data: () => ({
-      title: 'TO DO LITE',
-      tabItems: [
-        { value: 'VIT', color: '#FFAD00', icon: 'star' },
-        { value: 'LIST', color: '#DA4445', icon: 'list' },
-        { value: 'DONE', color: '#60C102', icon: 'done' },
-      ],
-      selectedTab: 'LIST',
-      name: 'Ali',
-      todos: [],
-    }),
-
-    created() { W && webliteHandler(this) },
-
-    computed: {
-      filteredTodos() {
-        if (this.selectedTab === 'VIT')
-          return this.todos.filter(R.prop('vit'))
-        if (this.selectedTab === 'DONE')
-          return this.todos.filter(R.prop('functor'))
-        if (this.selectedTab === 'LIST') 
-          return this.todos.filter(({ vit, functor }) => !vit && !functor)
-      }
+    onAdd(title) {
+      addTodo(title, this.name)
     },
 
-    methods: {
-      changeTab(value) { this.selectedTab = value },
-
-      onAdd(title) { addTodo(title, this.name) },
-
-      onEditTitle(obj) { editTitle(obj.id, obj.title) },
-
-      onDone(id, checked) { addFunctor(id, checked ? this.name : '') },
-
-      onDelete(id) { deleteTodo(id) },
+    onEditTitle(obj) {
+      editTitle(obj.id, obj.title)
     },
-  }
+
+    onDone(id, checked) {
+      addFunctor(id, checked ? this.name : '')
+    },
+
+    onDelete(id) {
+      deleteTodo(id)
+    },
+  },
+}
 </script>
 
-
 <style module>
-  .root {
-    position: relative;
-    width: 350px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 1px #E0E0E0 solid;
-    overflow: hidden;
-  }
+.root {
+  position: relative;
+  width: 350px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px #e0e0e0 solid;
+  overflow: hidden;
+}
 
-  .tab {
-    border-radius: 10px 10px 0 0;
-  }
+.tab {
+  border-radius: 10px 10px 0 0;
+}
 </style>

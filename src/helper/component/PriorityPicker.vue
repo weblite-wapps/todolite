@@ -1,10 +1,12 @@
 <template>
-  <div 
-    :class="$style.picker" 
-    @click="$emit('picked', priority)" 
-    :style="{background: color}"
+  <div
+    :class="$style.picker"
+    @click="$emit('picked', priority)"
+    :style="{ background: color }"
   >
-    <i :class="$style['pick-icon']" v-if="$parent.priority === priority">done</i>
+    <i :class="$style['pick-icon']" v-if="$parent.priority === priority"
+      >done</i
+    >
   </div>
 </template>
 
@@ -14,15 +16,12 @@ export default {
 
   props: {
     priority: Number,
-    color: String
+    color: String,
   },
-
 }
-
 </script>
 
 <style module>
-
 .picker {
   width: 22px;
   height: 22px;

@@ -1,18 +1,8 @@
 <template>
   <div class="root">
-    <div
-      class="main"
-      @mouseover="toggleMode"
-      @mouseout="toggleMode"
-    >
+    <div class="main" @mouseover="toggleMode" @mouseout="toggleMode">
       <!-- Title -->
-      <div
-        v-if="mode === 'normal'"
-        key="title"
-        class="title"
-      >
-        {{ title }}
-      </div>
+      <div v-if="mode === 'normal'" key="title" class="title">{{ title }}</div>
 
       <!-- Progress -->
       <TheAppBarProgress
@@ -22,10 +12,7 @@
       />
 
       <!-- Input -->
-      <TheAppBarInput
-        v-show="mode === 'add'"
-        @submit="submit"
-      />
+      <TheAppBarInput v-show="mode === 'add'" @submit="submit" />
     </div>
 
     <BaseRotativeButton
@@ -35,72 +22,72 @@
   </div>
 </template>
 
-
 <script>
-  import BaseRotativeButton from '../helper/component/BaseRotativeButton'
-  import TheAppBarProgress from './TheAppBarProgress'
-  import TheAppBarInput from './TheAppBarInput'
-  
-  export default {
-    name: 'TheAppBar',
+import BaseRotativeButton from '../helper/component/BaseRotativeButton'
+import TheAppBarProgress from './TheAppBarProgress'
+import TheAppBarInput from './TheAppBarInput'
 
-    components: {
-      BaseRotativeButton,
-      TheAppBarProgress,
-      TheAppBarInput,
-    },
+export default {
+  name: 'TheAppBar',
 
-    props:{
-      title: { type: String, required: true },
-    },
+  components: {
+    BaseRotativeButton,
+    TheAppBarProgress,
+    TheAppBarInput,
+  },
 
-    data() {
-      return {
-        mode: 'normal', // normal | progress | add
-      }
-    },
+  props: {
+    title: { type: String, required: true },
+  },
 
-    computed: {
-      baseRotativeButtonMode() {
-        return this.mode === 'add' ? 'close' : 'add'
-      }
-    },
-
-    methods: {
-      changeMode(mode) { this.mode = mode },
-
-      toggleMode() {
-        if (this.mode === 'normal') this.mode = 'progress'
-        else if (this.mode === 'progress') this.mode = 'normal'
-      },
-
-      submit(value) {
-        this.mode = 'normal'
-        this.$emit('submit', value)
-      }
+  data() {
+    return {
+      mode: 'normal', // normal | progress | add
     }
-  }
+  },
+
+  computed: {
+    baseRotativeButtonMode() {
+      return this.mode === 'add' ? 'close' : 'add'
+    },
+  },
+
+  methods: {
+    changeMode(mode) {
+      this.mode = mode
+    },
+
+    toggleMode() {
+      if (this.mode === 'normal') this.mode = 'progress'
+      else if (this.mode === 'progress') this.mode = 'normal'
+    },
+
+    submit(value) {
+      this.mode = 'normal'
+      this.$emit('submit', value)
+    },
+  },
+}
 </script>
 
-
 <style scoped>
-  .root {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    background-color: #0096e3;
-  }
+.root {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  background-color: #0096e3;
+}
 
-  .main {
-    width: calc(100% - 50px);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.main {
+  width: calc(100% - 50px);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .title {
-    font-size: 22px;
-    color: #ffffff;
-  }
+.title {
+  font-size: 22px;
+  color: #ffffff;
+}
 </style>

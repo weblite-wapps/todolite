@@ -8,37 +8,35 @@
   />
 </template>
 
-
 <script>
-  export default {
-    name: 'TheAppBarInput',
+export default {
+  name: 'TheAppBarInput',
 
-    data: () => ({
-      value: '',
-    }),
+  data: () => ({
+    value: '',
+  }),
 
-    methods: {
-      submit() {
-        this.$emit('submit', this.value)
-        this.value = ''
-      }
+  methods: {
+    submit() {
+      this.$emit('submit', this.value)
+      this.value = ''
     },
-  }
+  },
+}
 </script>
 
-
 <style scoped>
-  .input {
-    color: #ffffff;
-    padding: 20px;
-    font-size: 18px;
-    width: 100%;
-    background: none;
-    border: none;
-    outline: none;
-  }
+.input {
+  color: #ffffff;
+  padding: 20px;
+  font-size: 18px;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+}
 
-  .input::placeholder {
-    color: #1DB3FF;
-  }
+.input::placeholder {
+  color: #1db3ff;
+}
 </style>
