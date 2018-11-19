@@ -1,15 +1,26 @@
 <template>
   <li class="todo-item">
-    <div class="todo-header"></div>
+    <div class="todo-controller">
+      <!-- <button :style="{ backgroundColor: '#60C102' }"></button> -->
+      <!-- <button :style="{ backgroundColor: '#FFAD00' }"></button> -->
+      <!-- <button :style="{ backgroundColor: '#636363' }"></button> -->
+      <!-- <button :style="{ backgroundColor: '#DA4445' }"></button> -->
+      <button></button> <button></button> <button></button> <button></button>
+      <BaseControllerButton />
+    </div>
     <div class="todo-content">{{ title }}</div>
   </li>
 </template>
 
 <script>
+import BaseControllerButton from '../helper/component/BaseControllerButton.vue'
+
 export default {
   name: 'TodoListItem',
 
-  components: {},
+  components: {
+    BaseControllerButton,
+  },
 
   props: {
     title: String,
@@ -29,11 +40,21 @@ export default {
   margin-top: 15px;
 }
 
-.todo-header {
+.todo-controller {
   height: 40px;
   background-color: #e6e6e6;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+  display: flex;
+  overflow: hidden;
+}
+
+button {
+  height: 100%;
+  width: 100%;
+  background-color: #e6e6e6;
+  border: none;
+  outline: none;
 }
 
 .todo-content {
