@@ -1,24 +1,24 @@
 <template>
   <div class="tab">
     <button
-      v-for="({ content, color, icon }, index) in items"
-      :key="content"
-      :class="getClass('tab-item', index)"
+      v-for="({ value, color, icon }) in items"
+      :key="value"
+      :class="getClass('tab-item', value)"
       :style="{ backgroundColor: color }"
-      @click="click(index)"
+      @click="click(value)"
     >
-      <!-- icon content -->
+      <!-- icon -->
       <img
-        v-if="isSelected(index)"
+        v-if="isSelected(value)"
         :src="require(`../../assets/icons/${icon}.svg`)"
         class="icon"
       />
 
-      <!-- text content -->
-      <span class="text">{{content}}</span>
+      <!-- text -->
+      <span class="text">{{value}}</span>
 
       <!-- ribbon -->
-      <div :class="getClass('line', index)"/>
+      <div :class="getClass('line', value)"/>
     </button>
   </div>
 </template>
@@ -30,25 +30,17 @@
 
     props: {
       items: { type: Array, require: true },
+      value: { type: String, default: '' },
     },
 
-    data: () => ({
-      selectedIndex: 0,
-    }),
-
     methods: {
-      isSelected(index) {
-        return this.selectedIndex === index
+      isSelected(value) { return this.value === value },
+
+      getClass(name, value) {
+        return [name, this.isSelected(value) ? `${name}-selected`: '']
       },
 
-      getClass(name, index) {
-        return [name, this.isSelected(index) ? `${name}-selected`: '']
-      },
-
-      click(index) {
-        this.selectedIndex = index
-        this.$emit('change', index)
-      }
+      click(value) { this.$emit('change', value) },
     }
   }
 </script>
@@ -103,7 +95,7 @@
     width: 100%;
     height: 0px;
     opacity: 1;
-    z-index: 10;
+    z-value: 10;
     background:rgba(0,0,0,0.3);
     transition: height .2s;
   }

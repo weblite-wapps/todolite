@@ -8,13 +8,14 @@
     <BaseTab
       class="tab"
       :items="tabItems"
+      :value="selectedTab"
+      @change="changeTab"
     />
     
     <TheTodoList
-      :todos="todos"
+      :todos="filteredTodos"
       :onDone="onDone"
       :onDelete="onDelete"
-      :onEdit="onClickEdit"
     />
   </div>
 </template>
@@ -43,32 +44,34 @@
     data: () => ({
       title: 'TO DO LITE',
       tabItems: [
-        { content: 'VIT', color: '#FFAD00', icon: 'star' },
-        { content: 'LIST', color: '#DA4445', icon: 'list' },
-        { content: 'DONE', color: '#60C102', icon: 'done' },
+        { value: 'VIT', color: '#FFAD00', icon: 'star' },
+        { value: 'LIST', color: '#DA4445', icon: 'list' },
+        { value: 'DONE', color: '#60C102', icon: 'done' },
       ],
+      selectedTab: 'LIST',
       name: 'Ali',
       todos: [],
-      editId: '',
     }),
 
-    created() {
-      W && webliteHandler(this)
-    },
+    created() { W && webliteHandler(this) },
 
     computed: {
-      edit() { return R.find(R.propEq('id', this.editId), this.todos) },
+      filteredTodos() {
+        if (this.selectedTab === 'VIT')
+          return this.todos.filter(R.prop('vit'))
+        if (this.selectedTab === 'DONE')
+          return this.todos.filter(R.prop('functor'))
+        if (this.selectedTab === 'LIST') 
+          return this.todos.filter(({ vit, functor }) => !vit && !functor)
+      }
     },
 
     methods: {
-      onClickEdit(id) { this.editId = id },
+      changeTab(value) { this.selectedTab = value },
 
       onAdd(title) { addTodo(title, this.name) },
 
-      onEditTitle(obj) {
-        editTitle(obj.id, obj.title)
-        this.editId = ''
-      },
+      onEditTitle(obj) { editTitle(obj.id, obj.title) },
 
       onDone(id, checked) { addFunctor(id, checked ? this.name : '') },
 
