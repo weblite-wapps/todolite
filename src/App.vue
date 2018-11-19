@@ -28,7 +28,6 @@
       :onDone="onDone"
       :onDelete="onDelete"
       :onEdit="onClickEdit"
-      :onEditPriority="onEditPriority"
     />
   </div>
 </template>
@@ -40,7 +39,7 @@
   import TheAppBar from './components/TheAppBar'
   import TodoItems from './components/TodoItems'
   // helper
-  import { addTodo, editTitle, editPriority, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
+  import { addTodo, editTitle, addFunctor, deleteTodo } from './helper/function/changeTodo.js'
   import webliteHandler from './helper/function/weblite.api'
   // R && W
   const { W, R } = window
@@ -56,7 +55,7 @@
 
     data: () => ({
       title: 'TO DO LITE',
-      name: '',
+      name: 'Ali',
       todos: [],
       editId: '',
     }),
@@ -77,10 +76,6 @@
       onEditTitle(obj) {
         editTitle(obj.id, obj.title)
         this.editId = ''
-      },
-
-      onEditPriority(obj) {
-        editPriority(obj.id, obj.priority)
       },
 
       onDone(id, checked) { addFunctor(id, checked ? this.name : '') },

@@ -1,39 +1,31 @@
 <template>
   <!-- todo items -->
-  <transition-group
-    tag="ul"
-    name="list"
-    :class="$style['todo-items']"
-    >
-    <TodoItem
-      v-for="(todo, index) in computedTodos"
+  <ul class="todo-items">
+    <TheTodoItem
+      v-for="(todo, index) in todos"
       :key="todo.id"
       :itemIndex="index"
       :onDone="onDone"
       :onDelete="onDelete"
       :onEdit="onEdit"
-      :onEditPriority="onEditPriority"
       v-bind="todo"
     />
-  </transition-group>
+  </ul>
 </template>
 
 
 <script>
-import TodoItem from './TodoItem'
-import bus from '../helper/function/bus'
+import TheTodoItem from './TheTodoItem'
 
-
-const { R } = window
 
 export default {
   name: 'TodoItems',
 
-  components: { TodoItem },
+  components: {
+    TheTodoItem
+  },
 
   data: () => ({
-    query: '',
-    whichTodosAreShown: 'All',
     time: 'descending',
   }),
 
@@ -42,43 +34,16 @@ export default {
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
-    onEditPriority: Function
   },
 
-  mounted() {
-    bus.$on('APPLY_SETTING', (settings) => {
-      this.query = settings.query.toLowerCase()
-      this.whichTodosAreShown = settings.whichTodosAreShown
-    })
-  },
+  computed: {},
 
-  computed: {
-    computedTodos() {
-      return R.compose(
-        R.filter(this.searchTitle),
-        R.filter(this.doneFilter),
-      )(this.todos);
-    },
-  },
-
-  methods: {
-    searchTitle({ title }) {
-      if (!this.query.length) return true;
-      const position = title.toLowerCase().search(this.query)
-      return (position < 0) ? false : true
-    },
-
-    doneFilter({ functor }) {
-      if (this.whichTodosAreShown === 'All') return true
-      if (this.whichTodosAreShown === 'Done') return functor
-      if (this.whichTodosAreShown === 'Undone') return !functor
-    },
-  },
+  methods: {},
 }
 </script>
 
 
-<style module>
+<style scoped>
 .todo-items {
   height: inherit;
   padding: 10px;
