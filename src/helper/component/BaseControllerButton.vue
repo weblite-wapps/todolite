@@ -10,13 +10,11 @@
 export default {
   name: 'BaseControllerButton',
 
-  data: () => ({ value: false }),
+  props: { value: { type: Boolean, default: false } },
 
   methods: {
     click() {
-      this.value = !this.value
-
-      this.$emit('change', this.value)
+      this.$emit('change', !this.value)
     },
 
     getClasses(name, ...otherClasses) {

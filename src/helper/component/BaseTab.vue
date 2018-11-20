@@ -97,7 +97,6 @@ export default {
   width: 100%;
   height: 0px;
   opacity: 1;
-  z-value: 10;
   background: rgba(0, 0, 0, 0.3);
   transition: height 0.2s;
 }

@@ -5,8 +5,34 @@
       <!-- <button :style="{ backgroundColor: '#FFAD00' }"></button> -->
       <!-- <button :style="{ backgroundColor: '#636363' }"></button> -->
       <!-- <button :style="{ backgroundColor: '#DA4445' }"></button> -->
-      <button></button> <button></button> <button></button> <button></button>
-      <BaseControllerButton />
+      <BaseToggle
+        color="#60C102"
+        icon="done"
+        :value="controller.done"
+        @change="changeController('done', $event)"
+      />
+      <BaseToggle
+        color="#FFAD00"
+        icon="star"
+        :value="controller.star"
+        @change="changeController('star', $event)"
+      />
+      <BaseToggle
+        color="#636363"
+        icon="edit"
+        :value="controller.edit"
+        @change="changeController('edit', $event)"
+      />
+      <BaseToggle
+        color="#DA4445"
+        icon="remove"
+        :value="controller.remove"
+        @change="changeController('remove', $event)"
+      />
+      <BaseControllerButton
+        :value="controllerOpen"
+        @change="changeControllerOpen"
+      />
     </div>
     <div class="todo-content">{{ title }}</div>
   </li>
@@ -14,12 +40,14 @@
 
 <script>
 import BaseControllerButton from '../helper/component/BaseControllerButton.vue'
+import BaseToggle from '../helper/component/BaseToggle.vue'
 
 export default {
   name: 'TodoListItem',
 
   components: {
     BaseControllerButton,
+    BaseToggle,
   },
 
   props: {
@@ -31,6 +59,26 @@ export default {
     onDone: Function,
     onDelete: Function,
     onEdit: Function,
+  },
+
+  data: () => ({
+    controllerOpen: false,
+    controller: {
+      done: false,
+      star: false,
+      edit: false,
+      remove: false,
+    },
+  }),
+
+  methods: {
+    changeControllerOpen(value) {
+      this.controllerOpen = value
+    },
+
+    changeController(name, value) {
+      this.controller[name] = value
+    },
   },
 }
 </script>
