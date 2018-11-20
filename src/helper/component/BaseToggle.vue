@@ -59,7 +59,6 @@ export default {
 .icon {
   margin-right: 2px;
   width: 18px;
-  color: white;
 }
 
 .text {

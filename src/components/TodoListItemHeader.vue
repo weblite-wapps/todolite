@@ -3,7 +3,7 @@
     <div class="header">
       <!-- controllers -->
       <TodoListItemHeaderControllers v-if="controllerOpen" />
-      <div v-else>created by ali | Done By Mostafa</div>
+      <TodoListItemHeaderInfo v-else />
     </div>
     <BaseControllerButton
       class="controllerButton"
@@ -15,6 +15,7 @@
 
 <script>
 import TodoListItemHeaderControllers from './TodoListItemHeaderControllers.vue'
+import TodoListItemHeaderInfo from './TodoListItemHeaderInfo.vue'
 import BaseControllerButton from '../helper/component/BaseControllerButton.vue'
 
 export default {
@@ -22,6 +23,7 @@ export default {
 
   components: {
     TodoListItemHeaderControllers,
+    TodoListItemHeaderInfo,
     BaseControllerButton,
   },
 
