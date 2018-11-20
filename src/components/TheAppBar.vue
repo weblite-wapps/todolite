@@ -1,6 +1,10 @@
 <template>
   <div class="root">
-    <div class="main" @mouseover="toggleMode" @mouseout="toggleMode">
+    <div
+      class="main"
+      @mouseover="toggleMode('over')"
+      @mouseout="toggleMode('out')"
+    >
       <!-- Title -->
       <div v-if="mode === 'normal'" key="title" class="title">{{ title }}</div>
 
@@ -57,9 +61,9 @@ export default {
       this.mode = mode
     },
 
-    toggleMode() {
-      if (this.mode === 'normal') this.mode = 'progress'
-      else if (this.mode === 'progress') this.mode = 'normal'
+    toggleMode(mouse) {
+      if (this.mode === 'normal' && mouse === 'over') this.mode = 'progress'
+      else if (this.mode === 'progress' && mouse === 'out') this.mode = 'normal'
     },
 
     submit(value) {
