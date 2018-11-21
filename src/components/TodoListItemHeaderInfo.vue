@@ -1,12 +1,12 @@
 <template>
   <div class="root">
     <img class="icon" :src="require('../assets/icons/drag.svg')" />
-    <span v-if="createdBy" class="text first">
-      CRT BY <span class="functor">{{ createdByUpper }}</span>
+    <span v-if="creator" class="text first">
+      CRT BY <span class="functor">{{ creatorUpper }}</span>
     </span>
-    <span v-if="doneBy" class="text">|</span>
-    <span v-if="doneBy" class="text">
-      DONE BY <span class="functor">{{ doneByUpper }}</span>
+    <span v-if="functor" class="text">|</span>
+    <span v-if="functor" class="text">
+      DONE BY <span class="functor">{{ functorUpper }}</span>
     </span>
   </div>
 </template>
@@ -16,16 +16,16 @@ export default {
   name: 'TodoListItemHeaderInfo',
 
   props: {
-    createdBy: { type: String, default: '' },
-    doneBy: { type: String, default: '' },
+    creator: { type: String, default: '' },
+    functor: { type: String, default: '' },
   },
 
   computed: {
-    doneByUpper() {
-      return this.doneBy.toUpperCase()
+    functorUpper() {
+      return this.functor.toUpperCase()
     },
-    createdByUpper() {
-      return this.createdBy.toUpperCase()
+    creatorUpper() {
+      return this.creator.toUpperCase()
     },
   },
 }

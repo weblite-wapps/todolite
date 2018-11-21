@@ -1,7 +1,7 @@
 <template>
   <li class="todo-item">
-    <div class="todo-header"><TodoListItemHeader /></div>
-    <div class="todo-content">{{ title }}</div>
+    <div class="todo-header"><TodoListItemHeader v-bind="todo" /></div>
+    <div class="todo-content">{{ todo.title }}</div>
   </li>
 </template>
 
@@ -16,14 +16,7 @@ export default {
   },
 
   props: {
-    title: String,
-    functor: String,
-    creator: String,
-    id: Number,
-    itemIndex: Number,
-    onDone: Function,
-    onDelete: Function,
-    onEdit: Function,
+    todo: { type: Object, required: true },
   },
 }
 </script>

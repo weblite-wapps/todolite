@@ -1,15 +1,7 @@
 <template>
   <!-- todo items -->
   <ul class="todo-items">
-    <TodoListItem
-      v-for="(todo, index) in todos"
-      :key="todo.id"
-      :itemIndex="index"
-      :onDone="onDone"
-      :onDelete="onDelete"
-      :onEdit="onEdit"
-      v-bind="todo"
-    />
+    <TodoListItem v-for="(todo, index) in todos" :key="todo.id" :todo="todo" />
   </ul>
 </template>
 
@@ -29,9 +21,6 @@ export default {
 
   props: {
     todos: Array,
-    onDone: Function,
-    onDelete: Function,
-    onEdit: Function,
   },
 }
 </script>

@@ -9,11 +9,7 @@
       @change="changeTab"
     />
 
-    <TheTodoList
-      :todos="filteredTodos"
-      :onDone="doneTodo"
-      :onDelete="deleteTodo"
-    />
+    <TheTodoList :todos="filteredTodos" />
   </div>
 </template>
 
@@ -69,6 +65,7 @@ export default {
     },
 
     addTodo(title) {
+      this.selectedTab = 'LIST'
       db.addTodo(title, this.name)
     },
 
@@ -90,11 +87,10 @@ export default {
 <style module>
 .root {
   position: relative;
-  width: 350px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px #e0e0e0 solid;
   overflow: hidden;
 }
 

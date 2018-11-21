@@ -3,7 +3,7 @@
     <div class="header">
       <!-- controllers -->
       <TodoListItemHeaderControllers v-if="controllerOpen" />
-      <TodoListItemHeaderInfo v-else />
+      <TodoListItemHeaderInfo v-else :functor="functor" :creator="creator" />
     </div>
     <BaseControllerButton
       class="controllerButton"
@@ -28,10 +28,8 @@ export default {
   },
 
   props: {
-    star: { type: Boolean, default: false },
-    done: { type: Boolean, default: false },
-    edit: { type: Boolean, default: false },
-    remove: { type: Boolean, default: false },
+    functor: { type: String, default: '' },
+    creator: { type: String, default: '' },
   },
 
   data: () => ({
@@ -39,10 +37,6 @@ export default {
   }),
 
   methods: {
-    changeController(name, value) {
-      console.log(name, value)
-    },
-
     changeControllerOpen(value) {
       this.controllerOpen = value
     },
