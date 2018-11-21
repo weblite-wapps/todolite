@@ -2,12 +2,7 @@
   <div :class="$style.root">
     <TheAppBar :title="title" />
 
-    <BaseTab
-      class="tab"
-      :items="tabItems"
-      :value="selectedTab"
-      @change="changeTab"
-    />
+    <BaseTab class="tab" :items="tabItems" :value="page" @change="changePage" />
 
     <TheTodoList :todos="filteredTodos" />
   </div>
@@ -49,7 +44,7 @@ export default {
   }),
 
   computed: {
-    ...mapState(['selectedTab']),
+    ...mapState(['page']),
     ...mapGetters(['filteredTodos']),
   },
 
@@ -57,7 +52,7 @@ export default {
     W && webliteHandler(this)
   },
 
-  methods: mapMutations(['changeTab']),
+  methods: mapMutations(['changePage']),
 }
 </script>
 

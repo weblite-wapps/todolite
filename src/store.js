@@ -10,24 +10,29 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    name: 'ali',
-    selectedTab: 'LIST',
-    todos: [],
+    page: 'LIST', // VIT, LIST, DONE
+    username: 'ali',
+    todos: [], // [{ id, title, creator, functor, vit }]
   },
 
   getters: {
-    filteredTodos(state) {
-      if (state.selectedTab === 'VIT') return state.todos.filter(R.prop('vit'))
-      if (state.selectedTab === 'DONE')
-        return state.todos.filter(R.prop('functor'))
-      if (state.selectedTab === 'LIST')
-        return state.todos.filter(({ vit, functor }) => !vit && !functor)
+    filteredTodos({ page, todos }) {
+      const filterFunction =
+        page === 'VIT'
+          ? R.prop('vit')
+          : page === 'DONE'
+          ? R.prop('functor')
+          : page === 'LIST'
+          ? ({ vit, functor }) => !vit && !functor
+          : R.always(true)
+
+      return R.filter(filterFunction, todos)
     },
   },
 
   mutations: {
-    changeTab(state, value) {
-      state.selectedTab = value
+    changePage(state, page) {
+      state.page = page
     },
 
     changeTodos(state, todos) {
@@ -37,29 +42,28 @@ export default new Vuex.Store({
 
   actions: {
     addTodo({ state }, title) {
-      db.addTodo(title, state.name)
+      db.add(title, state.username)
     },
 
-    changeTodoTitle(obj) {
-      db.changeTitle(obj.id, obj.title)
+    changeTodoTitle(context, { id, title }) {
+      db.changeTitle(id, title)
     },
 
-    changeTodoFunctor(id, checked) {
-      db.changeFunctor(id, checked ? state.name : '')
+    changeTodoFunctor({ state }, { id, done }) {
+      db.changeFunctor(id, done ? state.username : '')
     },
 
-    changeTodoVit(id, checked) {
-      db.changeVit(id, checked ? state.name : '')
+    changeTodoVit(context, { id, vit }) {
+      db.changeVit(id, vit)
     },
 
-    deleteTodo(id) {
-      db.deleteTodo(id)
+    removeTodo(context, id) {
+      db.remove(id)
     },
   },
 
   plugins: [
-    ({ commit }) => {
-      if (W) W.share.subscribe(todos => commit('changeTodos', todos))
-    },
+    ({ commit }) =>
+      W && W.share.subscribe(todos => commit('changeTodos', todos)),
   ],
 })

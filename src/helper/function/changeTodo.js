@@ -3,7 +3,7 @@ const { W } = window
 const generateKey = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
-export const addTodo = (title, name) =>
+export const add = (title, name) =>
   dispatch([
     '__append',
     [{ id: generateKey(), title, functor: '', vit: false, creator: name }],
@@ -54,5 +54,4 @@ export const changeVit = (id, vit) =>
     ],
   ])
 
-export const deleteTodo = id =>
-  dispatch(['__reject', [['__propEq', ['id', id]]]])
+export const remove = id => dispatch(['__reject', [['__propEq', ['id', id]]]])
