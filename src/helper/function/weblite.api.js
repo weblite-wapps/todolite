@@ -12,7 +12,4 @@ export default vueRoot => {
   // get votes from shareDB Server
   W.share.getFromServer([]).then(() => W.start())
   // shareDB sunbscription
-  W.share.subscribe(todos => {
-    vueRoot.todos = todos || []
-  })
 }

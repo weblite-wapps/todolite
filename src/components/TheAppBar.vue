@@ -68,7 +68,7 @@ export default {
 
     submit(value) {
       this.mode = 'normal'
-      this.$emit('submit', value)
+      this.$store.dispatch('addTodo', value)
     },
   },
 }

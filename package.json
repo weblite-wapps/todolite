@@ -10,7 +10,8 @@
     "prettier": "prettier '**/*.{js,vue,html,css,scss}' --write"
   },
   "dependencies": {
-    "vue": "^2.5.13"
+    "vue": "^2.5.13",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
