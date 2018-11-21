@@ -1,28 +1,34 @@
 <template>
-  <div class="root">
-    <div
-      class="main"
-      @mouseover="toggleMode('over')"
-      @mouseout="toggleMode('out')"
-    >
-      <!-- Title -->
-      <div v-if="mode === 'normal'" key="title" class="title">{{ title }}</div>
+  <div>
+    <div class="header">
+      <div
+        class="main"
+        @mouseover="toggleMode('over')"
+        @mouseout="toggleMode('out')"
+      >
+        <!-- Title -->
+        <div v-if="mode === 'normal'" key="title" class="title">
+          {{ title }}
+        </div>
 
-      <!-- Progress -->
-      <TheAppBarProgress
-        v-else-if="mode === 'progress'"
-        key="progress"
-        :percentage="60"
+        <!-- Progress -->
+        <TheAppBarProgress
+          v-else-if="mode === 'progress'"
+          key="progress"
+          :percentage="60"
+        />
+
+        <!-- Input -->
+        <TheAppBarInput v-show="mode === 'add'" @submit="submit" />
+      </div>
+
+      <BaseRotativeButton
+        :mode="baseRotativeButtonMode"
+        @click="changeMode(mode === 'add' ? 'normal' : 'add')"
       />
-
-      <!-- Input -->
-      <TheAppBarInput v-show="mode === 'add'" @submit="submit" />
     </div>
 
-    <BaseRotativeButton
-      :mode="baseRotativeButtonMode"
-      @click="changeMode(mode === 'add' ? 'normal' : 'add')"
-    />
+    <TheAppBarTabs />
   </div>
 </template>
 
@@ -30,6 +36,7 @@
 import BaseRotativeButton from '../helper/component/BaseRotativeButton'
 import TheAppBarProgress from './TheAppBarProgress'
 import TheAppBarInput from './TheAppBarInput'
+import TheAppBarTabs from './TheAppBarTabs'
 
 export default {
   name: 'TheAppBar',
@@ -38,6 +45,7 @@ export default {
     BaseRotativeButton,
     TheAppBarProgress,
     TheAppBarInput,
+    TheAppBarTabs,
   },
 
   props: {
@@ -51,6 +59,10 @@ export default {
   },
 
   computed: {
+    title() {
+      return this.$store.state.title
+    },
+
     baseRotativeButtonMode() {
       return this.mode === 'add' ? 'close' : 'add'
     },
@@ -76,6 +88,10 @@ export default {
 
 <style scoped>
 .root {
+  width: 100%;
+}
+
+.header {
   width: 100%;
   height: 50px;
   display: flex;

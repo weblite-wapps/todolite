@@ -2,17 +2,13 @@
   <div :class="$style.root">
     <TheAppBar :title="title" />
 
-    <BaseTab class="tab" :items="tabItems" :value="page" @change="changePage" />
-
-    <TheTodoList :todos="filteredTodos" />
+    <TheTodoList />
   </div>
 </template>
 
 <script>
 // modules
-import { mapState, mapGetters, mapMutations } from 'vuex'
 // components
-import BaseTab from './helper/component/BaseTab'
 import TheAppBar from './components/TheAppBar'
 import TheTodoList from './components/TheTodoList'
 // helper
@@ -28,45 +24,20 @@ export default {
   store,
 
   components: {
-    BaseTab,
     TheAppBar,
     TheTodoList,
-  },
-
-  data: () => ({
-    title: 'TO DO LITE',
-    tabItems: [
-      { value: 'VIT', color: '#FFAD00', icon: 'star' },
-      { value: 'LIST', color: '#DA4445', icon: 'list' },
-      { value: 'DONE', color: '#60C102', icon: 'done' },
-    ],
-    name: 'Ali',
-  }),
-
-  computed: {
-    ...mapState(['page']),
-    ...mapGetters(['filteredTodos']),
   },
 
   created() {
     W && webliteHandler(this)
   },
-
-  methods: mapMutations(['changePage']),
 }
 </script>
 
 <style module>
 .root {
-  position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-}
-
-.tab {
-  border-radius: 10px 10px 0 0;
 }
 </style>

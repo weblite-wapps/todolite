@@ -10,8 +10,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    page: 'LIST', // VIT, LIST, DONE
+    title: 'TO DO LITE',
     username: 'ali',
+    page: 'LIST', // VIT, LIST, DONE
     todos: [], // [{ id, title, creator, functor, vit }]
   },
 
