@@ -48,10 +48,6 @@ export default {
     TheAppBarTabs,
   },
 
-  props: {
-    title: { type: String, required: true },
-  },
-
   data() {
     return {
       mode: 'normal', // normal | progress | add

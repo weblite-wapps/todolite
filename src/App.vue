@@ -1,7 +1,6 @@
 <template>
   <div :class="$style.root">
-    <TheAppBar :title="title" />
-
+    <TheAppBar />
     <TheTodoList />
   </div>
 </template>

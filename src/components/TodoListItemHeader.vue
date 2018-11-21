@@ -2,7 +2,12 @@
   <div class="root">
     <div class="header">
       <!-- controllers -->
-      <TodoListItemHeaderControllers v-if="controllerOpen" />
+      <TodoListItemHeaderControllers
+        v-if="controllerOpen"
+        :id="id"
+        :functor="functor"
+        :vit="vit"
+      />
       <TodoListItemHeaderInfo v-else :functor="functor" :creator="creator" />
     </div>
     <BaseControllerButton
@@ -30,6 +35,8 @@ export default {
   props: {
     functor: { type: String, default: '' },
     creator: { type: String, default: '' },
+    vit: { type: Boolean, default: false },
+    id: { type: Number, require: true },
   },
 
   data: () => ({

@@ -6,6 +6,9 @@
 </template>
 
 <script>
+// module
+import { mapGetters } from 'vuex'
+// component
 import TodoListItem from './TodoListItem'
 
 export default {
@@ -19,9 +22,7 @@ export default {
     time: 'descending',
   }),
 
-  props: {
-    todos: Array,
-  },
+  computed: mapGetters({ todos: 'filteredTodos' }),
 }
 </script>
 

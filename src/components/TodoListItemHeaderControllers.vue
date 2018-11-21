@@ -4,34 +4,38 @@
       class="toggle done"
       color="#60C102"
       icon="done"
-      :value="done"
-      @change="changeController('done', $event)"
+      :value="!!functor"
+      @change="changeTodoFunctor({ id, done: $event })"
     />
     <BaseToggle
+      v-if="!functor"
       class="toggle star"
       color="#FFAD00"
       icon="star"
-      :value="star"
-      @change="changeController('star', $event)"
+      :value="vit"
+      @change="changeTodoVit({ id, vit: $event })"
     />
     <BaseToggle
       class="toggle edit"
       color="#636363"
       icon="edit"
-      :value="edit"
+      :value="false"
       @change="changeController('edit', $event)"
     />
     <BaseToggle
       class="toggle remove"
       color="#DA4445"
       icon="remove"
-      :value="remove"
+      :value="false"
       @change="changeController('remove', $event)"
     />
   </div>
 </template>
 
 <script>
+// modules
+import { mapActions } from 'vuex'
+// components
 import BaseToggle from '../helper/component/BaseToggle.vue'
 
 export default {
@@ -42,13 +46,14 @@ export default {
   },
 
   props: {
-    star: { type: Boolean, default: false },
-    done: { type: Boolean, default: false },
-    edit: { type: Boolean, default: false },
-    remove: { type: Boolean, default: false },
+    id: { type: Number, require: true },
+    functor: { type: String, default: '' },
+    vit: { type: Boolean, default: false },
   },
 
   methods: {
+    ...mapActions(['changeTodoFunctor', 'changeTodoVit']),
+
     changeController(name, value) {
       console.log(name, value)
     },

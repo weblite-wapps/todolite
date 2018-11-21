@@ -20,7 +20,7 @@ export default new Vuex.Store({
     filteredTodos({ page, todos }) {
       const filterFunction =
         page === 'VIT'
-          ? R.prop('vit')
+          ? ({ vit, functor }) => vit && !functor
           : page === 'DONE'
           ? R.prop('functor')
           : page === 'LIST'

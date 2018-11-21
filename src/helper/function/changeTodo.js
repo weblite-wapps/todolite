@@ -32,7 +32,7 @@ export const changeFunctor = (id, name) =>
         '__ifElse',
         [
           ['__propEq', ['id', id]],
-          ['__assoc', ['functor', name]],
+          ['__mergeDeepLeft', [{ functor: name, vit: false }]],
           ['__identity', []],
         ],
       ],
