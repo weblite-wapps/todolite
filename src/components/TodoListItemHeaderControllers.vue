@@ -19,8 +19,8 @@
       class="toggle edit"
       color="#636363"
       icon="edit"
-      :value="false"
-      @change="changeController('edit', $event)"
+      :value="editable"
+      @change="toggleEditable"
     />
     <BaseToggle
       class="toggle remove"
@@ -49,6 +49,8 @@ export default {
     id: { type: Number, require: true },
     functor: { type: String, default: '' },
     vit: { type: Boolean, default: false },
+    editable: { type: Boolean, default: false },
+    toggleEditable: { type: Function, required: true },
   },
 
   methods: {

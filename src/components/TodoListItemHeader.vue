@@ -7,6 +7,8 @@
         :id="id"
         :functor="functor"
         :vit="vit"
+        :editable="editable"
+        :toggleEditable="toggleEditable"
       />
       <TodoListItemHeaderInfo v-else :functor="functor" :creator="creator" />
     </div>
@@ -37,6 +39,8 @@ export default {
     creator: { type: String, default: '' },
     vit: { type: Boolean, default: false },
     id: { type: Number, require: true },
+    editable: { type: Boolean, default: false },
+    toggleEditable: { type: Function, required: true },
   },
 
   data: () => ({

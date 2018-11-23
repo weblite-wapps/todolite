@@ -1,5 +1,10 @@
 <template>
-  <BaseEditable class="todo-content" :content="content" />
+  <BaseEditable
+    class="todo-content"
+    :content="content"
+    :editable="editable"
+    @submit="$emit('submit', $event)"
+  />
 </template>
 
 <script>
@@ -14,6 +19,7 @@ export default {
   },
 
   props: {
+    editable: { type: Boolean, default: false },
     content: { type: String, required: true },
   },
 }
