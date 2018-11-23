@@ -27,7 +27,7 @@
       color="#DA4445"
       icon="remove"
       :value="false"
-      @change="changeController('remove', $event)"
+      @change="removeTodo(id)"
     />
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['changeTodoFunctor', 'changeTodoVit']),
+    ...mapActions(['changeTodoFunctor', 'changeTodoVit', 'removeTodo']),
 
     changeController(name, value) {
       console.log(name, value)
