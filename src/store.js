@@ -13,7 +13,8 @@ export default new Vuex.Store({
     title: 'TO DO LITE',
     username: 'ali',
     page: 'LIST', // VIT, LIST, DONE
-    todos: [], // [{ id, title, creator, functor, vit }]
+    todos: [], // [{ id, title, creator, functor, vit }],
+    change: '', // remove, vit, list, done
   },
 
   getters: {
@@ -39,6 +40,10 @@ export default new Vuex.Store({
     changeTodos(state, todos) {
       state.todos = todos
     },
+
+    changeChange(state, value) {
+      state.change = value
+    },
   },
 
   actions: {
@@ -50,15 +55,18 @@ export default new Vuex.Store({
       db.changeTitle(id, title)
     },
 
-    changeTodoFunctor({ state }, { id, done }) {
+    changeTodoFunctor({ state, commit }, { id, done }) {
+      commit('changeChange', done ? 'done' : 'list-left')
       db.changeFunctor(id, done ? state.username : '')
     },
 
-    changeTodoVit(context, { id, vit }) {
+    changeTodoVit({ commit }, { id, vit }) {
+      commit('changeChange', vit ? 'vit' : 'list-right')
       db.changeVit(id, vit)
     },
 
-    removeTodo(context, id) {
+    removeTodo({ commit }, id) {
+      commit('changeChange', 'remove')
       db.remove(id)
     },
   },
