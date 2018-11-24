@@ -8,12 +8,11 @@
       @change="changeTodoFunctor({ id, done: $event })"
     />
     <BaseToggle
-      v-if="!functor"
       class="toggle star"
-      color="#FFAD00"
+      :color="functor ? '#aaaaaa' : '#FFAD00'"
       icon="star"
       :value="vit"
-      @change="changeTodoVit({ id, vit: $event })"
+      @change="functor ? hangeTodoVit({ id, vit: $event }) : null"
     />
     <BaseToggle
       class="toggle edit"
