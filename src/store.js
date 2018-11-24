@@ -6,6 +6,8 @@ import * as db from './helper/function/changeTodo.js'
 // R
 const { R, W } = window
 
+let timer = null
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -30,6 +32,13 @@ export default new Vuex.Store({
 
       return R.filter(filterFunction, todos).reverse()
     },
+
+    donePercentage({ todos }) {
+      const numberofDone = todos.filter(R.prop('functor')).length
+      const numberofall = todos.length
+      if (numberofall === 0) return 0
+      else return ((numberofDone / numberofall) * 100).toFixed(0)
+    },
   },
 
   mutations: {
@@ -47,7 +56,14 @@ export default new Vuex.Store({
   },
 
   actions: {
-    addTodo({ state }, title) {
+    changeChangeWithDelay({ commit }, value) {
+      if (timer) clearTimeout(timer)
+      commit('changeChange', value)
+      timer = setTimeout(() => commit('changeChange', ''), 0)
+    },
+
+    addTodo({ commit, state }, title) {
+      commit('changePage', 'LIST')
       db.add(title, state.username)
     },
 
@@ -55,18 +71,18 @@ export default new Vuex.Store({
       db.changeTitle(id, title)
     },
 
-    changeTodoFunctor({ state, commit }, { id, done }) {
-      commit('changeChange', done ? 'done' : 'list-left')
+    changeTodoFunctor({ state, dispatch }, { id, done }) {
+      dispatch('changeChangeWithDelay', done ? 'done' : 'list-left')
       db.changeFunctor(id, done ? state.username : '')
     },
 
-    changeTodoVit({ commit }, { id, vit }) {
-      commit('changeChange', vit ? 'vit' : 'list-right')
+    changeTodoVit({ dispatch }, { id, vit }) {
+      dispatch('changeChangeWithDelay', vit ? 'vit' : 'list-right')
       db.changeVit(id, vit)
     },
 
-    removeTodo({ commit }, id) {
-      commit('changeChange', 'remove')
+    removeTodo({ dispatch }, id) {
+      dispatch('changeChangeWithDelay', 'remove')
       db.remove(id)
     },
   },

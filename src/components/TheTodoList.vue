@@ -4,7 +4,7 @@
     <transition-group
       name="todo"
       tag="div"
-      :leave-to-class="`${change}-leave-to`"
+      :leave-to-class="change ? `${change}-leave-to` : 'leave-to'"
     >
       <TodoListItem
         v-for="todo in todos"
@@ -55,6 +55,11 @@ export default {
 .todo-enter {
   opacity: 0;
   transform: translateY(-300px);
+}
+
+.leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .remove-leave-to {

@@ -5,28 +5,25 @@
       v-html="
         `
         <style>
-          div#progress { --width: ${percentage}% }
+          div#progress { --width: ${donePercentage}% }
         </style>
       `
       "
     />
 
     <!-- show percentage -->
-    <span class="text">{{ percentage }}%</span>
+    <span class="text">{{ donePercentage }}%</span>
   </div>
 </template>
 
 <script>
+// modules
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'TheAppBarProgress',
 
-  props: {
-    percentage: {
-      type: Number,
-      default: 0,
-      validator: value => value >= 0 && value <= 100,
-    },
-  },
+  computed: mapGetters(['donePercentage']),
 }
 </script>
 
