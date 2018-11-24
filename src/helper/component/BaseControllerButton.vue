@@ -1,8 +1,19 @@
 <template>
-  <div :class="getClasses('button')" @click="click">
-    <div :class="getClasses('dot', 'first')"></div>
-    <div :class="getClasses('dot', 'second')"></div>
-    <div :class="getClasses('dot', 'third')"></div>
+  <div
+    @mouseover="changeHover(true)"
+    @mouseout="changeHover(false)"
+    :class="getClasses('button')"
+    @click="click"
+  >
+    <div :class="getClasses('dot', 'first')">
+      <div :class="getClasses('dotInDot')"></div>
+    </div>
+    <div :class="getClasses('dot', 'second')">
+      <div :class="getClasses('dotInDot')"></div>
+    </div>
+    <div :class="getClasses('dot', 'third')">
+      <div :class="getClasses('dotInDot')"></div>
+    </div>
   </div>
 </template>
 
@@ -12,13 +23,26 @@ export default {
 
   props: { value: { type: Boolean, default: false } },
 
+  data: () => ({
+    hover: false,
+  }),
+
   methods: {
     click() {
       this.$emit('change', !this.value)
     },
 
     getClasses(name, ...otherClasses) {
-      return [name, ...otherClasses, this.value ? `${name}-selected` : '']
+      return [
+        name,
+        this.hover && !this.value ? `${name}-hover` : '',
+        ...otherClasses,
+        this.value ? `${name}-selected` : '',
+      ]
+    },
+
+    changeHover(value) {
+      this.hover = value
     },
   },
 }
@@ -49,7 +73,7 @@ export default {
   left: 100%;
   top: 0;
   z-index: -1;
-  transition: left 0.2s ease;
+  transition: left 0.35s ease;
 }
 
 .button:hover:before {
@@ -65,6 +89,9 @@ export default {
   width: 10px;
   height: 10px;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .first {
@@ -79,7 +106,41 @@ export default {
   background-color: #60bf03;
 }
 
-.dot-selected {
-  background-color: #ffffff;
+.dotInDot {
+  border-radius: 10px;
+  background-color: white;
+}
+
+@keyframes dotInDot {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.dotInDot-hover {
+  animation: dotInDot 0.15s ease;
+  animation-fill-mode: forwards;
+}
+
+.first .dotInDot-hover {
+  animation-delay: 0.2s;
+}
+
+.second .dotInDot-hover {
+  animation-delay: 0.1s;
+}
+
+.third .dotInDot-hover {
+  animation-delay: 0s;
+}
+
+.dotInDot-selected {
+  width: 10px;
+  height: 10px;
 }
 </style>
