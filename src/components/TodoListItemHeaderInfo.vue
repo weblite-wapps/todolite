@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <img class="icon" :src="require('../assets/icons/drag.svg')" />
-    <span v-if="creator" class="text first">
+    <span v-if="creator" class="text">
       CRT BY <span class="functor">{{ creatorUpper }}</span>
     </span>
     <span v-if="functor" class="text">|</span>

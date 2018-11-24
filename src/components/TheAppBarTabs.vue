@@ -23,9 +23,7 @@ export default {
     ],
   }),
 
-  computed: {
-    ...mapState(['page']),
-  },
+  computed: mapState(['page']),
 
   methods: mapMutations(['changePage']),
 }

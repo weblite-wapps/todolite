@@ -53,13 +53,7 @@ export default {
     toggleEditable: { type: Function, required: true },
   },
 
-  methods: {
-    ...mapActions(['changeTodoFunctor', 'changeTodoVit', 'removeTodo']),
-
-    changeController(name, value) {
-      console.log(name, value)
-    },
-  },
+  methods: mapActions(['changeTodoFunctor', 'changeTodoVit', 'removeTodo']),
 }
 </script>
 

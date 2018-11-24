@@ -4,13 +4,19 @@
       <!-- controllers -->
       <TodoListItemHeaderControllers
         v-if="controllerOpen"
+        key="controllers"
         :id="id"
         :functor="functor"
         :vit="vit"
         :editable="editable"
         :toggleEditable="toggleEditable"
       />
-      <TodoListItemHeaderInfo v-else :functor="functor" :creator="creator" />
+      <TodoListItemHeaderInfo
+        v-else
+        key="info"
+        :functor="functor"
+        :creator="creator"
+      />
     </div>
     <BaseControllerButton
       class="controllerButton"
@@ -49,6 +55,7 @@ export default {
 
   methods: {
     changeControllerOpen(value) {
+      this.toggleEditable(false)
       this.controllerOpen = value
     },
   },

@@ -18,10 +18,6 @@ export default {
     TodoListItem,
   },
 
-  data: () => ({
-    time: 'descending',
-  }),
-
   computed: mapGetters({ todos: 'filteredTodos' }),
 }
 </script>
