@@ -1,5 +1,5 @@
 <template>
-  <li class="todo-item">
+  <li>
     <div class="todo-header">
       <TodoListItemHeader
         v-bind="todo"
@@ -55,10 +55,6 @@ export default {
 </script>
 
 <style scoped>
-.todo-item {
-  margin-top: 15px;
-}
-
 .todo-header {
   height: 40px;
   background-color: #e6e6e6;

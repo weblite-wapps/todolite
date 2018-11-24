@@ -12,7 +12,7 @@
       :color="functor ? '#aaaaaa' : '#FFAD00'"
       icon="star"
       :value="vit"
-      @change="functor ? hangeTodoVit({ id, vit: $event }) : null"
+      @change="!functor ? changeTodoVit({ id, vit: $event }) : null"
     />
     <BaseToggle
       class="toggle edit"

@@ -27,7 +27,7 @@ export default new Vuex.Store({
           ? ({ vit, functor }) => !vit && !functor
           : R.always(true)
 
-      return R.filter(filterFunction, todos)
+      return R.filter(filterFunction, todos).reverse()
     },
   },
 
