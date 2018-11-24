@@ -4,7 +4,7 @@
     <transition-group
       name="todo"
       tag="div"
-      :leave-to-class="change ? `${change}-leave-to` : 'leave-to'"
+      :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
     >
       <TodoListItem
         v-for="todo in todos"
@@ -32,8 +32,8 @@ export default {
   computed: {
     ...mapGetters({ todos: 'filteredTodos' }),
 
-    change() {
-      return this.$store.state.change
+    currentAction() {
+      return this.$store.state.currentAction
     },
   },
 }

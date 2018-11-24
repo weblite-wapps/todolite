@@ -6,17 +6,24 @@ import * as db from './helper/function/changeTodo.js'
 // R
 const { R, W } = window
 
-let timer = null
-
+// set vue plugin
 Vue.use(Vuex)
+
+// variable declaration
+let timer = null
 
 export default new Vuex.Store({
   state: {
+    // stuff came from weblite
     title: 'TO DO LITE',
     username: 'ali',
+
+    // view states
     page: 'LIST', // VIT, LIST, DONE
+    currentAction: '', // remove, vit, done, list-right, list-left
+
+    // main data
     todos: [], // [{ id, title, creator, functor, vit }],
-    change: '', // remove, vit, list, done
   },
 
   getters: {
@@ -30,14 +37,17 @@ export default new Vuex.Store({
           ? ({ vit, functor }) => !vit && !functor
           : R.always(true)
 
-      return R.filter(filterFunction, todos).reverse()
+      return R.compose(
+        R.reverse,
+        R.filter(filterFunction),
+      )(todos)
     },
 
     donePercentage({ todos }) {
       const numberofDone = todos.filter(R.prop('functor')).length
-      const numberofall = todos.length
-      if (numberofall === 0) return 0
-      else return ((numberofDone / numberofall) * 100).toFixed(0)
+      const numberofAll = todos.length
+      if (numberofAll === 0) return 0
+      else return ((numberofDone / numberofAll) * 100).toFixed(0)
     },
   },
 
@@ -50,16 +60,16 @@ export default new Vuex.Store({
       state.todos = todos
     },
 
-    changeChange(state, value) {
-      state.change = value
+    changeCurrentAction(state, action) {
+      state.currentAction = action
     },
   },
 
   actions: {
-    changeChangeWithDelay({ commit }, value) {
+    changeCurrentAction({ commit }, value) {
       if (timer) clearTimeout(timer)
-      commit('changeChange', value)
-      timer = setTimeout(() => commit('changeChange', ''), 0)
+      commit('changeCurrentAction', value)
+      timer = setTimeout(() => commit('changeCurrentAction', ''), 0)
     },
 
     addTodo({ commit, state }, title) {
@@ -67,28 +77,27 @@ export default new Vuex.Store({
       db.add(title, state.username)
     },
 
-    changeTodoTitle(context, { id, title }) {
+    changeTodoTitle(_, { id, title }) {
       db.changeTitle(id, title)
     },
 
     changeTodoFunctor({ state, dispatch }, { id, done }) {
-      dispatch('changeChangeWithDelay', done ? 'done' : 'list-left')
+      dispatch('changeCurrentAction', done ? 'done' : 'list-left')
       db.changeFunctor(id, done ? state.username : '')
     },
 
     changeTodoVit({ dispatch }, { id, vit }) {
-      dispatch('changeChangeWithDelay', vit ? 'vit' : 'list-right')
+      dispatch('changeCurrentAction', vit ? 'vit' : 'list-right')
       db.changeVit(id, vit)
     },
 
     removeTodo({ dispatch }, id) {
-      dispatch('changeChangeWithDelay', 'remove')
+      dispatch('changeCurrentAction', 'remove')
       db.remove(id)
     },
   },
 
   plugins: [
-    ({ commit }) =>
-      W && W.share.subscribe(todos => commit('changeTodos', todos)),
+    ({ commit }) => W.share.subscribe(todos => commit('changeTodos', todos)),
   ],
 })
