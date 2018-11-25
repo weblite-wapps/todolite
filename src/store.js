@@ -35,7 +35,7 @@ export default new Vuex.Store({
           ? R.prop('functor')
           : page === 'LIST'
           ? ({ vit, functor }) => !vit && !functor
-          : R.always(true)
+          : R.always(false)
 
       return R.compose(
         R.reverse,
@@ -44,10 +44,10 @@ export default new Vuex.Store({
     },
 
     donePercentage({ todos }) {
-      const numberofDone = todos.filter(R.prop('functor')).length
-      const numberofAll = todos.length
-      if (numberofAll === 0) return 0
-      else return ((numberofDone / numberofAll) * 100).toFixed(0)
+      const numberOfDone = todos.filter(R.prop('functor')).length
+      const numberOfAll = todos.length
+      if (numberOfAll === 0) return 0
+      else return ((numberOfDone / numberOfAll) * 100).toFixed(0)
     },
   },
 

@@ -18,9 +18,15 @@ export default {
 
   methods: {
     submit() {
+      if (!this.value) return
+
       this.$emit('submit', this.value)
       this.value = ''
     },
+  },
+
+  mounted() {
+    this.$el.focus()
   },
 }
 </script>

@@ -35,9 +35,9 @@ export default {
     getClasses(name, ...otherClasses) {
       return [
         name,
+        this.value ? `${name}-selected` : '',
         this.hover && !this.value ? `${name}-hover` : '',
         ...otherClasses,
-        this.value ? `${name}-selected` : '',
       ]
     },
 

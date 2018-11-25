@@ -1,12 +1,12 @@
 const { W } = window
 
-const generateKey = () => Math.floor(Math.random() * 1e15)
+const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
 export const add = (title, name) =>
   dispatch([
     '__append',
-    [{ id: generateKey(), title, functor: '', vit: false, creator: name }],
+    [{ id: generateId(), title, functor: '', vit: false, creator: name }],
   ])
 
 export const changeTitle = (id, title) =>

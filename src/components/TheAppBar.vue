@@ -19,7 +19,7 @@
         />
 
         <!-- Input -->
-        <TheAppBarInput v-show="mode === 'add'" @submit="submit" />
+        <TheAppBarInput v-else-if="mode === 'add'" @submit="submit" />
       </div>
 
       <BaseRotativeButton
