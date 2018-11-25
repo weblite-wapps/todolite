@@ -7,6 +7,8 @@
       :value="!!functor"
       @change="changeTodoFunctor({ id, done: $event })"
     />
+
+    <!-- Can you use '() => {}' instead of null below? -->
     <BaseToggle
       class="toggle star"
       :color="functor ? '#aaaaaa' : '#FFAD00'"
@@ -21,6 +23,7 @@
       :value="editable"
       @change="toggleEditable"
     />
+    <!-- TODO: you can don't pass value to BaseToggle, because default value is false -->
     <BaseToggle
       class="toggle remove"
       color="#DA4445"

@@ -41,7 +41,7 @@ export default {
   methods: {
     ...mapActions(['changeTodoTitle']),
 
-    toggleEditable(value) {
+    toggleEditable(value) {  // TODO: this name according to functionality should be changed to changeEditable!
       if (value != undefined) this.editable = value
       else this.editable = !this.editable
     },
