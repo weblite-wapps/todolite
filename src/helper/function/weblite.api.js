@@ -1,15 +1,21 @@
 // W && R
-const { W } = window
+const { W, R } = window
 
-export default vueRoot => {
+export default vue => {
   /* Load Data */
   // get user
-  W.loadData().then(({ user: { name } }) => {
-    vueRoot.name = name
+  W.loadData().then(({ user: { name }, customize: { title } }) => {
+    vue.$store.commit('changeWebliteRelatedData', { username: name, title })
   })
 
+  /* Customization */
+  W.onChangeValue(({ key, value }) => {
+    if (key === 'title') vue.$store.commit('changeTitle', value)
+  })
+  W.changeCustomize(R.identity)
+
   /* ShareDB */
-  // get votes from shareDB Server
-  W.share.getFromServer([]).then(() => W.start())
-  // shareDB sunbscription
+  W.mode === 'customize'
+    ? W.start()
+    : W.share.getFromServer([]).then(() => W.start())
 }

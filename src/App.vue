@@ -27,6 +27,12 @@ export default {
     TheTodoList,
   },
 
+  computed: {
+    isCustomize() {
+      return this.$store.state.mode === 'customize'
+    },
+  },
+
   created() {
     W && webliteHandler(this)
   },

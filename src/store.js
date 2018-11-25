@@ -52,6 +52,15 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    changeWebliteRelatedData(state, { title, username }) {
+      state.username = username
+      state.title = title
+    },
+
+    changeTitle(state, title) {
+      state.title = title
+    },
+
     changePage(state, page) {
       state.page = page
     },
