@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="root noselect">
     <img class="icon" :src="require('../assets/icons/drag.svg')" />
     <span v-if="creator" class="text">
       CRT BY <span class="functor">{{ creatorUpper }}</span>

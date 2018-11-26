@@ -1,5 +1,5 @@
 <template>
-  <div class="progress" id="progress">
+  <div class="progress noselect" id="progress">
     <!-- set --width css variable dynamically -->
     <div
       v-html="

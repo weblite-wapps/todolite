@@ -41,7 +41,7 @@ export default {
 
 <style scoped>
 .todo-item {
-  transition: all 1s;
+  transition: all 0.6s ease;
   display: block;
   padding: 5px 10px;
 }

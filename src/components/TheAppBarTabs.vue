@@ -1,5 +1,10 @@
 <template>
-  <BaseTab class="tab" :items="tabItems" :value="page" @change="changePage" />
+  <BaseTab
+    class="tab noselect"
+    :items="tabItems"
+    :value="page"
+    @change="changePage"
+  />
 </template>
 
 <script>
