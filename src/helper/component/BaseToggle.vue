@@ -1,7 +1,7 @@
 <template>
   <button
     :class="getClass('tab-item')"
-    :style="{ backgroundColor: color }"
+    :style="{ backgroundColor: disable ? '#aaaaaa' : color }"
     @click="click(value)"
   >
     <!-- icon -->
@@ -20,6 +20,7 @@ export default {
     color: { type: String, required: true },
     icon: { type: String, required: true },
     value: { type: Boolean, default: false },
+    disable: { typer: Boolean, default: false },
   },
 
   methods: {
@@ -28,7 +29,7 @@ export default {
     },
 
     click(value) {
-      this.$emit('change', !value)
+      if (!this.disable) this.$emit('change', !value)
     },
   },
 }

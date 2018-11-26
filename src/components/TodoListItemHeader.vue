@@ -7,6 +7,7 @@
         key="controllers"
         :id="id"
         :functor="functor"
+        :creator="creator"
         :vit="vit"
         :editable="editable"
         :toggleEditable="toggleEditable"

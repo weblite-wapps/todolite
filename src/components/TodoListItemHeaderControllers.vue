@@ -5,20 +5,25 @@
       color="#60C102"
       icon="done"
       :value="!!functor"
+      :disable="
+        functor && !(functor === username || creator === username || isAdmin)
+      "
       @change="changeTodoFunctor({ id, done: $event })"
     />
     <BaseToggle
       class="toggle star"
-      :color="functor ? '#aaaaaa' : '#FFAD00'"
+      color="#FFAD00"
       icon="star"
       :value="vit"
-      @change="!functor ? changeTodoVit({ id, vit: $event }) : null"
+      :disable="functor"
+      @change="changeTodoVit({ id, vit: $event })"
     />
     <BaseToggle
       class="toggle edit"
       color="#636363"
       icon="edit"
       :value="editable"
+      :disable="!(creator === username || isAdmin)"
       @change="toggleEditable"
     />
     <BaseToggle
@@ -26,6 +31,7 @@
       color="#DA4445"
       icon="remove"
       :value="false"
+      :disable="!(creator === username || isAdmin)"
       @change="removeTodo(id)"
     />
   </div>
@@ -47,9 +53,20 @@ export default {
   props: {
     id: { type: Number, require: true },
     functor: { type: String, default: '' },
+    creator: { type: String, default: '' },
     vit: { type: Boolean, default: false },
     editable: { type: Boolean, default: false },
     toggleEditable: { type: Function, required: true },
+  },
+
+  computed: {
+    isAdmin() {
+      return this.$store.state.isAdmin
+    },
+
+    username() {
+      return this.$store.state.username
+    },
   },
 
   methods: mapActions(['changeTodoFunctor', 'changeTodoVit', 'removeTodo']),

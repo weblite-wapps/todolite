@@ -8,7 +8,7 @@ export default vue => {
     vue.$store.commit('changeWebliteRelatedData', {
       username: name,
       title,
-      creator,
+      isAdmin: creator,
     })
   })
 

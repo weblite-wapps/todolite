@@ -17,7 +17,7 @@ export default new Vuex.Store({
     // stuff came from weblite
     title: 'TO DO LITE',
     username: 'ali',
-    creator: false,
+    isAdmin: false,
 
     // view states
     page: 'LIST', // VIT, LIST, DONE
@@ -53,10 +53,10 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    changeWebliteRelatedData(state, { title, username, creator }) {
+    changeWebliteRelatedData(state, { title, username, isAdmin }) {
       state.username = username
       state.title = title
-      state.creator = creator
+      state.isAdmin = isAdmin
     },
 
     changeTitle(state, title) {
