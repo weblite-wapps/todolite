@@ -48,32 +48,33 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../../helper/style/_variable.scss';
+@import '../../helper/style/_mixin.scss';
+
 .tab {
-  margin-top: 4px;
   width: 100%;
   height: 50px;
   display: flex;
-  justify-content: space-around;
+  margin-top: 4px;
   overflow: hidden;
+  justify-content: space-around;
 }
 
 .tab-item {
+  @include flex-center();
+  @include reset();
+
   position: relative;
   width: 100%;
   height: 100%;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 600;
-  border-radius: 0 0 10px 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
   cursor: pointer;
+  overflow: hidden;
   transition: padding-top 0.2s;
+  border-radius: 0 0 10px 10px;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
+  color: $font-color-light-primary;
 }
 
 .tab-item-selected {
@@ -81,9 +82,9 @@ export default {
 }
 
 .icon {
-  margin-right: 2px;
   width: 18px;
-  color: white;
+  margin-right: 2px;
+  color: $font-color-light-primary;
 }
 
 .text {
@@ -92,13 +93,12 @@ export default {
 
 .line {
   top: 0;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  height: 0px;
   opacity: 1;
-  background: rgba(0, 0, 0, 0.3);
+  height: 0px;
+  width: 100%;
+  position: absolute;
   transition: height 0.2s;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .line-selected {

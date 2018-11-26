@@ -48,27 +48,30 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../../helper/style/_variable.scss';
+@import '../../helper/style/_mixin.scss';
+
 .button {
+  z-index: 1;
   border: none;
   outline: none;
-  cursor: pointer;
   display: flex;
-  justify-content: center;
+  cursor: pointer;
   align-items: center;
-  z-index: 1;
+  justify-content: center;
 }
 
 .button:before {
   content: '';
-  position: absolute;
-  background: #0096e5;
-  bottom: 0;
-  right: 0;
-  left: 100%;
   top: 0;
+  right: 0;
+  bottom: 0;
+  left: 100%;
   z-index: -1;
+  position: absolute;
   transition: left 0.35s ease;
+  background-color: $color-secondary;
 }
 
 .button:hover:before {
@@ -76,34 +79,33 @@ export default {
 }
 
 .button-selected {
-  background: #0096e5;
+  background-color: $color-secondary;
 }
 
 .dot {
-  margin: 1.5px;
+  @include flex-center();
+
   width: 10px;
   height: 10px;
+  margin: 1.5px;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .first {
-  background-color: #ffae02;
+  background-color: $color-vit;
 }
 
 .second {
-  background-color: #da4445;
+  background-color: $color-trash;
 }
 
 .third {
-  background-color: #60bf03;
+  background-color: $color-done;
 }
 
 .dotInDot {
   border-radius: 10px;
-  background-color: white;
+  background-color: #ffffff;
 }
 
 @keyframes dotInDot {

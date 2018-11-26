@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .root {
   height: 100%;
   width: 100%;
@@ -72,16 +72,16 @@ export default {
 }
 
 .header {
+  left: 0;
   width: 80%;
   height: 100%;
   position: absolute;
-  left: 0;
 }
 
 .controller-button {
+  right: 0;
   width: 20%;
   height: 100%;
   position: absolute;
-  right: 0;
 }
 </style>

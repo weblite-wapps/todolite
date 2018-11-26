@@ -31,7 +31,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+
 .root {
   height: 100%;
   display: flex;
@@ -44,13 +46,13 @@ export default {
 }
 
 .text {
-  color: #b7b7b7;
   font-size: 12px;
   font-weight: 600;
   margin-left: 5px;
-  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  color: $font-color-light-secondary;
 }
 
 .text:first-of-type {
@@ -58,6 +60,6 @@ export default {
 }
 
 .functor {
-  color: #727272;
+  color: $font-color-dark-secondary;
 }
 </style>

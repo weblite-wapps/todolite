@@ -31,18 +31,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+@import '../helper/style/_mixin.scss';
+
 .input {
-  color: #ffffff;
-  padding: 20px;
-  font-size: 18px;
+  @include reset();
+
   width: 100%;
-  background: none;
-  border: none;
-  outline: none;
+  padding: 20px;
+  font-size: $font-size-small;
+  color: $font-color-light-primary;
 }
 
 .input::placeholder {
-  color: #1db3ff;
+  opacity: 0.4;
+  color: $font-color-light-primary;
 }
 </style>

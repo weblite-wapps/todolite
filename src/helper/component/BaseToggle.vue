@@ -35,22 +35,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../../helper/style/_variable.scss';
+@import '../../helper/style/_mixin.scss';
+
 .tab-item {
+  @include flex-center;
+
   position: relative;
   width: 100%;
   height: 100%;
   border: none;
   outline: none;
-  color: #ffffff;
   font-size: 18px;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
   cursor: pointer;
   transition: padding-bottom 0.2s;
+  color: $font-color-light-primary;
 }
 
 .tab-item-selected {
@@ -58,8 +58,8 @@ export default {
 }
 
 .icon {
-  margin-right: 2px;
   width: 18px;
+  margin-right: 2px;
 }
 
 .text {
@@ -67,14 +67,14 @@ export default {
 }
 
 .line {
-  bottom: 0;
   left: 0;
-  position: absolute;
-  width: 100%;
-  height: 0px;
+  bottom: 0;
   opacity: 1;
-  background: rgba(0, 0, 0, 0.3);
+  height: 0px;
+  width: 100%;
+  position: absolute;
   transition: height 0.2s;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .line-selected {

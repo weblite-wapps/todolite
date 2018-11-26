@@ -1,6 +1,8 @@
+@import 'variable';
+
 html,
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: $font-stack;
 }
 
 .noselect {

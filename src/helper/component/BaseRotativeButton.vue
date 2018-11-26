@@ -27,16 +27,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../../helper/style/_variable.scss';
+@import '../../helper/style/_mixin.scss';
+
 .button {
-  padding: 0;
-  margin: 0;
+  @include reset();
+
   width: 50px;
   height: 50px;
-  border: none;
-  background-color: #616161;
-  outline: none;
   cursor: pointer;
+  background-color: $color-edit;
 }
 
 .icon-line {

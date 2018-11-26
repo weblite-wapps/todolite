@@ -1,6 +1,6 @@
 <template>
   <BaseTab
-    class="tab noselect"
+    class="noselect"
     :items="tabItems"
     :value="page"
     @change="changePage"
@@ -33,9 +33,3 @@ export default {
   methods: mapMutations(['changePage']),
 }
 </script>
-
-<style module>
-.tab {
-  border-radius: 10px 10px 0 0;
-}
-</style>

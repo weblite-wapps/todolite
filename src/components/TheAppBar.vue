@@ -82,25 +82,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+@import '../helper/style/_mixin.scss';
+
 .header {
   width: 100%;
   height: 50px;
   display: flex;
-  background-color: #0096e3;
+  background-color: $color-secondary;
 }
 
 .main {
+  @include flex-center();
+
   width: calc(100% - 50px);
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 900;
-  color: #ffffff;
+  font-size: $font-size-large;
+  font-weight: $font-weight-heavy;
+  color: $font-color-light-primary;
 }
 </style>

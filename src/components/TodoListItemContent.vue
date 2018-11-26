@@ -25,19 +25,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+@import '../helper/style/_mixin.scss';
+
 .todo-content {
+  @include reset();
+
   width: 100%;
+  padding: 10px;
   margin-top: 2px;
   font-size: 16px;
-  font-weight: 500;
-  padding: 10px;
-  outline: none;
-  border: none;
-  resize: none;
-  box-sizing: border-box;
-  background-color: #e6e6e6;
-  border-bottom-right-radius: 20px;
   word-wrap: break-word;
+  box-sizing: border-box;
+  border-bottom-right-radius: 20px;
+  font-weight: $font-weight-normal;
+  background-color: $color-primary;
 }
 </style>

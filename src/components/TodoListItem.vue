@@ -54,12 +54,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+
 .todo-header {
   height: 40px;
-  background-color: #e6e6e6;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
   overflow: hidden;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: $color-primary;
 }
 </style>

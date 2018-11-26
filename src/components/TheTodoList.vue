@@ -39,11 +39,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .todo-item {
-  transition: all 0.6s ease;
   display: block;
   padding: 5px 10px;
+  transition: all 0.6s ease;
 }
 
 .todo-item:first-of-type {
@@ -78,10 +78,10 @@ export default {
 }
 
 .todo-leave-active {
-  position: absolute;
-  display: block;
   width: 100%;
+  display: block;
   padding: 5px 10px;
+  position: absolute;
   box-sizing: border-box;
 }
 </style>

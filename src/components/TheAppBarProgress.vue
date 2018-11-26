@@ -27,24 +27,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+@import '../helper/style/_mixin.scss';
+
 .progress {
+  @include flex-center();
+
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 }
 
 .progress:after {
   content: '\A';
-  position: absolute;
-  background: #027ebc;
   top: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
+  position: absolute;
   width: var(--width);
+  background: darken($color-secondary, 7);
   animation: filler 1s ease-in-out;
 }
 
@@ -55,9 +57,9 @@ export default {
 }
 
 .text {
-  font-size: 24px;
-  font-weight: 900;
-  color: #ffffff;
   z-index: 10;
+  font-size: $font-size-large;
+  font-weight: $font-weight-heavy;
+  color: $font-color-light-primary;
 }
 </style>
