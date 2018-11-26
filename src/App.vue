@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheAppBar />
-    <TheTodoList />
+    <TheAppBar class="app-bar" />
+    <TheTodoList class="todo-list" />
   </div>
 </template>
 
@@ -39,9 +39,19 @@ export default {
 }
 </script>
 
-<style module>
-html,
-body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+<style scoped>
+.app-bar {
+  height: 105px;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+}
+
+.todo-list {
+  height: calc(100% - 105px);
+  top: 105px;
+  width: 100%;
+  position: fixed;
+  overflow: scroll;
 }
 </style>

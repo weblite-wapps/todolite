@@ -83,10 +83,6 @@ export default {
 </script>
 
 <style scoped>
-.root {
-  width: 100%;
-}
-
 .header {
   width: 100%;
   height: 50px;

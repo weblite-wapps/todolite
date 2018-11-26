@@ -1,6 +1,6 @@
 <template>
   <!-- todo items -->
-  <ul class="todo-items">
+  <ul>
     <transition-group
       name="todo"
       tag="div"
@@ -40,16 +40,14 @@ export default {
 </script>
 
 <style scoped>
-.todo-items {
-  height: inherit;
-  overflow-y: auto;
-  margin-top: 10px;
-}
-
 .todo-item {
   transition: all 1s;
   display: block;
   padding: 5px 10px;
+}
+
+.todo-item:first-of-type {
+  margin-top: 10px;
 }
 
 .todo-enter {
