@@ -24,7 +24,7 @@ export default new Vuex.Store({
     currentAction: '', // remove, vit, done, list-right, list-left
 
     // main data
-    todos: [], // [{ id, title, creator, functor, vit }],
+    todos: [], // [{ id, text, creator, functor, vit }],
   },
 
   getters: {
@@ -83,13 +83,13 @@ export default new Vuex.Store({
       timer = setTimeout(() => commit('changeCurrentAction', ''), 0)
     },
 
-    addTodo({ commit, state }, title) {
+    addTodo({ commit, state }, text) {
       commit('changePage', 'LIST')
-      db.add(title, state.username)
+      db.add(text, state.username)
     },
 
-    changeTodoTitle(_, { id, title }) {
-      db.changeTitle(id, title)
+    changeTodoText(_, { id, text }) {
+      db.changeText(id, text)
     },
 
     changeTodoFunctor({ state, dispatch }, { id, done }) {

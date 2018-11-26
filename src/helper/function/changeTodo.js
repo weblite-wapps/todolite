@@ -3,13 +3,13 @@ const { W } = window
 const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
-export const add = (title, name) =>
+export const add = (text, name) =>
   dispatch([
     '__append',
-    [{ id: generateId(), title, functor: '', vit: false, creator: name }],
+    [{ id: generateId(), text, functor: '', vit: false, creator: name }],
   ])
 
-export const changeTitle = (id, title) =>
+export const changeText = (id, text) =>
   dispatch([
     '__map',
     [
@@ -17,7 +17,7 @@ export const changeTitle = (id, title) =>
         '__ifElse',
         [
           ['__propEq', ['id', id]],
-          ['__assoc', ['title', title]],
+          ['__assoc', ['text', text]],
           ['__identity', []],
         ],
       ],

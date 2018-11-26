@@ -8,7 +8,7 @@
       />
     </div>
     <TodoListItemContent
-      :content="todo.title"
+      :content="todo.text"
       :editable="editable"
       @submit="edit"
     />
@@ -39,15 +39,15 @@ export default {
   },
 
   methods: {
-    ...mapActions(['changeTodoTitle']),
+    ...mapActions(['changeTodoText']),
 
     toggleEditable(value) {
       if (value != undefined) this.editable = value
       else this.editable = !this.editable
     },
 
-    edit(title) {
-      this.changeTodoTitle({ id: this.todo.id, title })
+    edit(text) {
+      this.changeTodoText({ id: this.todo.id, text })
       this.toggleEditable()
     },
   },
