@@ -65,8 +65,8 @@ export default {
   border: none;
   outline: none;
   color: #ffffff;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   border-radius: 0 0 10px 10px;
   display: flex;
   justify-content: center;

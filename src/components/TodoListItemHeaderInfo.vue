@@ -1,11 +1,11 @@
 <template>
   <div class="root noselect">
     <img class="icon" :src="require('../assets/icons/drag.svg')" />
-    <span v-if="creator" class="text">
+    <span v-if="creator" :title="creatorUpper" class="text">
       CRT BY <span class="functor">{{ creatorUpper }}</span>
     </span>
     <span v-if="functor" class="text">|</span>
-    <span v-if="functor" class="text">
+    <span v-if="functor" :title="functorUpper" class="text">
       DONE BY <span class="functor">{{ functorUpper }}</span>
     </span>
   </div>

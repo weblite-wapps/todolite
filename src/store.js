@@ -15,7 +15,7 @@ let timer = null
 export default new Vuex.Store({
   state: {
     // stuff came from weblite
-    title: 'TO DO LITE',
+    title: 'TODOLITE',
     username: 'ali-asgari-alias1994-10239023',
     isAdmin: false,
 

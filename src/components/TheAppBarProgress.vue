@@ -55,7 +55,8 @@ export default {
 }
 
 .text {
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 900;
   color: #ffffff;
   z-index: 10;
 }
