@@ -19,8 +19,9 @@
         :creator="creator"
       />
     </div>
+
     <BaseControllerButton
-      class="controllerButton"
+      class="controller-button"
       :value="controllerOpen"
       @change="changeControllerOpen"
     />
@@ -66,14 +67,21 @@ export default {
 <style scoped>
 .root {
   height: 100%;
-  display: flex;
+  width: 100%;
+  position: relative;
 }
 
 .header {
-  flex: 4;
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  left: 0;
 }
 
-.controllerButton {
-  flex: 1;
+.controller-button {
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  right: 0;
 }
 </style>

@@ -50,17 +50,12 @@ export default {
 
 <style scoped>
 .button {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
   border: none;
   outline: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   z-index: 1;
 }
 

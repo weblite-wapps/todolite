@@ -48,6 +48,9 @@ export default {
   font-size: 12px;
   font-weight: 600;
   margin-left: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .text:first-of-type {
