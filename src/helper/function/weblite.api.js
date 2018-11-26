@@ -4,8 +4,12 @@ const { W, R } = window
 export default vue => {
   /* Load Data */
   // get user
-  W.loadData().then(({ user: { name }, customize: { title } }) => {
-    vue.$store.commit('changeWebliteRelatedData', { username: name, title })
+  W.loadData().then(({ user: { name }, creator, customize: { title } }) => {
+    vue.$store.commit('changeWebliteRelatedData', {
+      username: name,
+      title,
+      creator,
+    })
   })
 
   /* Customization */

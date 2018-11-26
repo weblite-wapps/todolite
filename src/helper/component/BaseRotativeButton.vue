@@ -49,7 +49,7 @@ export default {
 }
 
 .close-icon {
-  transform: rotate(135deg);
+  transform: rotate(495deg);
   transition: transform 0.5s;
 }
 </style>

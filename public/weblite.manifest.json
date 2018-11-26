@@ -2,7 +2,7 @@
   "name": "TheTodolite",
   "id": "5bfa54c41cc2ac3fbdcb94cf",
   "instancable": true,
-  "creator": false,
+  "creator": true,
   "userInfo": true,
   "fullscreen": false,
   "inline": false,
