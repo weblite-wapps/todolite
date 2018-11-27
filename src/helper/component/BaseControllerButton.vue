@@ -1,10 +1,5 @@
 <template>
-  <div
-    @mouseover="changeHover(true)"
-    @mouseout="changeHover(false)"
-    :class="getClasses('button')"
-    @click="click"
-  >
+  <div :class="getClasses('button')" @click="click">
     <div :class="getClasses('dot', 'first')">
       <div :class="getClasses('dotInDot')"></div>
     </div>
@@ -23,26 +18,13 @@ export default {
 
   props: { value: { type: Boolean, default: false } },
 
-  data: () => ({
-    hover: false,
-  }),
-
   methods: {
     click() {
       this.$emit('change', !this.value)
     },
 
     getClasses(name, ...otherClasses) {
-      return [
-        name,
-        this.value ? `${name}-selected` : '',
-        this.hover && !this.value ? `${name}-hover` : '',
-        ...otherClasses,
-      ]
-    },
-
-    changeHover(value) {
-      this.hover = value
+      return [name, this.value ? `${name}-selected` : '', ...otherClasses]
     },
   },
 }
@@ -104,36 +86,40 @@ export default {
 }
 
 .dotInDot {
+  width: 0;
+  height: 0;
   border-radius: 10px;
   background-color: #ffffff;
+  transition: all 0.15s ease;
 }
 
-@keyframes dotInDot {
-  from {
-    width: 0;
-    height: 0;
-  }
-  to {
-    width: 10px;
-    height: 10px;
-  }
+.button:hover .dotInDot {
+  width: 100%;
+  height: 100%;
 }
 
-.dotInDot-hover {
-  animation: dotInDot 0.15s ease;
-  animation-fill-mode: forwards;
+.first > .dotInDot {
+  transition-delay: 0s;
 }
 
-.first .dotInDot-hover {
-  animation-delay: 0.2s;
+.second > .dotInDot {
+  transition-delay: 0.1s;
 }
 
-.second .dotInDot-hover {
-  animation-delay: 0.1s;
+.third > .dotInDot {
+  transition-delay: 0.2s;
 }
 
-.third .dotInDot-hover {
-  animation-delay: 0s;
+.button:hover > .first > .dotInDot {
+  transition-delay: 0.2s;
+}
+
+.button:hover > .second > .dotInDot {
+  transition-delay: 0.1s;
+}
+
+.button:hover > .third > .dotInDot {
+  transition-delay: 0s;
 }
 
 .dotInDot-selected {
