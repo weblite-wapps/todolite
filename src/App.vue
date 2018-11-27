@@ -1,12 +1,16 @@
 <template>
   <div>
     <TheAppBar class="app-bar" />
-    <TheTodoList class="todo-list" />
+
+    <VuePerfectScrollbar class="todolist-scroll-area">
+      <TheTodoList />
+    </VuePerfectScrollbar>
   </div>
 </template>
 
 <script>
 // modules
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 // components
 import TheAppBar from './components/TheAppBar'
 import TheTodoList from './components/TheTodoList'
@@ -25,6 +29,7 @@ export default {
   components: {
     TheAppBar,
     TheTodoList,
+    VuePerfectScrollbar,
   },
 
   computed: {
@@ -41,17 +46,18 @@ export default {
 
 <style scoped>
 .app-bar {
-  height: 105px;
   width: 100%;
+  height: 105px;
   position: fixed;
   overflow: hidden;
 }
 
-.todo-list {
-  height: calc(100% - 105px);
+.todolist-scroll-area {
+  position: fixed;
   top: 105px;
   width: 100%;
-  position: fixed;
-  overflow: scroll;
+  height: calc(100% - 105px);
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 </style>

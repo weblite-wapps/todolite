@@ -35,13 +35,12 @@ export default {
 @import '../../helper/style/_mixin.scss';
 
 .button {
+  @include flex-center();
+
   z-index: 1;
   border: none;
   outline: none;
-  display: flex;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
 }
 
 .button:before {
@@ -93,37 +92,24 @@ export default {
   transition: all 0.15s ease;
 }
 
+.dotInDot-selected,
 .button:hover .dotInDot {
   width: 100%;
   height: 100%;
 }
 
-.first > .dotInDot {
-  transition-delay: 0s;
-}
-
-.second > .dotInDot {
-  transition-delay: 0.1s;
-}
-
-.third > .dotInDot {
-  transition-delay: 0.2s;
-}
-
+.third > .dotInDot,
 .button:hover > .first > .dotInDot {
   transition-delay: 0.2s;
 }
 
+.second > .dotInDot,
 .button:hover > .second > .dotInDot {
   transition-delay: 0.1s;
 }
 
+.first > .dotInDot,
 .button:hover > .third > .dotInDot {
   transition-delay: 0s;
-}
-
-.dotInDot-selected {
-  width: 10px;
-  height: 10px;
 }
 </style>
