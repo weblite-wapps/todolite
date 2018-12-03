@@ -1,9 +1,17 @@
 // W && R
 const { W, R } = window
 
-export default vue => {
-  /* Load Data */
-  // get user
+const handleCustomize = (start, vue) => {
+  W.onChangeValue(({ key, value }) => {
+    if (key === 'title') vue.$store.commit('changeTitle', value)
+  })
+
+  W.changeCustomize(R.identity)
+
+  start()
+}
+
+const handleNormal = (start, vue) => {
   W.loadData().then(({ user: { name }, creator, customize: { title } }) => {
     vue.$store.commit('changeWebliteRelatedData', {
       username: name,
@@ -12,14 +20,17 @@ export default vue => {
     })
   })
 
-  /* Customization */
-  W.onChangeValue(({ key, value }) => {
-    if (key === 'title') vue.$store.commit('changeTitle', value)
-  })
-  W.changeCustomize(R.identity)
+  W.share.getFromServer([]).then(start)
+}
 
-  /* ShareDB */
-  W.mode === 'customize'
-    ? W.start()
-    : W.share.getFromServer([]).then(() => W.start())
+export default vue => {
+  W.setHooks({
+    wappWillStart(start, error, { mode }) {
+      ;(mode === 'customize' ? handleCustomize : handleNormal)(start, vue)
+    },
+
+    onNotif() {
+      W.deleteAllNotifications()
+    },
+  })
 }

@@ -2,7 +2,7 @@
   <div class="root noselect">
     <img class="icon" :src="require('../assets/icons/drag.svg')" />
     <span v-if="creator" :title="creatorUpper" class="text">
-      CRT BY <span class="functor">{{ creatorUpper }}</span>
+      ADD BY <span class="functor">{{ creatorUpper }}</span>
     </span>
     <span v-if="functor" class="text">|</span>
     <span v-if="functor" :title="functorUpper" class="text">

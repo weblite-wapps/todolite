@@ -3,7 +3,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // shareDB
 import * as db from './helper/function/changeTodo.js'
-// R
+import notif from './helper/function/notification.js'
+// R, W
 const { R, W } = window
 
 // set vue plugin
@@ -85,6 +86,7 @@ export default new Vuex.Store({
 
     addTodo({ commit, state }, text) {
       commit('changePage', 'LIST')
+      notif('add', { text }, state)
       db.add(text, state.username)
     },
 
@@ -94,6 +96,7 @@ export default new Vuex.Store({
 
     changeTodoFunctor({ state, dispatch }, { id, done }) {
       dispatch('changeCurrentAction', done ? 'done' : 'list-left')
+      done && notif('done', { id }, state)
       db.changeFunctor(id, done ? state.username : '')
     },
 
@@ -102,8 +105,9 @@ export default new Vuex.Store({
       db.changeVit(id, vit)
     },
 
-    removeTodo({ dispatch }, id) {
+    removeTodo({ dispatch, state }, id) {
       dispatch('changeCurrentAction', 'remove')
+      notif('delete', { id }, state)
       db.remove(id)
     },
   },
