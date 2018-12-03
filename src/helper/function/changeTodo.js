@@ -1,38 +1,57 @@
 const { W } = window
 
-
-const generateKey = () => Math.floor(Math.random() * 1e+15)
+const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
+export const add = (text, name) =>
+  dispatch([
+    '__append',
+    [{ id: generateId(), text, functor: '', vit: false, creator: name }],
+  ])
 
-export const addTodo = (title, name) => dispatch(
-  ['__append', [{ id: generateKey(), title, functor: '', creator: name, priority: 0}]],
-)
+export const changeText = (id, text) =>
+  dispatch([
+    '__map',
+    [
+      [
+        '__ifElse',
+        [
+          ['__propEq', ['id', id]],
+          ['__assoc', ['text', text]],
+          ['__identity', []],
+        ],
+      ],
+    ],
+  ])
 
-export const editTitle = (id, title) => dispatch(
-  ['__map', [['__ifElse', [
-    ['__propEq', ['id', id]],
-    ['__assoc', ['title', title]],
-    ['__identity', []],
-  ]]]],
-)
+export const changeFunctor = (id, name) =>
+  dispatch([
+    '__map',
+    [
+      [
+        '__ifElse',
+        [
+          ['__propEq', ['id', id]],
+          ['__mergeDeepLeft', [{ functor: name, vit: false }]],
+          ['__identity', []],
+        ],
+      ],
+    ],
+  ])
 
-export const editPriority = (id, priority) => dispatch(
-  ['__map', [['__ifElse', [
-    ['__propEq', ['id', id]],
-    ['__assoc', ['priority', priority]],
-    ['__identity', []],
-  ]]]],
-)
+export const changeVit = (id, vit) =>
+  dispatch([
+    '__map',
+    [
+      [
+        '__ifElse',
+        [
+          ['__propEq', ['id', id]],
+          ['__assoc', ['vit', vit]],
+          ['__identity', []],
+        ],
+      ],
+    ],
+  ])
 
-export const addFunctor = (id, name) => dispatch(
-  ['__map', [['__ifElse', [
-    ['__propEq', ['id', id]],
-    ['__assoc', ['functor', name]],
-    ['__identity', []],
-  ]]]],
-)
-
-export const deleteTodo = (id) => dispatch(
-  ['__reject', [['__propEq', ['id', id]]]],
-)
+export const remove = id => dispatch(['__reject', [['__propEq', ['id', id]]]])

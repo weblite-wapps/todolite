@@ -1,14 +1,21 @@
 {
-  "name": "todolite",
-  "id": "5afaababd17ae32f9743a98e",
+  "name": "TheTodolite",
+  "id": "5bfa54c41cc2ac3fbdcb94cf",
   "instancable": true,
-  "creator": false,
+  "creator": true,
   "userInfo": true,
   "fullscreen": false,
-  "inline": true,
+  "inline": false,
   "shareDB": true,
-  "width": 352,
-  "height": 452,
+  "searchable": true,
+  "customizeArray": [
+    {
+      "type": "textField",
+      "name": "title",
+      "title": "Title",
+      "detail": { "placeholder": "TO DO LITE" }
+    }
+  ],
   "servIndexes": {
     "inline": "index",
     "customize": "index",
