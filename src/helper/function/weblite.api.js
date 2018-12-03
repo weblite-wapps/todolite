@@ -26,7 +26,9 @@ const handleNormal = (start, vue) => {
 export default vue => {
   W.setHooks({
     wappWillStart(start, error, { mode }) {
-      ;(mode === 'customize' ? handleCustomize : handleNormal)(start, vue)
+      mode === 'customize'
+        ? handleCustomize(start, vue)
+        : handleNormal(start, vue)
     },
 
     onNotif() {

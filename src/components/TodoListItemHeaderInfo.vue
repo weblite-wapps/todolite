@@ -1,6 +1,5 @@
 <template>
   <div class="root noselect">
-    <img class="icon" :src="require('../assets/icons/drag.svg')" />
     <span v-if="creator" :title="creatorUpper" class="text">
       ADD BY <span class="functor">{{ creatorUpper }}</span>
     </span>

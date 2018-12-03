@@ -84,25 +84,19 @@ export default {
 
 .toggle {
   margin-top: -40px;
-}
-
-.done {
   animation: slide 0.1s ease-in forwards;
 }
 
 .star {
-  margin-top: -40px;
-  animation: slide 0.1s ease-in 0.07s forwards;
+  animation-delay: 0.07s;
 }
 
 .edit {
-  margin-top: -40px;
-  animation: slide 0.1s ease-in 0.14s forwards;
+  animation-delay: 0.14s;
 }
 
 .remove {
-  margin-top: -40px;
-  animation: slide 0.1s ease-in 0.21s forwards;
+  animation-delay: 0.21s;
 }
 
 @keyframes slide {

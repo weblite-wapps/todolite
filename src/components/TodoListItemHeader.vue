@@ -2,22 +2,26 @@
   <div class="root">
     <div class="header">
       <!-- controllers -->
-      <TodoListItemHeaderControllers
-        v-if="controllerOpen"
-        key="controllers"
-        :id="id"
-        :functor="functor"
-        :creator="creator"
-        :vit="vit"
-        :editable="editable"
-        :toggleEditable="toggleEditable"
-      />
-      <TodoListItemHeaderInfo
-        v-else
-        key="info"
-        :functor="functor"
-        :creator="creator"
-      />
+      <transition name="fade">
+        <TodoListItemHeaderControllers
+          v-if="controllerOpen"
+          key="controllers"
+          :id="id"
+          :functor="functor"
+          :creator="creator"
+          :vit="vit"
+          :editable="editable"
+          :toggleEditable="toggleEditable"
+        />
+      </transition>
+      <transition name="fade">
+        <TodoListItemHeaderInfo
+          v-if="!controllerOpen"
+          key="info"
+          :functor="functor"
+          :creator="creator"
+        />
+      </transition>
     </div>
 
     <BaseControllerButton
@@ -83,5 +87,14 @@ export default {
   width: 20%;
   height: 100%;
   position: absolute;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
