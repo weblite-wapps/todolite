@@ -4,8 +4,9 @@
     v-model="value"
     type="text"
     placeholder="TYPE HERE ..."
+    dir="auto"
     @keyup.enter="submit"
-  />
+  >
 </template>
 
 <script>

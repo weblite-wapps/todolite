@@ -1,5 +1,5 @@
 <template>
-  <p :contenteditable="editable" @keydown.enter.prevent="submit" />
+  <p dir="auto" :contenteditable="editable" @keydown.enter.prevent="submit"/>
 </template>
 
 <script>
