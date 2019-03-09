@@ -56,7 +56,7 @@ export default new Vuex.Store({
   mutations: {
     changeWebliteRelatedData(state, { title, username, isAdmin }) {
       state.username = username
-      state.title = title
+      state.title = title || 'TODOLITE'
       state.isAdmin = isAdmin
     },
 
