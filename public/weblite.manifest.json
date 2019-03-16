@@ -1,7 +1,7 @@
 {
   "name": "todolite",
   "id": "5c2734e92b63097cf18e001e",
-  "instancable": true,
+  "instantiable": true,
   "creator": true,
   "userInfo": true,
   "fullscreen": false,
