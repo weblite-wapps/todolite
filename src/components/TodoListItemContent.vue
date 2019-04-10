@@ -32,10 +32,11 @@ export default {
 .todo-content {
   @include reset();
 
-  width: 100%;
+  width: 100%; 
   padding: 10px;
   margin-top: 2px;
   font-size: 16px;
+  text-align: -webkit-auto;
   word-wrap: break-word;
   box-sizing: border-box;
   border-bottom-right-radius: 20px;

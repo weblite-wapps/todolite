@@ -1,10 +1,7 @@
 <template>
   <div>
     <TheAppBar class="app-bar" />
-
-    <VuePerfectScrollbar class="todolist-scroll-area">
-      <TheTodoList />
-    </VuePerfectScrollbar>
+    <TheTodoList /> 
   </div>
 </template>
 
@@ -47,17 +44,9 @@ export default {
 <style scoped>
 .app-bar {
   width: 100%;
-  height: 105px;
+  height: 120px;
   position: fixed;
   overflow: hidden;
-}
-
-.todolist-scroll-area {
-  position: fixed;
-  top: 105px;
-  width: 100%;
-  height: calc(100% - 105px);
-  overflow-x: hidden;
-  overflow-y: scroll;
+  z-index: 1;
 }
 </style>
