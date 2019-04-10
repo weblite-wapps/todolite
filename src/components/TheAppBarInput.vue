@@ -1,12 +1,12 @@
 <template>
-  <input
+  <textarea
     class="input"
     v-model="value"
     type="text"
     placeholder="TYPE HERE ..."
     dir="auto"
-    @keyup.enter="submit"
-  >
+    @keyup.enter.exact="submit"
+  ></textarea>
 </template>
 
 <script>
@@ -38,15 +38,18 @@ export default {
 
 .input {
   @include reset();
-
   width: 100%;
-  padding: 20px;
-  font-size: $font-size-small;
+  padding: 15px 20px 0px 20px;
+  font-size: $font-size-small; 
   color: $font-color-light-primary;
 }
 
 .input::placeholder {
   opacity: 0.4;
   color: $font-color-light-primary;
+}
+
+textarea {
+  resize: none;
 }
 </style>

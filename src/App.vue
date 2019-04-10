@@ -44,8 +44,9 @@ export default {
 <style scoped>
 .app-bar {
   width: 100%;
-  height: 105px;
+  height: 120px;
   position: fixed;
   overflow: hidden;
+  z-index: 1;
 }
 </style>

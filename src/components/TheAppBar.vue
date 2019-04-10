@@ -87,7 +87,7 @@ export default {
 
 .header {
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   background-color: $color-secondary;
 }
@@ -95,7 +95,7 @@ export default {
 .main {
   @include flex-center();
 
-  width: calc(100% - 50px);
+  width: calc(100% - 60px);
 }
 
 .title {
