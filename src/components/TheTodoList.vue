@@ -1,19 +1,21 @@
 <template>
   <!-- todo items -->
-  <ul>
-    <transition-group
-      name="todo"
-      tag="div"
-      :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
-    >
-      <TodoListItem
-        v-for="todo in todos"
-        :key="todo.id"
-        :todo="todo"
-        class="todo-item"
-      />
-    </transition-group>
-  </ul>
+  <VuePerfectScrollbar class="todolist-scroll-area">
+    <ul>
+      <transition-group
+        name="todo"
+        tag="div"
+        :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
+      >
+        <TodoListItem
+          v-for="todo in todos"
+          :key="todo.id"
+          :todo="todo"
+          class="todo-item"
+        />
+      </transition-group>
+    </ul>
+  </VuePerfectScrollbar>
 </template>
 
 <script>
@@ -84,5 +86,14 @@ export default {
   padding: 5px 10px;
   position: absolute;
   box-sizing: border-box;
+}
+
+.todolist-scroll-area {
+  position: fixed;
+  top: 105px;
+  width: 100%;
+  height: calc(100% - 105px);
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 </style>

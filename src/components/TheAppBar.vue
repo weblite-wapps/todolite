@@ -75,7 +75,6 @@ export default {
     },
 
     submit(value) {
-      this.mode = 'normal'
       this.$store.dispatch('addTodo', value)
     },
   },
