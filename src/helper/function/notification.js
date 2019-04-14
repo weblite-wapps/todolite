@@ -7,8 +7,6 @@ export default (type, { id, text: newText }, { todos, username }) => {
   const content =
     type === 'add'
       ? [`Todo was added by ${username}`, text]
-      : type === 'delete'
-      ? [`Todo was deleted by ${username}`, text]
       : type === 'done'
       ? [`Todo was marked as done by ${username}`, text]
       : undefined

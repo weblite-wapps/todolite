@@ -112,7 +112,6 @@ export default new Vuex.Store({
 
     removeTodo({ dispatch, state }, id) {
       dispatch('changeCurrentAction', 'remove')
-      notif('delete', { id }, state)
       db.remove(id)
       W.analytics("REMOVE_TODO")
     },
