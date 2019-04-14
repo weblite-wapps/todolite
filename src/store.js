@@ -66,6 +66,7 @@ export default new Vuex.Store({
 
     changePage(state, page) {
       state.page = page
+      W.analytics("CHANGE_TAB", { name: page })
     },
 
     changeTodos(state, todos) {
@@ -88,27 +89,31 @@ export default new Vuex.Store({
       commit('changePage', 'LIST')
       notif('add', { text }, state)
       db.add(text, state.username)
+      W.analytics("ADD_TODO")
     },
 
     changeTodoText(_, { id, text }) {
       db.changeText(id, text)
+      W.analytics("EDIT_TODO")
     },
 
     changeTodoFunctor({ state, dispatch }, { id, done }) {
       dispatch('changeCurrentAction', done ? 'done' : 'list-left')
       done && notif('done', { id }, state)
       db.changeFunctor(id, done ? state.username : '')
+      W.analytics("DONE_TODO")
     },
 
     changeTodoVit({ dispatch }, { id, vit }) {
       dispatch('changeCurrentAction', vit ? 'vit' : 'list-right')
       db.changeVit(id, vit)
+      W.analytics("VIT_CLICK")
     },
 
     removeTodo({ dispatch, state }, id) {
       dispatch('changeCurrentAction', 'remove')
-      notif('delete', { id }, state)
       db.remove(id)
+      W.analytics("REMOVE_TODO")
     },
   },
 

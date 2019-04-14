@@ -5,7 +5,7 @@
     type="text"
     placeholder="TYPE HERE ..."
     dir="auto"
-    @keyup.enter.exact="submit"
+    @keydown.enter.exact="submit"
   ></textarea>
 </template>
 
@@ -18,9 +18,9 @@ export default {
   }),
 
   methods: {
-    submit() {
+    submit(event) {
       if (!this.value) return
-
+      event.preventDefault()
       this.$emit('submit', this.value)
       this.value = ''
     },
