@@ -1,17 +1,7 @@
-// W && R
-const { W, R } = window
+// W
+const { W } = window
 
-const handleCustomize = (start, vue) => {
-  W.onChangeValue(({ key, value }) => {
-    if (key === 'title') vue.$store.commit('changeTitle', value)
-  })
-
-  W.changeCustomize(R.identity)
-
-  start()
-}
-
-const handleNormal = (start, vue) => {
+const handleNormalMode = (start, vue) => {
   W.loadData().then(({ user: { name }, creator, customize: { title } }) => {
     vue.$store.commit('changeWebliteRelatedData', {
       username: name,
@@ -26,9 +16,11 @@ const handleNormal = (start, vue) => {
 export default vue => {
   W.setHooks({
     wappWillStart(start, error, { mode }) {
-      mode === 'customize'
-        ? handleCustomize(start, vue)
-        : handleNormal(start, vue)
+      mode === 'customize' ? start() : handleNormalMode(start, vue)
+    },
+
+    onCustomizeValueChange({ key, value }) {
+      if (key === 'title') vue.$store.commit('changeTitle', value)
     },
 
     onNotif() {
