@@ -47,6 +47,7 @@ export default {
         this.todos[e.oldIndex].creator,
         this.todos[e.oldIndex].id,
         e.newIndex,
+        this.todos[e.oldIndex].vit,
       )
       // console.log('event: ', e)
       // console.log('event: ', CustomEvent)

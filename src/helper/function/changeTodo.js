@@ -13,11 +13,14 @@ const dispatch = qlite => W.share.dispatch([], qlite, [])
 
 
 
-export const add = (text, name, index = 0) =>
+export const add = (text, name, index = 0, vit = false) => {
+  const id = generateId()
   dispatch([
     '__insert',
-    [index, { id: generateId(), text, functor: '', vit: false, creator: name }],
+    [index, { id, text, functor: '', vit, creator: name }],
   ])
+  return id
+}
 
 
 
@@ -72,11 +75,14 @@ export const remove = id => dispatch(['__reject', [['__propEq', ['id', id]]]])
 
 
 
-export const dragTodo = (text, name, id, newIndex) => {
-  console.log("text ", text)
-  console.log("name ", name)
-  console.log("newIndex ", newIndex)
-  console.log("id ", id)
+export const dragTodo = (text, name, id, newIndex, vit) => {
+  // console.log("text ", text)
+  // console.log("name ", name)
+  // console.log("newIndex ", newIndex)
+  // console.log("id ", id)
+  // console.log("vit ", vit)
   remove(id)
-  add(text, name, newIndex)
+  const newId = add(text, name, newIndex, vit)
+  console.log("newId", newId)
+  // changeVit(newId, vit)
 } 

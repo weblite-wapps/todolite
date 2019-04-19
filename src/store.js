@@ -118,8 +118,12 @@ export default new Vuex.Store({
   },
 
   plugins: [
-    ({ commit }) => W.share.subscribe(todos =>
+    ({ commit }) => W.share.subscribe(todos => {
+
       commit('changeTodos', todos)
+      console.log("todos ", todos)
+    }
+
     ),
   ],
 })
