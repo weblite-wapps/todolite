@@ -34,13 +34,13 @@ export default new Vuex.Store({
         page === 'VIT'
           ? ({ vit, functor }) => vit && !functor
           : page === 'DONE'
-          ? R.prop('functor')
-          : page === 'LIST'
-          ? ({ vit, functor }) => !vit && !functor
-          : R.always(false)
+            ? R.prop('functor')
+            : page === 'LIST'
+              ? ({ vit, functor }) => !vit && !functor
+              : R.always(false)
 
       return R.compose(
-        R.reverse,
+        // R.reverse,
         R.filter(filterFunction),
       )(todos)
     },
@@ -118,6 +118,8 @@ export default new Vuex.Store({
   },
 
   plugins: [
-    ({ commit }) => W.share.subscribe(todos => commit('changeTodos', todos)),
+    ({ commit }) => W.share.subscribe(todos =>
+      commit('changeTodos', todos)
+    ),
   ],
 })

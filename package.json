@@ -1,6 +1,6 @@
 {
   "name": "todolite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
@@ -12,6 +12,7 @@
   "dependencies": {
     "vue": "^2.5.13",
     "vue-perfect-scrollbar": "^0.1.0",
+    "vuedraggable": "^2.20.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

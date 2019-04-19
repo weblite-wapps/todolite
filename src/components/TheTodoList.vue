@@ -2,18 +2,16 @@
   <!-- todo items -->
   <VuePerfectScrollbar class="todolist-scroll-area">
     <ul>
-      <transition-group
-        name="todo"
-        tag="div"
-        :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
-      >
-        <TodoListItem
-          v-for="todo in todos"
-          :key="todo.id"
-          :todo="todo"
-          class="todo-item"
-        />
-      </transition-group>
+      <draggable v-model="todo" draggable=".TodoListItemContent" @end="handleMove2">
+        <transition-group
+          class="transition"
+          name="todo"
+          tag="div"
+          :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
+        >
+          <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" class="todo-item"/>
+        </transition-group>
+      </draggable>
     </ul>
   </VuePerfectScrollbar>
 </template>
@@ -23,12 +21,15 @@
 import { mapGetters } from 'vuex'
 // component
 import TodoListItem from './TodoListItem'
-
+import draggable from 'vuedraggable'
+//
+import { dragTodo } from '../helper/function/changeTodo'
 export default {
   name: 'TheTodoList',
 
   components: {
     TodoListItem,
+    draggable,
   },
 
   computed: {
@@ -36,6 +37,21 @@ export default {
 
     currentAction() {
       return this.$store.state.currentAction
+    },
+  },
+  methods: {
+    handleMove2(e) {
+      console.log('todo data: ', this.todos[e.oldIndex])
+      dragTodo(
+        this.todos[e.oldIndex].text,
+        this.todos[e.oldIndex].creator,
+        this.todos[e.oldIndex].id,
+        e.newIndex,
+      )
+      // console.log('event: ', e)
+      // console.log('event: ', CustomEvent)
+      // console.log('oldIndex: ', oldIndex)
+      // console.log('newIndex: ', newIndex)
     },
   },
 }

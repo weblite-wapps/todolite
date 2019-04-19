@@ -1,14 +1,11 @@
 <template>
-  <li>
+  <li class="list-item">
     <div class="todo-header">
-      <TodoListItemHeader
-        v-bind="todo"
-        :editable="editable"
-        :toggleEditable="toggleEditable"
-      />
+      <TodoListItemHeader v-bind="todo" :editable="editable" :toggleEditable="toggleEditable"/>
     </div>
     <TodoListItemContent
       :content="todo.text"
+      class="TodoListItemContent"
       :editable="editable"
       @submit="edit"
     />
@@ -21,6 +18,7 @@ import { mapActions } from 'vuex'
 // components
 import TodoListItemHeader from './TodoListItemHeader.vue'
 import TodoListItemContent from './TodoListItemContent.vue'
+import draggable from 'vuedraggable'
 
 export default {
   name: 'TodoListItem',

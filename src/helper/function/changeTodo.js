@@ -1,13 +1,26 @@
-const { W } = window
+const { W, R } = window
 
 const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
-export const add = (text, name) =>
+// export const add = (text, name) =>
+//   dispatch([
+//     '__append',
+//     [{ id: generateId(), text, functor: '', vit: false, creator: name }],
+//   ])
+
+
+
+
+
+export const add = (text, name, index = 0) =>
   dispatch([
-    '__append',
-    [{ id: generateId(), text, functor: '', vit: false, creator: name }],
+    '__insert',
+    [index, { id: generateId(), text, functor: '', vit: false, creator: name }],
   ])
+
+
+
 
 export const changeText = (id, text) =>
   dispatch([
@@ -55,3 +68,15 @@ export const changeVit = (id, vit) =>
   ])
 
 export const remove = id => dispatch(['__reject', [['__propEq', ['id', id]]]])
+
+
+
+
+export const dragTodo = (text, name, id, newIndex) => {
+  console.log("text ", text)
+  console.log("name ", name)
+  console.log("newIndex ", newIndex)
+  console.log("id ", id)
+  remove(id)
+  add(text, name, newIndex)
+} 
