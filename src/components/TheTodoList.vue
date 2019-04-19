@@ -2,7 +2,7 @@
   <!-- todo items -->
   <VuePerfectScrollbar class="todolist-scroll-area">
     <ul>
-      <draggable v-model="todo" draggable=".TodoListItemContent" @end="handleMove2">
+      <draggable v-model="todo" :options="{ handle: '.TodoListItemContent'}" @end="handleMove2">
         <transition-group
           class="transition"
           name="todo"
