@@ -2,10 +2,15 @@
   <!-- todo items -->
   <VuePerfectScrollbar class="todolist-scroll-area">
     <ul>
-      <draggable v-model="todo" :options="{ handle: '.TodoListItemContent'}" @end="handleMove2">
+      <draggable
+        v-model="todo"
+        v-bind="dragOptions"
+        :options="{ filter: '.controller-button'}"
+        @end="handleDrag"
+      >
         <transition-group
           class="transition"
-          name="todo"
+          :name="!drag ? 'flip-list' : null"
           tag="div"
           :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
         >
@@ -32,27 +37,32 @@ export default {
     draggable,
   },
 
+  data() {
+    return {
+      drag: false,
+    }
+  },
+
   computed: {
-    ...mapGetters({ todos: 'filteredTodos' }),
+    ...mapGetters({ todos: 'filteredTodos', allTodos: 'allTodos' }),
 
     currentAction() {
       return this.$store.state.currentAction
     },
+
+    dragOptions() {
+      return {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      }
+    },
   },
   methods: {
-    handleMove2(e) {
-      console.log('todo data: ', this.todos[e.oldIndex])
-      dragTodo(
-        this.todos[e.oldIndex].text,
-        this.todos[e.oldIndex].creator,
-        this.todos[e.oldIndex].id,
-        e.newIndex,
-        this.todos[e.oldIndex].vit,
-      )
-      // console.log('event: ', e)
-      // console.log('event: ', CustomEvent)
-      // console.log('oldIndex: ', oldIndex)
-      // console.log('newIndex: ', newIndex)
+    handleDrag(e) {
+      this.drag = false
+      dragTodo(this.todos[e.oldIndex], this.allTodos, this.todos[e.newIndex].id)
     },
   },
 }
@@ -112,5 +122,11 @@ export default {
   height: calc(100% - 105px);
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+  cursor: pointer;
 }
 </style>

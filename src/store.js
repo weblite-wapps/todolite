@@ -40,7 +40,7 @@ export default new Vuex.Store({
               : R.always(false)
 
       return R.compose(
-        // R.reverse,
+        R.reverse,
         R.filter(filterFunction),
       )(todos)
     },
@@ -51,6 +51,10 @@ export default new Vuex.Store({
       if (numberOfAll === 0) return 0
       else return ((numberOfDone / numberOfAll) * 100).toFixed(0)
     },
+
+    allTodos({ todos }) {
+      return todos
+    }
   },
 
   mutations: {
@@ -118,12 +122,8 @@ export default new Vuex.Store({
   },
 
   plugins: [
-    ({ commit }) => W.share.subscribe(todos => {
-
+    ({ commit }) => W.share.subscribe(todos =>
       commit('changeTodos', todos)
-      console.log("todos ", todos)
-    }
-
     ),
   ],
 })
