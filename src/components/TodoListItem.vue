@@ -18,7 +18,6 @@ import { mapActions } from 'vuex'
 // components
 import TodoListItemHeader from './TodoListItemHeader.vue'
 import TodoListItemContent from './TodoListItemContent.vue'
-import draggable from 'vuedraggable'
 
 export default {
   name: 'TodoListItem',

@@ -5,7 +5,7 @@
       <draggable
         v-model="todo"
         v-bind="dragOptions"
-        :options="{ filter: '.controller-button'}"
+        :options="{ handle: '.drag-icon'}"
         @end="handleDrag"
       >
         <transition-group
