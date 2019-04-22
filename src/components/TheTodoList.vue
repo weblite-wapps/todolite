@@ -5,12 +5,12 @@
       <draggable
         v-model="todo"
         v-bind="dragOptions"
-        :options="{ handle: '.drag-icon'}"
+        :options="{ handle: '.drag-icon', scroll: true }"
         @end="handleDrag"
       >
         <transition-group
           class="transition"
-          :name="!drag ? 'flip-list' : null"
+          name="todo"
           tag="div"
           :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
         >
