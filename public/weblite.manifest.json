@@ -13,12 +13,15 @@
       "type": "textField",
       "name": "title",
       "title": "Title",
-      "detail": { "placeholder": "TO DO LITE" }
+      "detail": {
+        "placeholder": "TO DO LITE"
+      }
     }
   ],
   "servIndexes": {
     "inline": "index",
     "customize": "index",
     "main": "index"
-  }
+  },
+  "version": "0.1.2"
 }
