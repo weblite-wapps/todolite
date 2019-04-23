@@ -33,6 +33,7 @@
 </template>
 
 <script>
+// components
 import BaseRotativeButton from '../helper/component/BaseRotativeButton'
 import TheAppBarProgress from './TheAppBarProgress'
 import TheAppBarInput from './TheAppBarInput'

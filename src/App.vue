@@ -11,11 +11,11 @@ import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 // components
 import TheAppBar from './components/TheAppBar'
 import TheTodoList from './components/TheTodoList'
-// helper
+// helpers
 import webliteHandler from './helper/function/weblite.api'
 // store
 import store from './store'
-// R && W
+// W
 const { W } = window
 
 export default {

@@ -22,13 +22,14 @@
 </template>
 
 <script>
-// module
-import { mapGetters } from 'vuex'
-// component
-import TodoListItem from './TodoListItem'
+// modules
 import draggable from 'vuedraggable'
-//
+import { mapState, mapGetters } from 'vuex'
+// components
+import TodoListItem from './TodoListItem'
+// helpers
 import { dragTodo } from '../helper/function/changeTodo'
+
 export default {
   name: 'TheTodoList',
 
