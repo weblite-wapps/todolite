@@ -51,6 +51,10 @@ export default new Vuex.Store({
       if (numberOfTodos === 0) return 0
       else return ((numberOfDoneTodos / numberOfTodos) * 100).toFixed(0)
     },
+
+    allTodos({ todos }) {
+      return todos
+    },
   },
 
   mutations: {
@@ -110,7 +114,7 @@ export default new Vuex.Store({
       W.analytics("VIT_CLICK")
     },
 
-    removeTodo({ dispatch, state }, id) {
+    removeTodo({ dispatch }, id) {
       dispatch('changeCurrentAction', 'remove')
       db.remove(id)
       W.analytics("REMOVE_TODO")

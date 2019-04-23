@@ -1,4 +1,5 @@
-const { W } = window
+// W & R
+const { W, R } = window
 
 const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
