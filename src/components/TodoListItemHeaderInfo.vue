@@ -1,5 +1,6 @@
 <template>
   <div class="root noselect">
+    <img class="drag-icon" :src="require('../assets/icons/drag.svg')" />
     <span v-if="creator" :title="creatorUpper" class="text">
       ADD BY <span class="functor">{{ creatorUpper }}</span>
     </span>
@@ -39,9 +40,10 @@ export default {
   align-items: center;
 }
 
-.icon {
+.drag-icon {
   width: 23px;
   margin-left: 12px;
+  cursor: pointer;
 }
 
 .text {

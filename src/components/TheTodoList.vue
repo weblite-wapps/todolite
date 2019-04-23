@@ -2,18 +2,21 @@
   <!-- todo items -->
   <VuePerfectScrollbar class="todolist-scroll-area">
     <ul>
-      <transition-group
-        name="todo"
-        tag="div"
-        :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
+      <draggable
+        v-model="todo"
+        v-bind="dragOptions"
+        :options="{ handle: '.drag-icon', scroll: true }"
+        @end="handleDrag"
       >
-        <TodoListItem
-          v-for="todo in todos"
-          :key="todo.id"
-          :todo="todo"
-          class="todo-item"
-        />
-      </transition-group>
+        <transition-group
+          class="transition"
+          name="todo"
+          tag="div"
+          :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
+        >
+          <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" class="todo-item"/>
+        </transition-group>
+      </draggable>
     </ul>
   </VuePerfectScrollbar>
 </template>
@@ -23,19 +26,45 @@
 import { mapGetters } from 'vuex'
 // component
 import TodoListItem from './TodoListItem'
-
+import draggable from 'vuedraggable'
+//
+import { dragTodo } from '../helper/function/changeTodo'
 export default {
   name: 'TheTodoList',
 
   components: {
     TodoListItem,
+    draggable,
+  },
+
+  data() {
+    return {
+      drag: false,
+    }
   },
 
   computed: {
+    ...mapState(['todos']),
+
     ...mapGetters({ todos: 'filteredTodos' }),
 
     currentAction() {
       return this.$store.state.currentAction
+    },
+
+    dragOptions() {
+      return {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      }
+    },
+  },
+  methods: {
+    handleDrag(e) {
+      this.drag = false
+      dragTodo(this.todos[e.oldIndex], this.todos, this.todos[e.newIndex].id)
     },
   },
 }
@@ -95,5 +124,11 @@ export default {
   height: calc(100% - 105px);
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+  cursor: pointer;
 }
 </style>
