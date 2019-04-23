@@ -3,7 +3,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // shareDB
 import * as db from './helper/function/changeTodo.js'
-import notif from './helper/function/notification.js'
+import sendNotification from './helper/function/notification.js' 
 // R, W
 const { R, W } = window
 
@@ -46,21 +46,17 @@ export default new Vuex.Store({
     },
 
     donePercentage({ todos }) {
-      const numberOfDone = todos.filter(R.prop('functor')).length
-      const numberOfAll = todos.length
-      if (numberOfAll === 0) return 0
-      else return ((numberOfDone / numberOfAll) * 100).toFixed(0)
+      const numberOfDoneTodos = todos.filter(R.prop('functor')).length
+      const numberOfTodos = todos.length
+      if (numberOfTodos === 0) return 0
+      else return ((numberOfDoneTodos / numberOfTodos) * 100).toFixed(0)
     },
-
-    allTodos({ todos }) {
-      return todos
-    }
   },
 
   mutations: {
     changeWebliteRelatedData(state, { title, username, isAdmin }) {
-      state.username = username
       state.title = title || 'TODOLITE'
+      state.username = username
       state.isAdmin = isAdmin
     },
 
@@ -91,7 +87,7 @@ export default new Vuex.Store({
 
     addTodo({ commit, state }, text) {
       commit('changePage', 'LIST')
-      notif('add', { text }, state)
+      sendNotification('add', { text }, state)
       db.add(text, state.username)
       W.analytics("ADD_TODO")
     },
@@ -103,7 +99,7 @@ export default new Vuex.Store({
 
     changeTodoFunctor({ state, dispatch }, { id, done }) {
       dispatch('changeCurrentAction', done ? 'done' : 'list-left')
-      done && notif('done', { id }, state)
+      done && sendNotification('done', { id }, state)
       db.changeFunctor(id, done ? state.username : '')
       W.analytics("DONE_TODO")
     },
