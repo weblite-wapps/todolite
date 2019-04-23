@@ -24,7 +24,7 @@
 <script>
 // modules
 import draggable from 'vuedraggable'
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 // components
 import TodoListItem from './TodoListItem'
 // helpers
@@ -45,9 +45,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['todos']),
-
-    ...mapGetters({ todos: 'filteredTodos' }),
+    ...mapGetters({ todos: 'filteredTodos', allTodos: 'allTodos' }),
 
     currentAction() {
       return this.$store.state.currentAction
@@ -65,7 +63,7 @@ export default {
   methods: {
     handleDrag(e) {
       this.drag = false
-      dragTodo(this.todos[e.oldIndex], this.todos, this.todos[e.newIndex].id)
+      dragTodo(this.todos[e.oldIndex], this.allTodos, this.todos[e.newIndex].id)
     },
   },
 }

@@ -6,8 +6,6 @@
 </template>
 
 <script>
-// modules
-import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 // components
 import TheAppBar from './components/TheAppBar'
 import TheTodoList from './components/TheTodoList'
@@ -26,7 +24,6 @@ export default {
   components: {
     TheAppBar,
     TheTodoList,
-    VuePerfectScrollbar,
   },
 
   computed: {
