@@ -16,8 +16,8 @@
 // modules
 import { mapActions } from 'vuex'
 // components
-import TodoListItemHeader from './TodoListItemHeader.vue'
-import TodoListItemContent from './TodoListItemContent.vue'
+const TodoListItemHeader = () => import('./TodoListItemHeader.vue')
+const TodoListItemContent = () => import('./TodoListItemContent.vue')
 
 export default {
   name: 'TodoListItem',

@@ -40,7 +40,7 @@
 // modules
 import { mapActions } from 'vuex'
 // components
-import BaseToggle from '../helper/component/BaseToggle.vue'
+const BaseToggle = () => import('../helper/component/BaseToggle.vue')
 
 export default {
   name: 'TodoListItemControllers',

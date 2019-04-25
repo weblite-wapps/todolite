@@ -7,8 +7,8 @@
 
 <script>
 // components
-import TheAppBar from './components/TheAppBar'
-import TheTodoList from './components/TheTodoList'
+const TheAppBar = () => import('./components/TheAppBar')
+const TheTodoList = () => import('./components/TheTodoList')
 // helpers
 import webliteHandler from './helper/function/weblite.api'
 // store

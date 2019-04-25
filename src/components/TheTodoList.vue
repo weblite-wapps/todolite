@@ -26,7 +26,7 @@
 import draggable from 'vuedraggable'
 import { mapGetters } from 'vuex'
 // components
-import TodoListItem from './TodoListItem'
+const TodoListItem = () => import('./TodoListItem.vue')
 // helpers
 import { dragTodo } from '../helper/function/changeTodo'
 

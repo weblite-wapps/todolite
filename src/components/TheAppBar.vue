@@ -34,10 +34,10 @@
 
 <script>
 // components
-import BaseRotativeButton from '../helper/component/BaseRotativeButton'
-import TheAppBarProgress from './TheAppBarProgress'
-import TheAppBarInput from './TheAppBarInput'
-import TheAppBarTabs from './TheAppBarTabs'
+const BaseRotativeButton = () => import('../helper/component/BaseRotativeButton')
+const TheAppBarProgress = () => import('./TheAppBarProgress')
+const TheAppBarInput = () => import('./TheAppBarInput')
+const TheAppBarTabs = () => import('./TheAppBarTabs')
 
 export default {
   name: 'TheAppBar',
