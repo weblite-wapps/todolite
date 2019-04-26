@@ -9,7 +9,7 @@
 
 <script>
 // components
-const BaseEditable = () => import('../helper/component/BaseEditable.vue')
+import BaseEditable from '../helper/component/BaseEditable.vue'
 
 export default {
   name: 'TodoListItemContent',

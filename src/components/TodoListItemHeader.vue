@@ -34,9 +34,9 @@
 
 <script>
 // components
-const TodoListItemHeaderControllers = () => import('./TodoListItemHeaderControllers.vue')
-const TodoListItemHeaderInfo = () => import('./TodoListItemHeaderInfo.vue')
-const BaseControllerButton = () => import('../helper/component/BaseControllerButton.vue')
+import TodoListItemHeaderControllers from './TodoListItemHeaderControllers.vue'
+import TodoListItemHeaderInfo from './TodoListItemHeaderInfo.vue'
+import BaseControllerButton from '../helper/component/BaseControllerButton.vue'
 
 export default {
   name: 'TodoListItemHeader',

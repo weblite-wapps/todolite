@@ -11,7 +11,7 @@
 // modules
 import { mapState, mapMutations } from 'vuex'
 // components
-const BaseTab = () => import('../helper/component/BaseTab')
+import BaseTab from '../helper/component/BaseTab'
 
 export default {
   name: 'TheAppBarTabs',
