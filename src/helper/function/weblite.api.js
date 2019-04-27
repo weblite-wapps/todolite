@@ -19,12 +19,13 @@ export default vue => {
       mode === 'customize' ? start() : handleNormalMode(start, vue)
     },
 
-    onCustomizeValueChange({ key, value }) {
-      if (key === 'title') vue.$store.commit('changeTitle', value)
+    wappDidStart({ mode }) {
+      if (mode !== 'customize')
+        W.deleteAllNotifications()
     },
 
-    onNotif() {
-      W.deleteAllNotifications()
+    onCustomizeValueChange({ key, value }) {
+      if (key === 'title') vue.$store.commit('changeTitle', value)
     },
   })
 }
