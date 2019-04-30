@@ -74,6 +74,9 @@ export default {
 .functor {
   color: $font-color-dark-secondary;
   margin-left: 5px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .icon {
