@@ -1,12 +1,20 @@
 <template>
   <div class="root noselect">
     <img class="drag-icon" :src="require('../assets/icons/drag.svg')" />
-    <span v-if="creator" :title="creatorUpper" class="text">
-      ADD BY <span class="functor">{{ creatorUpper }}</span>
+
+    <span v-if="creator" :title="creatorUpper" class="text"> 
+      <svg height="18" width="18">
+        <line class="icon-line" x1="0" y1="9" x2="18" y2="9" />
+        <line class="icon-line" x1="9" y1="0" x2="9" y2="18" />
+      </svg>
+      <span class="functor">{{ creatorUpper }}</span>
     </span>
+
     <span v-if="functor" class="text">|</span>
+    
     <span v-if="functor" :title="functorUpper" class="text">
-      DONE BY <span class="functor">{{ functorUpper }}</span>
+      <img :src="require(`../assets/icons/done.svg`)" class="icon" />
+      <span class="functor">{{ functorUpper }}</span>
     </span>
   </div>
 </template>
@@ -43,7 +51,7 @@ export default {
 .drag-icon {
   width: 23px;
   margin-left: 12px;
-  cursor: pointer;
+  cursor: move;
 }
 
 .text {
@@ -54,6 +62,9 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
   color: $font-color-light-secondary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .text:first-of-type {
@@ -62,5 +73,15 @@ export default {
 
 .functor {
   color: $font-color-dark-secondary;
+  margin-left: 5px;
+}
+
+.icon {
+  width: 18px;
+}
+
+.icon-line {
+  stroke: #ffffff;
+  stroke-width: 4;
 }
 </style>
