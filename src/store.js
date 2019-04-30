@@ -17,7 +17,7 @@ export default new Vuex.Store({
   state: {
     // stuff came from weblite
     title: 'TODOLITE',
-    username: 'ali',
+    username: 'kind_of_shit_kind_of_shit',
     isAdmin: false,
 
     // view states

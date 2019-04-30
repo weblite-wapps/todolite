@@ -3,7 +3,7 @@
     <img class="drag-icon" :src="require('../assets/icons/drag.svg')" />
 
     <span v-if="creator" :title="creatorUpper" class="text"> 
-      <svg height="14" width="14">
+      <svg height="14" width="14" class="plus-icon">
         <line class="icon-line" x1="0" y1="7" x2="14" y2="7" />
         <line class="icon-line" x1="7" y1="0" x2="7" y2="14" />
       </svg>
@@ -13,7 +13,7 @@
     <span v-if="functor" class="text">|</span>
     
     <span v-if="functor" :title="functorUpper" class="text">
-      <img :src="require(`../assets/icons/done.svg`)" class="icon" />
+      <img :src="require(`../assets/icons/greenDone.svg`)" class="done-icon" />
       <span class="functor">{{ functorUpper }}</span>
     </span>
   </div>
@@ -79,12 +79,17 @@ export default {
   text-overflow: ellipsis;
 }
 
-.icon {
+.plus-icon {
+  min-width: 14px;
+}
+
+.done-icon {
   width: 18px;
+  min-width: 14px;
 }
 
 .icon-line {
-  stroke: #ffffff;
+  stroke: #0395E3;;
   stroke-width: 4;
 }
 </style>
