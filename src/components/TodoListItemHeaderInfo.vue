@@ -3,9 +3,9 @@
     <img class="drag-icon" :src="require('../assets/icons/drag.svg')" />
 
     <span v-if="creator" :title="creatorUpper" class="text"> 
-      <svg height="18" width="18">
-        <line class="icon-line" x1="0" y1="9" x2="18" y2="9" />
-        <line class="icon-line" x1="9" y1="0" x2="9" y2="18" />
+      <svg height="14" width="14">
+        <line class="icon-line" x1="0" y1="7" x2="14" y2="7" />
+        <line class="icon-line" x1="7" y1="0" x2="7" y2="14" />
       </svg>
       <span class="functor">{{ creatorUpper }}</span>
     </span>
