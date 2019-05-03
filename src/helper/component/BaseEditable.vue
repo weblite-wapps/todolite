@@ -43,5 +43,6 @@ export default {
 textarea {
   resize: none;
   height: auto;
+  overflow: hidden;
 }
 </style>
