@@ -23,6 +23,7 @@ export default {
 
   updated() {
     this.$el.focus()
+    this.$store.commit("changeEditableText", this.content)
   },
 
   methods: {
