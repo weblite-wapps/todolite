@@ -1,6 +1,14 @@
 <template>
-  <p dir="auto" :contenteditable="editable" @keydown.enter.prevent="submit"/>
-</template>
+  <textarea
+    rows="1"
+    :value="content"
+    @input="textareaResize"
+    ref="textarea"
+    dir="auto"
+    :disabled="!editable"
+    @keydown.enter.prevent="submit"
+  />
+</template> 
 
 <script>
 export default {
@@ -10,40 +18,29 @@ export default {
   },
 
   mounted: function() {
-    this.$el.innerText = this.content
-  },
-
-  watch: {
-    content: function() {
-      this.$el.innerText = this.content
-    },
+    this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
   },
 
   updated() {
     this.$el.focus()
-
-    if (
-      typeof window.getSelection != 'undefined' &&
-      typeof document.createRange != 'undefined'
-    ) {
-      const range = document.createRange()
-      range.selectNodeContents(this.$el)
-      range.collapse(false)
-      const sel = window.getSelection()
-      sel.removeAllRanges()
-      sel.addRange(range)
-    } else if (typeof document.body.createTextRange != 'undefined') {
-      const textRange = document.body.createTextRange()
-      textRange.moveToElementText(this.$el)
-      textRange.collapse(false)
-      textRange.select()
-    }
   },
 
   methods: {
-    submit({ target: { innerText } }) {
-      this.$emit('submit', innerText)
+    textareaResize(event) {
+      this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
+      this.$store.commit("changeEditableText", event.target.value)
+    },
+
+    submit() {
+      this.$emit('submit')
     },
   },
 }
 </script>
+
+<style lang="scss" scoped>
+textarea {
+  resize: none;
+  height: auto;
+}
+</style>

@@ -7,14 +7,14 @@
       :content="todo.text"
       class="TodoListItemContent"
       :editable="editable"
-      @submit="edit"
-    />
+      @submit="toggleEditable"
+    /> 
   </li>
 </template>
 
 <script>
 // modules
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 // components
 const TodoListItemHeader = () => import('./TodoListItemHeader.vue')
 const TodoListItemContent = () => import('./TodoListItemContent.vue')
@@ -35,17 +35,19 @@ export default {
     todo: { type: Object, required: true },
   },
 
+  computed: mapState(['editableText']),
+
   methods: {
     ...mapActions(['changeTodoText']),
 
-    toggleEditable(value) {
-      if (value != undefined) this.editable = value
-      else this.editable = !this.editable
+    toggleEditable(value) { 
+      if (this.editable) this.edit()
+      this.editable = value
     },
 
-    edit(text) {
-      this.changeTodoText({ id: this.todo.id, text })
-      this.toggleEditable()
+    edit() {
+      this.changeTodoText({ id: this.todo.id, text: this.editableText })
+      this.editable = false
     },
   },
 }
@@ -62,3 +64,4 @@ export default {
   background-color: $color-primary;
 }
 </style>
+

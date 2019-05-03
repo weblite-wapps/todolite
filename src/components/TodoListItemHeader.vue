@@ -62,7 +62,7 @@ export default {
 
   methods: {
     changeControllerOpen(value) {
-      this.toggleEditable(false)
+      this.toggleEditable(false) 
       this.controllerOpen = value
     },
   },

@@ -23,6 +23,7 @@ export default new Vuex.Store({
     // view states
     page: 'LIST', // VIT, LIST, DONE
     currentAction: '', // remove, vit, done, list-right, list-left
+    editableText: '',
 
     // main data
     todos: [], // [{ id, text, creator, functor, vit }],
@@ -80,6 +81,10 @@ export default new Vuex.Store({
     changeCurrentAction(state, action) {
       state.currentAction = action
     },
+
+    changeEditableText(state, text) {
+      state.editableText = text
+    }
   },
 
   actions: {
@@ -96,8 +101,9 @@ export default new Vuex.Store({
       W.analytics("ADD_TODO")
     },
 
-    changeTodoText(_, { id, text }) {
+    changeTodoText({ commit }, { id, text }) {
       db.changeText(id, text)
+      commit('changeEditableText', '')
       W.analytics("EDIT_TODO")
     },
 
@@ -127,3 +133,4 @@ export default new Vuex.Store({
     ),
   ],
 })
+
