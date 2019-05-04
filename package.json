@@ -10,6 +10,7 @@
     "prettier": "prettier '**/*.{js,vue,html,css,scss}' --write"
   },
   "dependencies": {
+    "dayjs": "^1.8.13",
     "vue": "^2.5.13",
     "vue-perfect-scrollbar": "^0.1.0",
     "vuedraggable": "^2.20.0",

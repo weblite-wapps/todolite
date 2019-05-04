@@ -1,10 +1,17 @@
 <template>
-  <BaseEditable
-    class="todo-content"
-    :content="content"
-    :editable="editable"
-    @submit="$emit('submit', $event)"
-  />
+  <div> 
+    <template v-if="controllerOpen">
+      <p class="todo-info">Creator: {{ creator  }}</p>
+      <p v-if="functor" class="todo-info">Done By: {{ functor  }}</p>
+    </template> 
+
+    <BaseEditable
+      class="todo-content"
+      :content="text"
+      :editable="editable"
+      @submit="$emit('submit', $event)"
+    />
+  </div>
 </template>
 
 <script>
@@ -19,8 +26,11 @@ export default {
   },
 
   props: {
+    controllerOpen: { type: Boolean, default: false },
     editable: { type: Boolean, default: false },
-    content: { type: String, required: true },
+    text: { type: String, required: true  },
+    functor: { type: String, required: true  },
+    creator: { type: String, required: true  },
   },
 }
 </script>
@@ -28,6 +38,16 @@ export default {
 <style lang="scss" scoped>
 @import '../helper/style/_variable.scss';
 @import '../helper/style/_mixin.scss';
+
+.todo-info {
+  margin-top: 2px;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+  font-weight: $font-weight-normal;
+  background-color: $color-primary;
+  color: $font-color-dark-secondary;
+}
 
 .todo-content {
   @include reset();

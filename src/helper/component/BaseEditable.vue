@@ -6,9 +6,9 @@
     ref="textarea"
     dir="auto"
     :disabled="!editable"
-    @keydown.enter.prevent="submit"
+    @keydown.enter.exact.prevent="submit"
   />
-</template> 
+</template>
 
 <script>
 export default {

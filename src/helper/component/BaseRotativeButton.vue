@@ -34,8 +34,8 @@ export default {
 .button {
   @include reset();
 
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   background-color: $color-edit;
 }

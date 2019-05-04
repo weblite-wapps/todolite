@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheAppBar class="app-bar" />
-    <TheTodoList /> 
+    <TheAppBar />
+    <TheTodoList />
   </div>
 </template>
 
@@ -37,13 +37,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.app-bar {
-  width: 100%;
-  height: 120px;
-  position: fixed;
-  overflow: hidden;
-  z-index: 1;
-}
-</style>

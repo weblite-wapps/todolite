@@ -1,8 +1,9 @@
 <template>
   <div class="root noselect">
     <img class="drag-icon" :src="require('../assets/icons/drag.svg')" />
-
-    <span v-if="creator" :title="creatorUpper" class="text"> 
+    
+    <p class="time">{{ created_at }}</p>
+    <!-- <span v-if="creator" :title="creatorUpper" class="text"> 
       <svg height="14" width="14" class="plus-icon">
         <line class="icon-line" x1="0" y1="7" x2="14" y2="7" />
         <line class="icon-line" x1="7" y1="0" x2="7" y2="14" />
@@ -15,7 +16,7 @@
     <span v-if="functor" :title="functorUpper" class="text">
       <img :src="require(`../assets/icons/greenDone.svg`)" class="done-icon" />
       <span class="functor">{{ functorUpper }}</span>
-    </span>
+    </span> -->
   </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
   name: 'TodoListItemHeaderInfo',
 
   props: {
+    created_at: { type: String, default: '' },
     creator: { type: String, default: '' },
     functor: { type: String, default: '' },
   },
@@ -52,6 +54,13 @@ export default {
   width: 23px;
   margin-left: 12px;
   cursor: move;
+}
+
+.time {
+  padding-left: 15px;
+  font-size: 16px;
+  font-weight: $font-weight-normal;
+  color: $font-color-dark-secondary;
 }
 
 .text {

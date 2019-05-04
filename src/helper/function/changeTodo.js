@@ -1,13 +1,15 @@
+// helper
+import { now } from './time'
 // W & R
-const { W, R } = window
+const { W, R } = window 
 
 const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
-export const add = (text, name, index = -1, vit = false, functor = '') =>
+export const add = (text, name, index = -1, vit = false, functor = '', created_at = now() ) =>
   dispatch([
     '__insert',
-    [index, { id: generateId(), text, functor, vit, creator: name }],
+    [index, { id: generateId(), text, functor, vit, creator: name, created_at }],
   ])
 
 

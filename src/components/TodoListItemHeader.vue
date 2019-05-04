@@ -16,8 +16,9 @@
       </transition>
       <transition name="fade">
         <TodoListItemHeaderInfo
-          v-if="!controllerOpen"
+          v-if="!controllerOpen" 
           key="info"
+          :created_at="created_at"
           :functor="functor"
           :creator="creator"
         />
@@ -48,23 +49,15 @@ export default {
   },
 
   props: {
+    created_at: { type: String, default: '' },
     functor: { type: String, default: '' },
     creator: { type: String, default: '' },
     vit: { type: Boolean, default: false },
     id: { type: Number, require: true },
     editable: { type: Boolean, default: false },
+    controllerOpen: { type: Boolean, default: false },
     toggleEditable: { type: Function, required: true },
-  },
-
-  data: () => ({
-    controllerOpen: false,
-  }),
-
-  methods: {
-    changeControllerOpen(value) {
-      this.toggleEditable(false) 
-      this.controllerOpen = value
-    },
+    changeControllerOpen: { type: Function, required: true },
   },
 }
 </script>

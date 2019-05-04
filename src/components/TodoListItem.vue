@@ -1,13 +1,21 @@
 <template>
   <li class="list-item">
     <div class="todo-header">
-      <TodoListItemHeader v-bind="todo" :editable="editable" :toggleEditable="toggleEditable"/>
+      <TodoListItemHeader
+        v-bind="todo"
+        :editable="editable"
+        :toggleEditable="toggleEditable"
+        :controllerOpen="controllerOpen"
+        :changeControllerOpen="changeControllerOpen"
+      />
     </div>
     <TodoListItemContent
+      v-bind="todo"
       :content="todo.text"
       class="TodoListItemContent"
       :editable="editable"
       @submit="toggleEditable"
+      :controllerOpen="controllerOpen"
     /> 
   </li>
 </template>
@@ -29,6 +37,7 @@ export default {
 
   data: () => ({
     editable: false,
+    controllerOpen: false,
   }),
 
   props: {
@@ -39,6 +48,11 @@ export default {
 
   methods: {
     ...mapActions(['changeTodoText']),
+
+    changeControllerOpen(value) {
+      this.toggleEditable(false)
+      this.controllerOpen = value
+    },
 
     toggleEditable(value) { 
       if (this.editable) this.edit()

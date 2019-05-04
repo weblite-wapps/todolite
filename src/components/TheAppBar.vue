@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-bar">
     <div class="header">
       <div
         class="main"
@@ -7,19 +7,17 @@
         @mouseout="toggleMode('out')"
       >
         <!-- Title -->
-        <div v-if="mode === 'normal'" key="title" class="title">
-          {{ title }}
+        <div key="title" class="title">
+          {{ mode === 'normal' ? title : '' }}
+          {{ mode === 'add' ? 'ADD TODO' : '' }}
         </div>
 
         <!-- Progress -->
         <TheAppBarProgress
-          v-else-if="mode === 'progress'"
+          v-if="mode === 'progress'"
           key="progress"
           :percentage="60"
         />
-
-        <!-- Input -->
-        <TheAppBarInput v-else-if="mode === 'add'" @submit="submit" />
       </div>
 
       <BaseRotativeButton
@@ -28,7 +26,11 @@
       />
     </div>
 
-    <TheAppBarTabs />
+    <!-- Input -->
+    <TheAppBarInput v-if="mode === 'add'" @submit="submit" />
+   
+
+    <TheAppBarTabs /> 
   </div>
 </template>
 
@@ -76,6 +78,7 @@ export default {
     },
 
     submit(value) {
+      this.mode = "normal"
       this.$store.dispatch('addTodo', value)
     },
   },
@@ -86,9 +89,18 @@ export default {
 @import '../helper/style/_variable.scss';
 @import '../helper/style/_mixin.scss';
 
+.app-bar {
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
   width: 100%;
-  height: 60px;
+  height: 50px;
   display: flex;
   background-color: $color-secondary;
 }
@@ -96,12 +108,16 @@ export default {
 .main {
   @include flex-center();
 
-  width: calc(100% - 60px);
+  width: calc(100% - 50px);
 }
 
 .title {
   font-size: $font-size-large;
   font-weight: $font-weight-heavy;
   color: $font-color-light-primary;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 10px;
 }
 </style>
