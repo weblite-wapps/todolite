@@ -2,6 +2,7 @@
 const { W } = window
 
 const handleNormalMode = (start, vue) => {
+  start()
   W.loadData().then(({ user: { name }, creator, customize: { title } }) => {
     vue.$store.commit('changeWebliteRelatedData', {
       username: name,
@@ -9,8 +10,7 @@ const handleNormalMode = (start, vue) => {
       isAdmin: creator,
     })
   })
-
-  W.share.getFromServer([]).then(start)
+  W.share.getFromServer([])
 }
 
 export default vue => {
