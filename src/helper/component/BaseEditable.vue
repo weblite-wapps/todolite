@@ -6,7 +6,7 @@
     ref="textarea"
     dir="auto"
     :disabled="!editable"
-    @keydown.enter.exact.prevent="submit"
+    @keydown.enter.exact.prevent="submit" 
   />
 </template>
 
@@ -44,5 +44,6 @@ textarea {
   resize: none;
   height: auto;
   overflow: hidden;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 </style>

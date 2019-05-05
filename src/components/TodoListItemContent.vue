@@ -62,7 +62,7 @@ export default {
 .todo-info {
   margin-top: 2px;
   padding: 10px;
-  font-size: 16px;
+  font-size: $font-size-small;
   box-sizing: border-box; 
   font-weight: $font-weight-normal;
   background-color: $color-primary;
@@ -91,7 +91,7 @@ export default {
   width: 100%; 
   padding: 10px;
   margin-top: 2px;
-  font-size: 16px;
+  font-size: $font-size-small;
   text-align: -webkit-auto;
   word-wrap: break-word;
   box-sizing: border-box;

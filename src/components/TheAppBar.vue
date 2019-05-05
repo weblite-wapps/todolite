@@ -8,8 +8,8 @@
       >
         <!-- Title -->
         <div key="title" class="title">
-          {{ mode === 'normal' ? title : '' }}
-          {{ mode === 'add' ? 'ADD TODO' : '' }}
+          {{ mode === 'normal' ? title : null }}
+          {{ mode === 'add' ? 'ADD TODO' : null }}
         </div>
 
         <!-- Progress -->
@@ -123,6 +123,5 @@ export default {
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: 10px;
 }
 </style>

@@ -35,7 +35,7 @@ export default {
 
 .time {
   padding-left: 15px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: $font-weight-normal;
   color: $font-color-dark-secondary;
 }
