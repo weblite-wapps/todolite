@@ -1,9 +1,17 @@
 <template>
-  <div> 
-    <template v-if="controllerOpen">
-      <p class="todo-info">Creator: {{ creator  }}</p>
-      <p v-if="functor" class="todo-info">Done By: {{ functor  }}</p>
-    </template> 
+  <div>
+    <slide-up-down :active="controllerOpen" :duration="300">
+      <template v-if="controllerOpen">
+        <p class="todo-info">
+          <span v-if="creator" :title="creatorUpper" class="text">
+            ADD BY <span class="functor">{{ creatorUpper }}</span>
+          </span>
+          <span v-if="functor" :title="functorUpper" class="text">
+            | DONE BY <span class="functor">{{ functorUpper }}</span>
+          </span>
+        </p> 
+      </template>
+    </slide-up-down>
 
     <BaseEditable
       class="todo-content"
@@ -15,6 +23,8 @@
 </template>
 
 <script>
+// modules
+import SlideUpDown from 'vue-slide-up-down'
 // components
 import BaseEditable from '../helper/component/BaseEditable.vue'
 
@@ -23,6 +33,7 @@ export default {
 
   components: {
     BaseEditable,
+    'slide-up-down': SlideUpDown,
   },
 
   props: {
@@ -31,6 +42,15 @@ export default {
     text: { type: String, required: true  },
     functor: { type: String, required: true  },
     creator: { type: String, required: true  },
+  },
+
+  computed: {
+    functorUpper() {
+      return this.functor.toUpperCase()
+    },
+    creatorUpper() {
+      return this.creator.toUpperCase()
+    },
   },
 }
 </script>
@@ -43,10 +63,27 @@ export default {
   margin-top: 2px;
   padding: 10px;
   font-size: 16px;
-  box-sizing: border-box;
+  box-sizing: border-box; 
   font-weight: $font-weight-normal;
   background-color: $color-primary;
   color: $font-color-dark-secondary;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 5px;
+  color: $font-color-light-secondary;
+}
+
+.functor {
+  color: $font-color-dark-secondary;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .todo-content {

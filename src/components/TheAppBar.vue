@@ -36,6 +36,7 @@
 </template>
 
 <script>
+
 import SlideUpDown from 'vue-slide-up-down'
 // components
 import BaseRotativeButton from '../helper/component/BaseRotativeButton'
@@ -99,6 +100,7 @@ export default {
   z-index: 1;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .header {
