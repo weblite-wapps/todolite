@@ -21,8 +21,8 @@ export default {
   }),
 
   mounted: function() {
-    this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
     this.$el.focus()
+    this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
   },
 
   methods: {

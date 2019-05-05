@@ -2,7 +2,7 @@
   <div>
     <slide-up-down :active="controllerOpen" :duration="300">
       <template v-if="controllerOpen">
-        <p class="todo-info">
+        <p class="todo-info noselect">
           <span v-if="creator" :title="creatorUpper" class="text">
             ADD BY <span class="functor">{{ creatorUpper }}</span>
           </span>
