@@ -49,7 +49,7 @@ export default {
   },
 
   props: {
-    created_at: { type: String, default: '' },
+    created_at: { type: String, default: '1 May | 7:59 AM' },
     functor: { type: String, default: '' },
     creator: { type: String, default: '' },
     vit: { type: Boolean, default: false },

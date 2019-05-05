@@ -7,12 +7,12 @@
 </template>
 
 <script>
-export default {
+export default { 
   name: 'TodoListItemHeaderInfo',
 
   props: {
-    created_at: { type: String, default: '' },
-    creator: { type: String, default: '' },
+    created_at: { type: String, require: true }, 
+    creator: { type: String, default: '' }, 
     functor: { type: String, default: '' },
   },
 }

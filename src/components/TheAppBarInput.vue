@@ -26,7 +26,7 @@ export default {
   },
 
   methods: {
-    textareaResize(event) {
+    textareaResize() {
       this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
     },
 

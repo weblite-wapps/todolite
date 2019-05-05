@@ -75,7 +75,6 @@ export default {
 .text {
   font-size: 12px;
   font-weight: 600;
-  margin-left: 5px;
   color: $font-color-light-secondary;
 }
 
