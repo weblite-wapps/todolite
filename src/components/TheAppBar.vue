@@ -27,14 +27,16 @@
     </div>
 
     <!-- Input -->
-    <TheAppBarInput v-if="mode === 'add'" @submit="submit" />
-   
+    <slide-up-down :active="mode === 'add'" :duration="300">
+      <TheAppBarInput v-if="mode === 'add'" @submit="submit" />
+    </slide-up-down>
 
     <TheAppBarTabs /> 
   </div>
 </template>
 
 <script>
+import SlideUpDown from 'vue-slide-up-down'
 // components
 import BaseRotativeButton from '../helper/component/BaseRotativeButton'
 import TheAppBarProgress from './TheAppBarProgress'
@@ -49,6 +51,7 @@ export default {
     TheAppBarProgress,
     TheAppBarInput,
     TheAppBarTabs,
+    'slide-up-down': SlideUpDown,
   },
 
   data() {

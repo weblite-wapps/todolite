@@ -1,6 +1,5 @@
 <template>
   <textarea
-    transition="expand"
     class="input"
     rows="1"
     ref="textarea"
@@ -61,19 +60,7 @@ export default {
 
 textarea {
   resize: none;
-  // height: auto;
+  height: auto;
   overflow: hidden;
-}
-
-/* TRANSITION */
-/* always present */
-.expand-transition {
-  transition: all 0.5s ease;
-}
-/* .expand-enter defines the starting state for entering */
-/* .expand-leave defines the ending state for leaving */
-.expand-enter, .expand-leave {
-  height: 0;
-  opacity: 0;
 }
 </style>
