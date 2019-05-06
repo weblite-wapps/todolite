@@ -27,7 +27,7 @@
     </div>
 
     <!-- Input -->
-    <slide-up-down :active="mode === 'add'" :duration="500">
+    <slide-up-down :active="mode === 'add'" :duration="300">
       <TheAppBarInput v-if="mode === 'add'" @submit="submit" />
     </slide-up-down>
 
