@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slide-up-down :active="controllerOpen" :duration="300">
+    <slide-up-down :active="controllerOpen" :duration="500">
       <template v-if="controllerOpen">
         <p class="todo-info noselect">
           <span v-if="creator" :title="creatorUpper" class="text">
@@ -9,7 +9,7 @@
           <span v-if="functor" :title="functorUpper" class="text">
             | DONE BY <span class="functor">{{ functorUpper }}</span>
           </span>
-        </p> 
+        </p>
       </template>
     </slide-up-down>
 

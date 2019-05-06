@@ -1,7 +1,7 @@
 <template>
   <div class="root noselect">
     <img class="drag-icon" :src="require('../assets/icons/drag.svg')" />
-    
+
     <p class="time">{{ created_at }}</p>
   </div>
 </template>

@@ -1,30 +1,29 @@
 <template>
   <!-- todo items -->
-  <VuePerfectScrollbar class="todolist-scroll-area">
-    <ul>
-      <draggable
-        v-model="todo"
-        v-bind="dragOptions"
-        :options="{ handle: '.drag-icon', scroll: true }"
-        @end="handleDrag"
+  <ul class="todolist-scroll-area" key="scrollbar" ref="todolist">
+    <draggable
+      key="draggable"
+      v-model="todo"
+      v-bind="dragOptions" 
+      :options="{ handle: '.drag-icon', scroll: true }"
+      @end="handleDrag"
+    >
+      <transition-group
+        class="transition"
+        name="todo"
+        tag="div"
+        :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
       >
-        <transition-group
-          class="transition"
-          name="todo"
-          tag="div"
-          :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
-        >
-          <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" class="todo-item"/>
-        </transition-group>
-      </draggable>
-    </ul>
-  </VuePerfectScrollbar>
+        <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" class="todo-item"/>
+      </transition-group>
+    </draggable>
+  </ul>
 </template>
 
 <script>
 // modules
 import draggable from 'vuedraggable'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 // components
 const TodoListItem = () => import('./TodoListItem.vue')
 // helpers
@@ -41,29 +40,35 @@ export default {
   data() {
     return {
       drag: false,
+      dragOptions: {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      },
     }
+  },
+
+  updated() {
+    this.$refs.todolist.style.marginTop = this.scrollHeight;
+  },
+
+  watch: {
+    scrollHeight(value) {
+      this.$refs.todolist.style.marginTop = value;
+    },
   },
 
   computed: {
     ...mapGetters({ todos: 'filteredTodos', allTodos: 'allTodos' }),
 
-    currentAction() {
-      return this.$store.state.currentAction
-    },
-
-    dragOptions() {
-      return {
-        animation: 200,
-        group: 'description',
-        disabled: false,
-        ghostClass: 'ghost',
-      }
-    },
+    ...mapState(['currentAction', 'scrollHeight']),
   },
   methods: {
-    handleDrag(e) {
+    handleDrag({ oldIndex, newIndex }) {
+      const { todos, allTodos } = this
       this.drag = false
-      dragTodo(this.todos[e.oldIndex], this.allTodos, this.todos[e.newIndex].id)
+      dragTodo(todos[oldIndex], allTodos, todos[newIndex].id)
     },
   },
 }
@@ -73,7 +78,7 @@ export default {
 .todo-item {
   display: block;
   padding: 5px 10px;
-  transition: all 0.6s ease;
+  transition: all 0.5s ease;
 }
 
 .todo-item:first-of-type {
@@ -123,6 +128,7 @@ export default {
   height: calc(100% - 105px);
   overflow-x: hidden;
   overflow-y: scroll;
+  transition: all 0.5s ease;
 }
 
 .ghost {

@@ -27,16 +27,15 @@
     </div>
 
     <!-- Input -->
-    <slide-up-down :active="mode === 'add'" :duration="300">
+    <slide-up-down :active="mode === 'add'" :duration="500">
       <TheAppBarInput v-if="mode === 'add'" @submit="submit" />
     </slide-up-down>
 
-    <TheAppBarTabs /> 
+    <TheAppBarTabs />
   </div>
 </template>
 
 <script>
-
 import SlideUpDown from 'vue-slide-up-down'
 // components
 import BaseRotativeButton from '../helper/component/BaseRotativeButton'
@@ -74,6 +73,7 @@ export default {
   methods: {
     changeMode(mode) {
       this.mode = mode
+      this.$store.commit('changeScrollHeight', 0)
     },
 
     toggleMode(mouse) {
@@ -82,7 +82,6 @@ export default {
     },
 
     submit(value) {
-      this.mode = "normal"
       this.$store.dispatch('addTodo', value)
     },
   },

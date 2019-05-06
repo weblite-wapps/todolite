@@ -13,6 +13,9 @@
 </template>
 
 <script>
+// modules
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'TheAppBarInput',
 
@@ -22,12 +25,18 @@ export default {
 
   mounted: function() {
     this.$el.focus()
-    this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
+    const scrollHeight = this.$refs.textarea.scrollHeight + 'px'
+    this.$refs.textarea.style.minHeight = scrollHeight;
+    this.changeScrollHeight(scrollHeight)
   },
 
   methods: {
+    ...mapMutations(['changeScrollHeight']),
+
     textareaResize() {
-      this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
+      const scrollHeight = this.$refs.textarea.scrollHeight + 'px'
+      this.$refs.textarea.style.minHeight = scrollHeight;
+      this.changeScrollHeight(scrollHeight)
     },
 
     submit(event) {

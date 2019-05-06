@@ -24,6 +24,7 @@ export default new Vuex.Store({
     page: 'LIST', // VIT, LIST, DONE
     currentAction: '', // remove, vit, done, list-right, list-left
     editableText: '',
+    scrollHeight: '',
 
     // main data
     todos: [], // [{ id, text, creator, functor, vit }],
@@ -84,7 +85,11 @@ export default new Vuex.Store({
 
     changeEditableText(state, text) {
       state.editableText = text
-    }
+    },
+
+    changeScrollHeight(state, scrollHeight) {
+      state.scrollHeight = scrollHeight
+    },
   },
 
   actions: {
