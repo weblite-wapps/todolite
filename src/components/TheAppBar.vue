@@ -99,7 +99,7 @@ export default {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: $font-color-light-primary;
 }
 
 .header {

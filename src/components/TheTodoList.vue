@@ -75,6 +75,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+
 .todo-item {
   display: block;
   padding: 5px 10px;
@@ -127,13 +129,33 @@ export default {
   width: 100%;
   height: calc(100% - 105px);
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: overlay;
   transition: all 0.5s ease;
 }
 
+.todolist-scroll-area::-webkit-scrollbar-track {
+  background-color: $font-color-light-primary;
+}
+
+.todolist-scroll-area::-webkit-scrollbar {
+  width: 7px;
+  background-color: $font-color-light-primary;
+  border-radius: 20px;
+}
+
+.todolist-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(0, 150, 227, 0.5);
+  border-radius: 40px;
+  border: 2px solid $font-color-light-primary;
+}
+
+.todolist-scroll-area::-webkit-scrollbar-thumb:hover {
+  border: 0px solid $font-color-light-primary;
+}
+
 .ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
+  opacity: 0.2;
+  background: $color-secondary;
   cursor: pointer;
 }
 </style>
