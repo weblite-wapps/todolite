@@ -81,7 +81,7 @@ export default {
 .todo-item {
   display: block;
   padding: 5px 10px;
-  transition: all 0.3s ease-in;
+  transition: all 0.5s ease;
 }
 
 .todo-item:first-of-type {
@@ -131,7 +131,7 @@ export default {
   height: calc(100% - 105px);
   overflow-x: hidden;
   overflow-y: overlay;
-  transition: all 0.3s ease-in;
+  transition: all 0.5s ease;
 }
 
 .todolist-scroll-area::-webkit-scrollbar-track {
