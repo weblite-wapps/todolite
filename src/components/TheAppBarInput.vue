@@ -23,10 +23,10 @@ export default {
     value: '',
   }),
 
-  mounted: function() {
+  mounted() {
     this.$el.focus()
     const scrollHeight = this.$refs.textarea.scrollHeight + 'px'
-    this.$refs.textarea.style.minHeight = scrollHeight;
+    this.$refs.textarea.style.height = scrollHeight;
     this.changeScrollHeight(scrollHeight)
   },
 
@@ -34,8 +34,9 @@ export default {
     ...mapMutations(['changeScrollHeight']),
 
     textareaResize() {
+      console.log(this.$refs.textarea.scrollHeight + 'px')
       const scrollHeight = this.$refs.textarea.scrollHeight + 'px'
-      this.$refs.textarea.style.minHeight = scrollHeight;
+      this.$refs.textarea.style.height = scrollHeight;
       this.changeScrollHeight(scrollHeight)
     },
 

@@ -3,9 +3,10 @@
   <ul class="todolist-scroll-area" key="scrollbar" ref="todolist">
     <draggable
       key="draggable"
-      v-model="todo"
-      v-bind="dragOptions" 
-      :options="{ handle: '.drag-icon', scroll: true }"
+      v-bind="dragOptions"
+      handle=".drag-icon"
+      scroll
+      @start="drag = true"
       @end="handleDrag"
     >
       <transition-group

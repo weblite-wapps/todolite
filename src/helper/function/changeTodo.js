@@ -2,7 +2,6 @@
 import { now } from './time'
 // W & R
 const { W, R } = window 
-
 const generateId = () => Math.floor(Math.random() * 1e15)
 const dispatch = qlite => W.share.dispatch([], qlite, [])
 
@@ -11,8 +10,6 @@ export const add = (text, name, index = -1, vit = false, functor = '', created_a
     '__insert',
     [index, { id: generateId(), text, functor, vit, creator: name, created_at }],
   ])
-
-
 
 export const changeText = (id, text) =>
   dispatch([

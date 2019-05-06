@@ -54,13 +54,14 @@ export default {
       this.controllerOpen = value
     },
 
-    toggleEditable(value) { 
+    toggleEditable(value) {
       if (this.editable) this.edit()
       this.editable = value
     },
 
     edit() {
-      this.changeTodoText({ id: this.todo.id, text: this.editableText })
+      const { todo: { id }, editableText, changeTodoText } = this
+      changeTodoText({ id, text: editableText })
       this.editable = false
     },
   },
