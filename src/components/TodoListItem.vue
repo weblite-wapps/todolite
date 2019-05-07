@@ -49,13 +49,13 @@ export default {
   methods: {
     ...mapActions(['changeTodoText']),
 
-    changeControllerOpen(value) {
-      this.toggleEditable(false)
+    changeControllerOpen(value) { 
+      this.toggleEditable()
       this.controllerOpen = value
     },
 
     toggleEditable(value) {
-      if (this.editable) this.edit()
+      if (value !== undefined && this.editable) this.edit()
       this.editable = value
     },
 

@@ -33,7 +33,7 @@ export default {
     },
 
     submit() {
-      this.$emit('submit')
+      this.$emit('submit', false)
     },
   },
 }
