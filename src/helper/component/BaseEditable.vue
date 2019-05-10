@@ -8,9 +8,12 @@
     :disabled="!editable"
     @keydown.enter.exact.prevent="submit" 
   />
-</template>
+</template> 
 
 <script>
+// modules
+import { mapMutations } from 'vuex'
+
 export default {
   props: {
     editable: { type: Boolean, default: false },
@@ -23,13 +26,17 @@ export default {
 
   updated() {
     this.$el.focus()
-    this.$store.commit("changeEditableText", this.content)
+    this.changeEditableText(this.content)
   },
 
   methods: {
+    ...mapMutations(['changeEditableText']),
+
     textareaResize(event) {
-      this.$refs.textarea.style.minHeight = this.$refs.textarea.scrollHeight + 'px';
-      this.$store.commit("changeEditableText", event.target.value)
+      event.target.style.height = 'auto'
+      const scrollHeight = event.target.scrollHeight + 'px'
+      event.target.style.height = scrollHeight
+      this.changeEditableText(event.target.value)
     },
 
     submit() {

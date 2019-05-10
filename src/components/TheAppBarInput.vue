@@ -21,7 +21,7 @@ export default {
 
   data: () => ({
     value: '',
-  }),
+  }), 
 
   mounted() {
     this.$el.focus()
@@ -33,10 +33,10 @@ export default {
   methods: {
     ...mapMutations(['changeScrollHeight']),
 
-    textareaResize() {
-      console.log(this.$refs.textarea.scrollHeight + 'px')
-      const scrollHeight = this.$refs.textarea.scrollHeight + 'px'
-      this.$refs.textarea.style.height = scrollHeight;
+    textareaResize(event) {
+      event.target.style.height = 'auto'
+      const scrollHeight = event.target.scrollHeight + 'px'
+      event.target.style.height = scrollHeight
       this.changeScrollHeight(scrollHeight)
     },
 
@@ -45,6 +45,8 @@ export default {
       event.preventDefault()
       this.$emit('submit', this.value)
       this.value = ''
+      event.target.style.height = 'auto'
+      this.changeScrollHeight('48px')
     },
   },
 }
@@ -74,3 +76,26 @@ textarea {
   overflow: hidden;
 }
 </style>
+
+
+export default {
+    methods: {
+        resizeTextarea (event) {
+            event.target.style.height = 'auto'
+            event.target.style.height = (event.target.scrollHeight) + 'px'
+        },
+    },
+    mounted () {
+        this.$nextTick(() => {
+            this.$el.setAttribute('style', 'height:' + (this.$el.scrollHeight) + 'px;overflow-y:hidden;')
+        })
+
+        this.$el.addEventListener('input', this.resizeTextarea)
+    },
+    beforeDestroy () {
+        this.$el.removeEventListener('input', this.resizeTextarea)
+    },
+    render () {
+        return this.$slots.default[0]
+    },
+}
