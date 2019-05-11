@@ -1,6 +1,6 @@
 <template>
   <!-- todo items -->
-  <ul class="todolist-scroll-area" key="scrollbar" ref="todolist">
+  <ul class="todolist-scroll-area" ref="todolist" :style="{ height: getHeight }">
     <draggable
       key="draggable"
       v-bind="dragOptions"
@@ -29,6 +29,7 @@ import { mapGetters, mapState } from 'vuex'
 const TodoListItem = () => import('./TodoListItem.vue')
 // helpers
 import { dragTodo } from '../helper/function/changeTodo'
+import { calculateHeight } from '../helper/function/time'
 
 export default {
   name: 'TheTodoList',
@@ -40,6 +41,7 @@ export default {
 
   data() {
     return {
+      height: 'calc(100% - 105px)',
       drag: false,
       dragOptions: {
         animation: 200,
@@ -57,6 +59,7 @@ export default {
   watch: {
     scrollHeight(value) {
       this.$refs.todolist.style.marginTop = value;
+      this.height = calculateHeight(value)
     },
   },
 
@@ -64,6 +67,10 @@ export default {
     ...mapGetters({ todos: 'filteredTodos', allTodos: 'allTodos' }),
 
     ...mapState(['currentAction', 'scrollHeight']),
+
+    getHeight() {
+      return this.height
+    },
   },
   methods: {
     handleDrag({ oldIndex, newIndex }) {
@@ -128,7 +135,6 @@ export default {
   position: fixed;
   top: 105px;
   width: 100%;
-  height: calc(100% - 105px);
   overflow-x: hidden;
   overflow-y: overlay;
   transition: all 0.5s ease;
