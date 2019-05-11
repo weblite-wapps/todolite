@@ -6,7 +6,7 @@
       icon="done"
       :value="!!functor"
       :disable="
-        functor && !(functor === username || creator === username || isAdmin)
+        functor && !(functor === username || creator === username || isAdmin) || editable
       "
       @change="changeTodoFunctor({ id, done: $event })"
     />
@@ -15,7 +15,7 @@
       color="#FFAD00"
       icon="star"
       :value="vit"
-      :disable="functor"
+      :disable="functor || editable"
       @change="changeTodoVit({ id, vit: $event })"
     />
     <BaseToggle
@@ -30,7 +30,7 @@
       class="toggle remove"
       color="#DA4445"
       icon="remove"
-      :disable="!(creator === username || isAdmin)"
+      :disable="!(creator === username || isAdmin) || editable"
       @change="removeTodo(id)"
     />
   </div>
