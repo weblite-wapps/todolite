@@ -42,6 +42,8 @@ import BaseRotativeButton from '../helper/component/BaseRotativeButton'
 import TheAppBarProgress from './TheAppBarProgress'
 import TheAppBarInput from './TheAppBarInput'
 import TheAppBarTabs from './TheAppBarTabs'
+// helpers
+import { debounce } from '../helper/function/time'
 
 export default {
   name: 'TheAppBar',
@@ -76,10 +78,10 @@ export default {
       this.$store.commit('changeScrollHeight', 0)
     },
 
-    toggleMode(mouse) {
-      if (this.mode === 'normal' && mouse === 'over') this.mode = 'progress'
-      else if (this.mode === 'progress' && mouse === 'out') this.mode = 'normal'
-    },
+    toggleMode: debounce(function (mouse) { 
+        if (this.mode === 'normal' && mouse === 'over') this.mode = 'progress'
+        else if (this.mode === 'progress' && mouse === 'out') this.mode = 'normal'
+      }, 200),
 
     submit(value) {
       this.$store.dispatch('addTodo', value)
