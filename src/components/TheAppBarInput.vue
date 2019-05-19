@@ -1,15 +1,15 @@
 <template>
   <textarea
-    class="input"
-    rows="1"
     ref="textarea"
     v-model.trim="value"
     @input="textareaResize"
-    type="text"
-    placeholder="TYPE HERE ..."
+    class="input"
     dir="auto"
+    placeholder="TYPE HERE ..."
+    rows="1"
+    type="text"
     @keydown.enter.exact="submit"
-  ></textarea>
+  />
 </template>
 
 <script>
@@ -64,38 +64,12 @@ export default {
   font-size: $font-size-small; 
   color: $font-color-dark-primary;
   background: $color-primary;
+  resize: none;
+  height: auto;
+  overflow: hidden;
 }
 
 .input::placeholder {
   color: $font-color-light-secondary;
 }
-
-textarea {
-  resize: none;
-  height: auto;
-  overflow: hidden;
-}
 </style>
-
-
-export default {
-    methods: {
-        resizeTextarea (event) {
-            event.target.style.height = 'auto'
-            event.target.style.height = (event.target.scrollHeight) + 'px'
-        },
-    },
-    mounted () {
-        this.$nextTick(() => {
-            this.$el.setAttribute('style', 'height:' + (this.$el.scrollHeight) + 'px;overflow-y:hidden;')
-        })
-
-        this.$el.addEventListener('input', this.resizeTextarea)
-    },
-    beforeDestroy () {
-        this.$el.removeEventListener('input', this.resizeTextarea)
-    },
-    render () {
-        return this.$slots.default[0]
-    },
-}

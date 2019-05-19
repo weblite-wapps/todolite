@@ -14,6 +14,7 @@
           :toggleEditable="toggleEditable"
         />
       </transition>
+
       <transition name="fade">
         <TodoListItemHeaderInfo
           v-if="!controllerOpen" 
@@ -63,10 +64,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+
 .root {
   height: 100%;
   width: 100%;
   position: relative;
+  height: 40px;
+  overflow: hidden;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: $color-primary;
 }
 
 .header {
@@ -87,6 +95,7 @@ export default {
 .fade-leave-active {
   transition: opacity 0.28s ease;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;

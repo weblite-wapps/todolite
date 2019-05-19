@@ -1,13 +1,15 @@
 <template>
   <div :class="getClasses('button')" @click="click">
     <div :class="getClasses('dot', 'first')">
-      <div :class="getClasses('dotInDot')"></div>
+      <div :class="getClasses('dotInDot')" />
     </div>
+
     <div :class="getClasses('dot', 'second')">
-      <div :class="getClasses('dotInDot')"></div>
+      <div :class="getClasses('dotInDot')" />
     </div>
+
     <div :class="getClasses('dot', 'third')">
-      <div :class="getClasses('dotInDot')"></div>
+      <div :class="getClasses('dotInDot')" />
     </div>
   </div>
 </template>

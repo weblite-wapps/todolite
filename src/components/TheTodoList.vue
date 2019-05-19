@@ -15,7 +15,12 @@
         tag="div"
         :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
       >
-        <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" class="todo-item"/>
+        <TodoListItem
+          v-for="todo in todos"
+          :key="todo.id"
+          :todo="todo"
+          class="todo-item"
+        />
       </transition-group>
     </draggable>
   </ul>
@@ -39,29 +44,16 @@ export default {
     draggable,
   },
 
-  data() {
-    return {
-      height: 'calc(100% - 105px)',
-      drag: false,
-      dragOptions: {
-        animation: 200,
-        group: 'description',
-        disabled: false,
-        ghostClass: 'ghost',
-      },
-    }
-  },
-
-  updated() {
-    this.$refs.todolist.style.marginTop = this.scrollHeight;
-  },
-
-  watch: {
-    scrollHeight(value) {
-      this.$refs.todolist.style.marginTop = value;
-      this.height = calculateHeight(value)
+  data: () => ({
+    height: 'calc(100% - 105px)',
+    drag: false,
+    dragOptions: {
+      animation: 200,
+      group: 'description',
+      disabled: false,
+      ghostClass: 'ghost',
     },
-  },
+  }),
 
   computed: {
     ...mapGetters({ todos: 'filteredTodos', allTodos: 'allTodos' }),
@@ -72,6 +64,18 @@ export default {
       return this.height
     },
   },
+
+  watch: {
+    scrollHeight(value) {
+      this.$refs.todolist.style.marginTop = value;
+      this.height = calculateHeight(value)
+    },
+  },
+
+  updated() {
+    this.$refs.todolist.style.marginTop = this.scrollHeight;
+  },
+
   methods: {
     handleDrag({ oldIndex, newIndex }) {
       const { todos, allTodos } = this

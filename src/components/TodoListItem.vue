@@ -1,14 +1,13 @@
 <template>
   <li class="list-item">
-    <div class="todo-header">
-      <TodoListItemHeader
-        v-bind="todo"
-        :editable="editable"
-        :toggleEditable="toggleEditable"
-        :controllerOpen="controllerOpen"
-        :changeControllerOpen="changeControllerOpen"
-      />
-    </div>
+    <TodoListItemHeader 
+      v-bind="todo"
+      :editable="editable"
+      :toggleEditable="toggleEditable"
+      :controllerOpen="controllerOpen"
+      :changeControllerOpen="changeControllerOpen"
+    />
+
     <TodoListItemContent
       v-bind="todo"
       :content="todo.text"
@@ -35,14 +34,14 @@ export default {
     TodoListItemContent,
   },
 
+  props: {
+    todo: { type: Object, required: true },
+  },
+
   data: () => ({
     editable: false,
     controllerOpen: false,
   }),
-
-  props: {
-    todo: { type: Object, required: true },
-  },
 
   computed: mapState(['editableText']),
 
@@ -67,16 +66,4 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-@import '../helper/style/_variable.scss';
-
-.todo-header {
-  height: 40px;
-  overflow: hidden;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: $color-primary;
-}
-</style>
 

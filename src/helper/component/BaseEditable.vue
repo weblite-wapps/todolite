@@ -1,11 +1,12 @@
 <template>
   <textarea
-    rows="1"
+    ref="textarea"
     :value="content"
     @input="textareaResize"
-    ref="textarea"
+    class="textarea"
     dir="auto"
     :disabled="!editable"
+    rows="1"
     @keydown.enter.exact.prevent="submit" 
   />
 </template> 
@@ -47,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-textarea {
+.textarea {
   resize: none;
   height: auto;
   overflow: hidden;

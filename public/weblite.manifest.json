@@ -13,9 +13,8 @@
       "type": "textField",
       "name": "title",
       "title": "Title",
-      "detail": {
-        "placeholder": "TO DO LITE"
-      }
+      "detail": { "placeholder": "TO DO LITE" },
+      "default": "TODOs"
     }
   ],
   "servIndexes": {
@@ -23,5 +22,5 @@
     "customize": "index",
     "main": "index"
   },
-  "version": "0.2.0"
+  "version": "0.2.5"
 }

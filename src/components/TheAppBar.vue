@@ -56,11 +56,9 @@ export default {
     'slide-up-down': SlideUpDown,
   },
 
-  data() {
-    return {
-      mode: 'normal', // normal | progress | add
-    }
-  },
+  data: () => ({
+    mode: 'normal', // normal | progress | add
+  }), 
 
   computed: {
     title() {
