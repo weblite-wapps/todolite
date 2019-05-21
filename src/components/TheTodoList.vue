@@ -67,10 +67,6 @@ export default {
     },
   },
 
-  beforeMount() {
-    this.changeIsLoading(false)
-  },
-
   updated() {
     this.$refs.todolist.style.marginTop = this.scrollHeight
   },

@@ -1,8 +1,8 @@
 <template>
   <div>
     <TheAppBar/>
-    <BaseLoading v-if="isLoading"/>
     <TheTodoList/>
+    <BaseLoading v-if="isLoading"/>
   </div>
 </template>
 
