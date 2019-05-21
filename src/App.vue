@@ -26,6 +26,7 @@ export default {
   components: {
     TheAppBar,
     TheTodoList,
+    BaseLoading,
   },
 
   computed: {

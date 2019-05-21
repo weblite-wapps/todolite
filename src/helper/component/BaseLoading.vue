@@ -1,100 +1,121 @@
 <template>
-  <div class="sp sp-bars"></div>
+  <div class="sp sp-3balls"></div>
 </template>
 
 <style scoped>
-.sp {
-  width: 32px;
-  height: 32px;
-  clear: both;
-  margin: 20px auto;
+/* Spinner 3Balls Scale */
+.sp-3balls,
+.sp-3balls:before,
+.sp-3balls:after {
+  border-radius: 50%;
+  background-color: #ffad00;
+  width: 18px;
+  height: 18px;
+  transform-origin: center center;
+  display: inline-block;
 }
 
-/* Spinner Vortex */
-/* Spinner Bars */
-.sp-bars {
-  position: relative;
-  width: 10px;
-  margin: auto;
-  border: 1px rgb(208,64,202) solid;
-  background: rgb(208,64,202);
-  background: linear-gradient(90deg, rgba(208,64,202,1) 0%, rgba(0,192,255,1) 100%);
-  -webkit-animation: spBars 1s infinite linear;
-  animation: spBars 1s infinite linear;
-}
-
-.sp-bars:after, .sp-bars:before {
-  content: '';
+.sp-3balls {
   position: absolute;
-  width: inherit;
-  height: inherit;
-  border: inherit;
-  background: rgb(208,64,202);
-  background: linear-gradient(90deg, rgba(208,64,202,1) 0%, rgba(0,192,255,1) 100%);
-  top: -1px;
+  top: 150px;
+  left: calc(50% - 10px);
+  background-color: #da4445;
+  opacity: 1;
+  -webkit-animation: spScaleAlpha 1s infinite linear;
+  animation: spScaleAlpha 1s infinite linear;
 }
 
-.sp-bars:before {
-  left: -20px;
-  -webkit-animation: spBarsBefore 1s infinite linear;
-  animation: spBarsBefore 1s infinite linear;
+.sp-3balls:before,
+.sp-3balls:after {
+  content: '';
+  position: relative;
+  opacity: 0.25;
 }
 
-.sp-bars:after {
-  right: -20px;
-  -webkit-animation: spBarsAfter 1s infinite linear;
-  animation: spBarsAfter 1s infinite linear;
+.sp-3balls:before {
+  left: 30px;
+  top: 0px;
+  -webkit-animation: spScaleAlphaBefore 1s infinite linear;
+  animation: spScaleAlphaBefore 1s infinite linear;
 }
 
-@keyframes spBarsBefore {
+.sp-3balls:after {
+  left: -30px;
+  top: -23px;
+  -webkit-animation: spScaleAlphaAfter 1s infinite linear;
+  animation: spScaleAlphaAfter 1s infinite linear;
+}
+
+@-webkit-keyframes spScaleAlpha {
   0% {
-    transform: scale(1, 1);
+    opacity: 1;
   }
-  25% {
-    transform: scale(1, 1.25);
+  33% {
+    opacity: 0.25;
   }
-  50% {
-    transform: scale(1, 0.75);
-  }
-  75% {
-    transform: scale(1, 1);
+  66% {
+    opacity: 0.25;
   }
   100% {
-    transform: scale(1, 1);
+    opacity: 1;
   }
 }
-@keyframes spBars {
+@keyframes spScaleAlpha {
   0% {
-    transform: scale(1, 1);
+    opacity: 1;
   }
-  25% {
-    transform: scale(1, 1);
+  33% {
+    opacity: 0.25;
   }
-  50% {
-    transform: scale(1, 1.25);
-  }
-  75% {
-    transform: scale(1, 1);
+  66% {
+    opacity: 0.25;
   }
   100% {
-    transform: scale(1, 1);
+    opacity: 1;
   }
 }
-@keyframes spBarsAfter {
+@-webkit-keyframes spScaleAlphaBefore {
   0% {
-    transform: scale(1, 1);
+    opacity: 0.25;
   }
-  25% {
-    transform: scale(1, 1);
+  33% {
+    opacity: 1;
   }
-  50% {
-    transform: scale(1, 0.75);
+  66% {
+    opacity: 0.25;
   }
-  75% {
-    transform: scale(1, 1.25);
+}
+@keyframes spScaleAlphaBefore {
+  0% {
+    opacity: 0.25;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0.25;
+  }
+}
+@-webkit-keyframes spScaleAlphaAfter {
+  33% {
+    opacity: 0.25;
+  }
+  66% {
+    opacity: 1;
   }
   100% {
-    transform: scale(1, 1);
+    opacity: 0.25;
+  }
+}
+@keyframes spScaleAlphaAfter {
+  33% {
+    opacity: 0.25;
+  }
+  66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
   }
 }
 </style>
