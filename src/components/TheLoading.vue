@@ -41,7 +41,7 @@
 
 .sp-3balls:after {
   left: -30px;
-  top: -23px;
+  top: -21px;
   -webkit-animation: spScaleAlphaAfter 1s infinite linear;
   animation: spScaleAlphaAfter 1s infinite linear;
 }

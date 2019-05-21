@@ -26,7 +26,7 @@
 import draggable from 'vuedraggable'
 import { mapGetters, mapState, mapMutations } from 'vuex'
 // components
-const TodoListItem = () => import('./TodoListItem.vue')
+import TodoListItem from './TodoListItem.vue'
 // helpers
 import { dragTodo } from '../helper/function/changeTodo'
 import { calculateHeight } from '../helper/function/time'
@@ -67,12 +67,16 @@ export default {
     },
   },
 
+  mounted() {
+    this.changeIsComponentLoaded(true)
+  },
+
   updated() {
     this.$refs.todolist.style.marginTop = this.scrollHeight
   },
 
   methods: {
-    ...mapMutations(['changeIsLoading']),
+    ...mapMutations(['changeIsComponentLoaded']),
 
     handleDrag({ oldIndex, newIndex }) {
       const { todos, allTodos } = this

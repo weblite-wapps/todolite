@@ -17,7 +17,7 @@
 
       <transition name="fade">
         <TodoListItemHeaderInfo
-          v-if="!controllerOpen" 
+          v-if="!controllerOpen"
           key="info"
           :created_at="created_at"
           :functor="functor"

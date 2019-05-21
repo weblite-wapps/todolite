@@ -1,14 +1,15 @@
 <template>
   <div>
     <TheAppBar/>
+    <TheLoading v-if="!isComponentLoaded || !isDataFetched"/>
     <TheTodoList/>
-    <BaseLoading v-if="isLoading"/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 // components
-import BaseLoading from './helper/component/BaseLoading'
+import TheLoading from './components/TheLoading'
 const TheAppBar = () => import('./components/TheAppBar')
 const TheTodoList = () => import('./components/TheTodoList')
 // helpers
@@ -24,20 +25,12 @@ export default {
   store,
 
   components: {
+    TheLoading,
     TheAppBar,
     TheTodoList,
-    BaseLoading,
   },
 
-  computed: {
-    isCustomize() {
-      return this.$store.state.mode === 'customize'
-    },
-
-    isLoading() {
-      return this.$store.state.isLoading
-    },
-  },
+  computed: mapState(['isDataFetched', 'isComponentLoaded']),
 
   created() {
     W && webliteHandler(this)

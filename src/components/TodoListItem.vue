@@ -1,6 +1,6 @@
 <template>
   <li class="list-item">
-    <TodoListItemHeader 
+    <TodoListItemHeader
       v-bind="todo"
       :editable="editable"
       :toggleEditable="toggleEditable"
@@ -15,7 +15,7 @@
       :editable="editable"
       @submit="toggleEditable"
       :controllerOpen="controllerOpen"
-    /> 
+    />
   </li>
 </template>
 
@@ -23,8 +23,8 @@
 // modules
 import { mapState, mapActions } from 'vuex'
 // components
-const TodoListItemHeader = () => import('./TodoListItemHeader.vue')
-const TodoListItemContent = () => import('./TodoListItemContent.vue')
+import TodoListItemHeader from './TodoListItemHeader.vue'
+import TodoListItemContent from './TodoListItemContent.vue'
 
 export default {
   name: 'TodoListItem',
@@ -48,7 +48,7 @@ export default {
   methods: {
     ...mapActions(['changeTodoText']),
 
-    changeControllerOpen(value) { 
+    changeControllerOpen(value) {
       this.toggleEditable()
       this.controllerOpen = value
     },
@@ -59,7 +59,11 @@ export default {
     },
 
     edit() {
-      const { todo: { id }, editableText, changeTodoText } = this
+      const {
+        todo: { id },
+        editableText,
+        changeTodoText,
+      } = this
       changeTodoText({ id, text: editableText })
       this.editable = false
     },

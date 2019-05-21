@@ -28,7 +28,8 @@ export default new Vuex.Store({
     currentAction: '', // remove, vit, done, list-right, list-left
     editableText: '',
     scrollHeight: '',
-    isLoading: true,
+    isDataFetched: false,
+    isComponentLoaded: false,
 
     // main data
     todos: [], // [{ id, text, creator, functor, vit }],
@@ -114,8 +115,12 @@ export default new Vuex.Store({
       state.scrollHeight = scrollHeight
     },
 
-    changeIsLoading(state, isLoading) {
-      state.isLoading = isLoading
+    changeIsDataFetched(state, isDataFetched) {
+      state.isDataFetched = isDataFetched
+    },
+
+    changeIsComponentLoaded(state, isComponentLoaded) {
+      state.isComponentLoaded = isComponentLoaded
     },
   },
 

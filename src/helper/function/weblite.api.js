@@ -5,23 +5,25 @@ const {
 
 const handleNormalMode = (start, vue) => {
   start()
-  W.loadData().then(({
-    user: {
-      name
-    },
-    creator,
-    customize: {
-      title
-    }
-  }) => {
+  Promise.all([W.loadData(), W.share.getFromServer([])]).then(data => {
+    const [{
+      user: {
+        name
+      },
+      creator,
+      customize: {
+        title
+      },
+    }, ] = data
+
     vue.$store.commit('changeWebliteRelatedData', {
       username: name,
       title,
       isAdmin: creator,
     })
+
+    vue.$store.commit('changeIsDataFetched', true)
   })
-  W.share.getFromServer([])
-  vue.$store.commit('changeIsLoading', false)
 }
 
 export default vue => {
