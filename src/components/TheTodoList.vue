@@ -15,12 +15,7 @@
         tag="div"
         :leave-to-class="currentAction ? `${currentAction}-leave-to` : 'leave-to'"
       >
-        <TodoListItem
-          v-for="todo in todos"
-          :key="todo.id"
-          :todo="todo"
-          class="todo-item"
-        />
+        <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" class="todo-item"/>
       </transition-group>
     </draggable>
   </ul>
@@ -29,7 +24,7 @@
 <script>
 // modules
 import draggable from 'vuedraggable'
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations } from 'vuex'
 // components
 const TodoListItem = () => import('./TodoListItem.vue')
 // helpers
@@ -67,16 +62,22 @@ export default {
 
   watch: {
     scrollHeight(value) {
-      this.$refs.todolist.style.marginTop = value;
+      this.$refs.todolist.style.marginTop = value
       this.height = calculateHeight(value)
     },
   },
 
+  beforeMount() {
+    this.changeIsLoading(false)
+  },
+
   updated() {
-    this.$refs.todolist.style.marginTop = this.scrollHeight;
+    this.$refs.todolist.style.marginTop = this.scrollHeight
   },
 
   methods: {
+    ...mapMutations(['changeIsLoading']),
+
     handleDrag({ oldIndex, newIndex }) {
       const { todos, allTodos } = this
       this.drag = false

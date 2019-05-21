@@ -1,12 +1,14 @@
 <template>
   <div>
-    <TheAppBar />
-    <TheTodoList />
+    <TheAppBar/>
+    <BaseLoading v-if="isLoading"/>
+    <TheTodoList/>
   </div>
 </template>
 
 <script>
 // components
+import BaseLoading from './helper/component/BaseLoading'
 const TheAppBar = () => import('./components/TheAppBar')
 const TheTodoList = () => import('./components/TheTodoList')
 // helpers
@@ -29,6 +31,10 @@ export default {
   computed: {
     isCustomize() {
       return this.$store.state.mode === 'customize'
+    },
+
+    isLoading() {
+      return this.$store.state.isLoading
     },
   },
 
