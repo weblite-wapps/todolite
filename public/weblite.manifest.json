@@ -6,21 +6,23 @@
   "userInfo": true,
   "fullscreen": false,
   "inline": false,
+  "width": false,
+  "height": false,
   "shareDB": true,
   "searchable": true,
-  "customizeArray": [
-    {
-      "type": "textField",
-      "name": "title",
-      "title": "Title",
-      "detail": { "placeholder": "TO DO LITE" },
-      "default": "TODOs"
-    }
-  ],
+  "customizeArray": [{
+    "type": "textField",
+    "name": "title",
+    "title": "Title",
+    "detail": {
+      "placeholder": "TO DO LITE"
+    },
+    "default": "TODOs"
+  }],
   "servIndexes": {
     "inline": "index",
     "customize": "index",
     "main": "index"
   },
-  "version": "0.2.5"
+  "version": "0.3.1"
 }
