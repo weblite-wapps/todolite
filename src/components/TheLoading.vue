@@ -2,13 +2,14 @@
   <div class="sp sp-3balls"></div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../helper/style/_variable.scss';
+
 /* Spinner 3Balls Scale */
 .sp-3balls,
 .sp-3balls:before,
 .sp-3balls:after {
   border-radius: 50%;
-  background-color: #ffad00;
   width: 18px;
   height: 18px;
   transform-origin: center center;
@@ -19,7 +20,7 @@
   position: absolute;
   top: 150px;
   left: calc(50% - 10px);
-  background-color: #da4445;
+  background-color: $color-trash;
   opacity: 1;
   -webkit-animation: spScaleAlpha 1s infinite linear;
   animation: spScaleAlpha 1s infinite linear;
@@ -33,6 +34,7 @@
 }
 
 .sp-3balls:before {
+  background-color: $color-done;
   left: 30px;
   top: 0px;
   -webkit-animation: spScaleAlphaBefore 1s infinite linear;
@@ -40,6 +42,7 @@
 }
 
 .sp-3balls:after {
+  background-color: $color-vit;
   left: -30px;
   top: -21px;
   -webkit-animation: spScaleAlphaAfter 1s infinite linear;
