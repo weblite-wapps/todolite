@@ -26,12 +26,17 @@ const handleNormalMode = (start, vue) => {
   })
 }
 
+const handleCustomizeMode = (start, vue) => {
+  vue.$store.commit('changeIsDataFetched', true)
+  start()
+}
+
 export default vue => {
   W.setHooks({
     wappWillStart(start, error, {
       mode
     }) {
-      mode === 'customize' ? start() : handleNormalMode(start, vue)
+      mode === 'customize' ? handleCustomizeMode(start, vue) : handleNormalMode(start, vue)
     },
 
     wappDidStart({
