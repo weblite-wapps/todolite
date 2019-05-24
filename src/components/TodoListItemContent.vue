@@ -1,21 +1,31 @@
 <template>
   <div>
-    <slide-up-down :active="controllerOpen" :duration="300"> 
+    <slide-up-down :active="controllerOpen" :duration="300">
       <template v-if="controllerOpen">
         <p class="todo-info noselect">
           <span v-if="creator" :title="creatorUpper" class="text">
-            ADD BY <span class="functor">{{ creatorUpper }}</span>
+            ADD BY
+            <span class="functor">{{ creatorUpper }}</span>
           </span>
           <span v-if="functor" :title="functorUpper" class="text">
-            | DONE BY <span class="functor">{{ functorUpper }}</span>
+            | DONE BY
+            <span class="functor">{{ functorUpper }}</span>
           </span>
         </p>
+
+        <BaseEditable
+          class="todo-content"
+          :content="text"
+          :editable="editable"
+          @submit="$emit('submit', $event)"
+        />
       </template>
     </slide-up-down>
 
     <BaseEditable
+      v-if="!controllerOpen"
       class="todo-content"
-      :content="text"
+      :content="oneLineText"
       :editable="editable"
       @submit="$emit('submit', $event)"
     />
@@ -27,6 +37,8 @@
 import SlideUpDown from 'vue-slide-up-down'
 // components
 import BaseEditable from '../helper/component/BaseEditable.vue'
+// helpers
+import { oneLineText } from '../helper/function/time'
 
 export default {
   name: 'TodoListItemContent',
@@ -39,9 +51,9 @@ export default {
   props: {
     controllerOpen: { type: Boolean, default: false },
     editable: { type: Boolean, default: false },
-    text: { type: String, required: true  },
-    functor: { type: String, required: true  },
-    creator: { type: String, required: true  },
+    text: { type: String, required: true },
+    functor: { type: String, required: true },
+    creator: { type: String, required: true },
   },
 
   computed: {
@@ -50,6 +62,9 @@ export default {
     },
     creatorUpper() {
       return this.creator.toUpperCase()
+    },
+    oneLineText() {
+      return oneLineText(this.text)
     },
   },
 }
@@ -63,7 +78,7 @@ export default {
   margin-top: 2px;
   padding: 10px;
   font-size: $font-size-small;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   font-weight: $font-weight-normal;
   background-color: $color-primary;
   color: $font-color-dark-secondary;
@@ -80,7 +95,7 @@ export default {
 
 .functor {
   color: $font-color-dark-secondary;
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -88,7 +103,7 @@ export default {
 .todo-content {
   @include reset();
 
-  width: 100%; 
+  width: 100%;
   padding: 10px;
   margin-top: 2px;
   font-size: $font-size-small;
