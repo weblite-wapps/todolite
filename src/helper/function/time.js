@@ -24,13 +24,11 @@ export function debounce(fn, delay) {
 }
 
 export const oneLineText = text => {
-  const splittedText = R.split('\n', text)
+  const textFirstPart = R.head(R.split('\n', text))
 
-  if (splittedText !== text) {
-    return R.compose(
-      head => R.length(head) > 35 ? R.slice(0, 35, head) : head,
-      R.head
-    )(splittedText) + '...'
+  if (textFirstPart !== text) {
+    return R.length(textFirstPart) > 41 ?
+      R.slice(0, 40, textFirstPart) + '...' : textFirstPart + '...'
   }
-  return R.length(text) > 35 ? R.slice(0, 35, text) + '...' : text
+  return R.length(text) > 41 ? R.slice(0, 40, text) + '...' : text
 }
