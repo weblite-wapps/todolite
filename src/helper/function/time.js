@@ -27,8 +27,8 @@ export const oneLineText = text => {
   const textFirstPart = R.head(R.split('\n', text))
 
   if (textFirstPart !== text) {
-    return R.length(textFirstPart) > 39 ?
-      R.slice(0, 36, textFirstPart) + '...' : textFirstPart + '...'
+    return R.length(textFirstPart) > 40 ?
+      R.slice(0, 37, textFirstPart) + '...' : textFirstPart + '...'
   }
-  return R.length(text) > 39 ? R.slice(0, 36, text) + '...' : text
+  return R.length(text) > 40 ? R.slice(0, 37, text) + '...' : text
 }
