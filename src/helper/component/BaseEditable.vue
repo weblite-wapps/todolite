@@ -7,7 +7,7 @@
     dir="auto"
     :disabled="!editable"
     rows="1"
-    @keydown.enter.exact.prevent="submit" 
+    @keydown.enter.exact.prevent="submit"
   />
 </template> 
 
@@ -22,7 +22,7 @@ export default {
   },
 
   mounted: function() {
-    this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px';
+    this.$refs.textarea.style.height = this.$refs.textarea.scrollHeight + 'px'
   },
 
   updated() {
@@ -48,10 +48,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../style/_variable.scss';
+
 .textarea {
   resize: none;
   height: auto;
   overflow: hidden;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: $font-stack;
 }
 </style>
