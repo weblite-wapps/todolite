@@ -22,13 +22,3 @@ export function debounce(fn, delay) {
     }, delay)
   }
 }
-
-export const oneLineText = text => {
-  const textFirstPart = R.head(R.split('\n', text))
-
-  if (textFirstPart !== text) {
-    return R.length(textFirstPart) > 40 ?
-      R.slice(0, 37, textFirstPart) + '...' : textFirstPart + '...'
-  }
-  return R.length(text) > 40 ? R.slice(0, 37, text) + '...' : text
-}

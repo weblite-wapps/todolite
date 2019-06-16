@@ -1,7 +1,7 @@
 <template>
   <div>
     <slide-up-down :active="controllerOpen" :duration="300">
-      <template v-if="controllerOpen">
+      <template v-show="controllerOpen">
         <p class="todo-info noselect">
           <span v-if="creator" :title="creatorUpper" class="text">
             ADD BY
@@ -22,13 +22,13 @@
       </template>
     </slide-up-down>
 
-    <BaseEditable
-      v-if="!controllerOpen"
-      class="todo-content"
-      :content="oneLineText"
-      :editable="editable"
-      @submit="$emit('submit', $event)"
-    />
+    <p
+      dir="auto"
+      v-show="!controllerOpen"
+      class="todo-brief-content"
+    >
+      {{ text }}
+    </p>
   </div>
 </template>
 
@@ -37,8 +37,7 @@
 import SlideUpDown from 'vue-slide-up-down'
 // components
 import BaseEditable from '../helper/component/BaseEditable.vue'
-// helpers
-import { oneLineText } from '../helper/function/time'
+
 
 export default {
   name: 'TodoListItemContent',
@@ -63,9 +62,6 @@ export default {
     creatorUpper() {
       return this.creator.toUpperCase()
     },
-    oneLineText() {
-      return oneLineText(this.text)
-    },
   },
 }
 </script>
@@ -75,6 +71,8 @@ export default {
 @import '../helper/style/_mixin.scss';
 
 .todo-info {
+  @include text-overflow();
+
   margin-top: 2px;
   padding: 10px;
   font-size: $font-size-small;
@@ -82,9 +80,6 @@ export default {
   font-weight: $font-weight-normal;
   background-color: $color-primary;
   color: $font-color-dark-secondary;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .text {
@@ -95,9 +90,6 @@ export default {
 
 .functor {
   color: $font-color-dark-secondary;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .todo-content {
@@ -113,5 +105,22 @@ export default {
   border-bottom-right-radius: 20px;
   font-weight: $font-weight-normal;
   background-color: $color-primary;
+}
+
+.todo-brief-content {
+  @include reset();
+  @include text-overflow();
+
+  padding: 10px;
+  margin-top: 2px;
+  font-size: $font-size-small;
+  text-align: -webkit-auto;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  border-bottom-right-radius: 20px;
+  font-weight: $font-weight-normal;
+  background-color: $color-primary;
+  font-family: $font-stack;
+  color: #545454;
 }
 </style>

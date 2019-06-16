@@ -94,7 +94,6 @@ export default {
   display: block;
   padding: 5px 10px;
   transition: all 0.5s ease;
-  scroll-snap-align: center;
 }
 
 .todo-item:first-of-type {
@@ -144,7 +143,6 @@ export default {
   overflow-x: hidden;
   overflow-y: overlay;
   transition: all 0.5s ease;
-  scroll-snap-type: y mandatory;
 }
 
 .todolist-scroll-area::-webkit-scrollbar-track {
