@@ -10,7 +10,7 @@
     "prettier": "prettier '**/*.{js,vue,html,css,scss}' --write"
   },
   "dependencies": {
-    "dayjs": "^1.8.13",
+    "moment-timezone": "^0.5.25",
     "vue": "^2.5.13",
     "vue-slide-up-down": "^1.7.2",
     "vuedraggable": "^2.20.0",
