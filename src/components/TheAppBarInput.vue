@@ -57,7 +57,7 @@ export default {
 @import '../helper/style/_mixin.scss';
 
 .input {
-  @include reset();
+  @include reset;
   width: 100%;
   padding: 15px 20px 15px 20px;
   box-sizing: border-box;

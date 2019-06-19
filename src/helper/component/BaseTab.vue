@@ -62,8 +62,8 @@ export default {
 }
 
 .tab-item {
-  @include flex-center();
-  @include reset();
+  @include flex-center;
+  @include reset;
 
   position: relative;
   width: 100%;

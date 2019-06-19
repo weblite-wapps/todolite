@@ -71,7 +71,7 @@ export default {
 @import '../helper/style/_mixin.scss';
 
 .todo-info {
-  @include text-overflow();
+  @include text-overflow;
 
   margin-top: 2px;
   padding: 10px;
@@ -93,7 +93,7 @@ export default {
 }
 
 .todo-content {
-  @include reset();
+  @include reset;
 
   width: 100%;
   padding: 10px;
@@ -105,22 +105,12 @@ export default {
   border-bottom-right-radius: 20px;
   font-weight: $font-weight-normal;
   background-color: $color-primary;
+  color: #545454;
 }
 
 .todo-brief-content {
-  @include reset();
-  @include text-overflow();
-
-  padding: 10px;
-  margin-top: 2px;
-  font-size: $font-size-small;
-  text-align: -webkit-auto;
-  word-wrap: break-word;
-  box-sizing: border-box;
-  border-bottom-right-radius: 20px;
-  font-weight: $font-weight-normal;
-  background-color: $color-primary;
+  @extend .todo-content;
+  @include text-overflow;
   font-family: $font-stack;
-  color: #545454;
 }
 </style>
