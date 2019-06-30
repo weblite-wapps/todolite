@@ -1,10 +1,10 @@
-import dayjs from 'dayjs'
+import moment from 'moment-timezone'
 
 const {
   R
 } = window
 
-export const now = () => dayjs().format('D MMMM | HH:mm A')
+export const now = () => moment().tz('Asia/Tehran').format('D MMMM | HH:mm A')
 
 export const calculateHeight = (difference) => {
   const differenceInNumber = Number(R.takeWhile(x => x !== 'p', difference))

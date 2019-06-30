@@ -1,0 +1,23 @@
+@font-face {
+  font-family: rtlfont;
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/woff/rtlfontwebregular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: rtlfont;
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/woff/rtlfontwebextrabold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: rtlfont;
+  font-style: normal;
+  font-weight: 900;
+  src: url('./fonts/woff/rtlfontwebblack.woff') format('woff');
+  font-display: swap;
+}

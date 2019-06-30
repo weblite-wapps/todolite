@@ -32,7 +32,7 @@ export default {
 @import '../helper/style/_mixin.scss';
 
 .progress {
-  @include flex-center();
+  @include flex-center;
 
   width: 100%;
   height: 100%;

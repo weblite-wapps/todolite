@@ -32,7 +32,7 @@ export default {
 @import '../../helper/style/_mixin.scss';
 
 .button {
-  @include reset();
+  @include reset;
 
   width: 50px;
   height: 50px;

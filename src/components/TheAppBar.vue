@@ -110,7 +110,7 @@ export default {
 }
 
 .main {
-  @include flex-center();
+  @include flex-center;
 
   width: calc(100% - 50px);
 }

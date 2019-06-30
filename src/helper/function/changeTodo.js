@@ -62,12 +62,12 @@ const findLoc = (id, todos) => R.findIndex(R.propEq('id', id))(todos)
 
 export const dragTodo = (todo, allTodos, idOfDestTodo) => {
   W.analytics("DRAG_AND_DROP_TODO")
-  const { id, text, functor, vit, creator } = todo
+  const { id, text, functor, vit, creator, created_at } = todo
   const index = findLoc(idOfDestTodo, allTodos)
   dispatch([
     '__compose', [
       ['__insert',
-        [index, { id, text, functor, vit, creator }]],
+        [index, { id, text, functor, vit, creator, created_at }]],
       ['__reject', [['__propEq', ['id', id]]]]
     ]
   ])

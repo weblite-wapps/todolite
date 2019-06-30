@@ -37,7 +37,7 @@ export default {
 @import '../../helper/style/_mixin.scss';
 
 .button {
-  @include flex-center();
+  @include flex-center;
 
   z-index: 1;
   border: none;
@@ -66,7 +66,7 @@ export default {
 }
 
 .dot {
-  @include flex-center();
+  @include flex-center;
 
   width: 10px;
   height: 10px;
