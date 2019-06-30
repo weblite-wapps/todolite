@@ -4,6 +4,7 @@ import Vue from 'vue'
 // global css style
 import './helper/style/reset.scss'
 import './helper/style/global.scss'
+import '../public/fontface.css'
 // components
 import App from './App.vue'
 
