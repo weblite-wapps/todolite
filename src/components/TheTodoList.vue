@@ -1,14 +1,14 @@
 <template>
   <!-- todo items -->
   <ul class="todolist-scroll-area" ref="todolist" :style="{ height: getHeight }">
-    <draggable
+    <!-- <draggable
       key="draggable"
       v-bind="dragOptions"
       handle=".drag-icon"
       scroll
       @start="drag = true"
       @end="handleDrag"
-    >
+    > -->
       <transition-group
         class="transition"
         name="todo"
@@ -17,7 +17,7 @@
       >
         <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" class="todo-item"/>
       </transition-group>
-    </draggable>
+    <!-- </draggable> -->
   </ul>
 </template>
 
