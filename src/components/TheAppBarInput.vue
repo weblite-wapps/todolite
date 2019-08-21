@@ -61,7 +61,7 @@ export default {
   width: 100%;
   padding: 15px 20px 15px 20px;
   box-sizing: border-box;
-  font-size: $font-size-small; 
+  font-size: 16px;
   color: $font-color-dark-primary;
   background: $color-primary;
   resize: none;

@@ -23,7 +23,6 @@
       color="#636363"
       icon="edit"
       :value="editable"
-      :disable="!(creator === username || isAdmin)"
       @change="toggleEditable"
     />
     <BaseToggle
