@@ -144,7 +144,7 @@ export default new Vuex.Store({
       W.analytics('DONE_TODO')
     },
 
-    changeTodoVit({ dispatch }, { id, vit }) {
+    changeTodoVit({ state, dispatch }, { id, vit }) {
       dispatch('changeCurrentAction', vit ? 'vit' : 'list-right')
       if (vit)
         sendNotification(
@@ -158,7 +158,7 @@ export default new Vuex.Store({
       W.analytics('VIT_CLICK')
     },
 
-    removeTodo({ dispatch }, id) {
+    removeTodo({ state, dispatch }, id) {
       sendNotification(
         'remove',
         {
