@@ -49,11 +49,16 @@ export default new Vuex.Store({
       )(todos)
     },
 
-    donePercentage({ todos }) {
+    progressInfo({ todos }) {
       const numberOfDoneTodos = todos.filter(R.prop('functor')).length
       const numberOfTodos = todos.length
       if (numberOfTodos === 0) return 0
-      else return ((numberOfDoneTodos / numberOfTodos) * 100).toFixed(0)
+      else
+        return {
+          percentage: ((numberOfDoneTodos / numberOfTodos) * 100).toFixed(0),
+          numberOfDoneTodos,
+          numberOfTodos,
+        }
     },
 
     allTodos({ todos }) {

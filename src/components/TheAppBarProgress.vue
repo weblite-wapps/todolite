@@ -5,14 +5,17 @@
       v-html="
         `
         <style>
-          div#progress { --width: ${donePercentage}% }
+          div#progress { --width: ${progressInfo.percentage}% }
         </style>
       `
       "
     />
 
     <!-- show percentage -->
-    <span class="text">{{ donePercentage }}%</span>
+    <span class="text">
+      {{ progressInfo.numberOfDoneTodos }} / {{ progressInfo.numberOfTodos }} = 
+      {{ progressInfo.percentage }}%
+      </span>
   </div>
 </template>
 
@@ -23,7 +26,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'TheAppBarProgress',
 
-  computed: mapGetters(['donePercentage']),
+  computed: mapGetters(['progressInfo']),
 }
 </script>
 

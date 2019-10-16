@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import SlideUpDown from 'vue-slide-up-down'
 // components
 import BaseRotativeButton from '../helper/component/BaseRotativeButton'
@@ -61,6 +62,8 @@ export default {
   }), 
 
   computed: {
+    ...mapGetters(['progressInfo']),
+
     title() {
       return this.$store.state.title
     },
@@ -76,8 +79,8 @@ export default {
       this.$store.commit('changeScrollHeight', 0)
     },
 
-    toggleMode: debounce(function (mouse) { 
-        if (this.mode === 'normal' && mouse === 'over') this.mode = 'progress'
+    toggleMode: debounce(function (mouse) {
+        if (this.mode === 'normal' && mouse === 'over' && this.progressInfo.numberOfTodos) this.mode = 'progress'
         else if (this.mode === 'progress' && mouse === 'out') this.mode = 'normal'
       }, 200),
 
