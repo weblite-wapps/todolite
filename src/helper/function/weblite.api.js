@@ -1,25 +1,18 @@
 // W
-const {
-  W
-} = window
+const { W } = window
 
 const handleNormalMode = (start, vue) => {
   start()
-  Promise.all([W.loadData(), W.share.getFromServer([])]).then(data => {
-    const [{
-      user: {
-        name
-      },
-      creator,
-      customize: {
-        title
-      },
-    }, ] = data
+  Promise.all([W.initializeAsync(), W.shareDB.getFromServer([])]).then(() => {
+    const { title } = W.wapp.getInput()
+    const [adminId] = W.wapp.getAdmins()
+
+    const { username, id } = W.user.getInfo()
 
     vue.$store.commit('changeWebliteRelatedData', {
-      username: name,
+      username,
       title,
-      isAdmin: creator,
+      isAdmin: adminId === id,
     })
 
     vue.$store.commit('changeIsDataFetched', true)
@@ -33,23 +26,17 @@ const handleCustomizeMode = (start, vue) => {
 
 export default vue => {
   W.setHooks({
-    wappWillStart(start, error, {
-      mode
-    }) {
-      mode === 'customize' ? handleCustomizeMode(start, vue) : handleNormalMode(start, vue)
+    wappWillStart(start, _, { mode }) {
+      mode === 'customize'
+        ? handleCustomizeMode(start, vue)
+        : handleNormalMode(start, vue)
     },
 
-    wappDidStart({
-      mode
-    }) {
-      if (mode !== 'customize')
-        W.deleteAllNotifications()
+    wappDidStart({ mode }) {
+      if (mode !== 'customize') W.notifications.deleteAll()
     },
 
-    onCustomizeValueChange({
-      key,
-      value
-    }) {
+    onCustomizeValueChange({ key, value }) {
       if (key === 'title') vue.$store.commit('changeTitle', value)
     },
   })
